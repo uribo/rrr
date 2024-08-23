@@ -1,0 +1,18 @@
+project:
+  type: book
+  
+lang: ja
+
+book:
+  title: "Rによるデータ分析ワークフローの効率化"
+  author: "瓜生真也"
+  date: "2024-08-23"
+  chapters:
+    - index.qmd
+    - literacy.qmd
+    - project.qmd
+    - git.qmd
+
+format:
+  html:
+    theme: cosmo
