@@ -5,3 +5,5 @@ Imports:
     here,
     pointblank,
     targets
+Suggests:
+    rversions
