@@ -12,6 +12,10 @@ book:
     - literacy.qmd
     - project.qmd
     - git.qmd
+    - document.qmd
+    - reference.qmd
+
+bibliography: references.bib
 
 format:
   html:

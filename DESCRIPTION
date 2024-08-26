@@ -6,4 +6,5 @@ Imports:
     pointblank,
     targets
 Suggests:
+    rstudioapi,
     rversions
