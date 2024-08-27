@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; プロジェクト – Rによるデータ分析ワークフローの効率化</title>
+<title>3&nbsp; プロジェクト – Rによるデータ分析ワークフローの効率化</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./git.html" rel="next">
-<link href="./literacy.html" rel="prev">
+<link href="./reproducibility.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./project.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">プロジェクト</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./project.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">プロジェクト</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
@@ -154,20 +154,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./reproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">再現可能性</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./project.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">プロジェクト</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">プロジェクト</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Gitによるバージョン管理</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gitによるバージョン管理</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./document.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ドキュメントの作成</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ドキュメントの作成</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -186,10 +192,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#rstudioのプロジェクト" id="toc-rstudioのプロジェクト" class="nav-link active" data-scroll-target="#rstudioのプロジェクト"><span class="header-section-number">2.1</span> RStudioのプロジェクト</a></li>
-  <li><a href="#vscodeの利用" id="toc-vscodeの利用" class="nav-link" data-scroll-target="#vscodeの利用"><span class="header-section-number">2.2</span> VSCodeの利用</a>
+  <li><a href="#統合開発環境" id="toc-統合開発環境" class="nav-link active" data-scroll-target="#統合開発環境"><span class="header-section-number">3.1</span> 統合開発環境</a></li>
+  <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio"><span class="header-section-number">3.2</span> RStudio</a>
   <ul class="collapse">
-  <li><a href="#positron" id="toc-positron" class="nav-link" data-scroll-target="#positron"><span class="header-section-number">2.2.1</span> Positron</a></li>
+  <li><a href="#rstudioのプロジェクト" id="toc-rstudioのプロジェクト" class="nav-link" data-scroll-target="#rstudioのプロジェクト"><span class="header-section-number">3.2.1</span> RStudioのプロジェクト</a></li>
+  </ul></li>
+  <li><a href="#vscodeの利用" id="toc-vscodeの利用" class="nav-link" data-scroll-target="#vscodeの利用"><span class="header-section-number">3.3</span> VSCodeの利用</a>
+  <ul class="collapse">
+  <li><a href="#positron" id="toc-positron" class="nav-link" data-scroll-target="#positron"><span class="header-section-number">3.3.1</span> Positron</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -199,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">プロジェクト</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">プロジェクト</span></h1>
 </div>
 
 
@@ -219,18 +229,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>データ分析作業は一朝一夕には終わらないものです。 短いものでは数ヶ月、時には数年にわたることも珍しくありません。 データ分析に費やす時間が長くなると、次第に関連するファイルも増えていきます。 最初は数ファイルだったものが、追加の分析や再解析を行う過程で、数十、数百と増えていくこともあります。</p>
 <p>これらの長期間、多数のファイルを扱う作業を効率的に行うために、プロジェクトを利用することができます。 プロジェクトは、関連するファイルを一つのまとまりとして扱うための仕組みです。</p>
 <p>そのため、作業を途中で中断しても、後で再開できるように、作業内容を保存しておくことが重要です。このような作業を効率的に行うために、プロジェクトを利用することができます。</p>
-<section id="rstudioのプロジェクト" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="rstudioのプロジェクト"><span class="header-section-number">2.1</span> RStudioのプロジェクト</h2>
+<section id="統合開発環境" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="統合開発環境"><span class="header-section-number">3.1</span> 統合開発環境</h2>
+<p>プログラム開発で必要なエディタやコンパイラ、デバッガなどのツールを一つにまとめたものを統合開発環境（IDE: Integrated Development Environment）と呼びます。</p>
+</section>
+<section id="rstudio" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">3.2</span> RStudio</h2>
+<section id="rstudioのプロジェクト" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="rstudioのプロジェクト"><span class="header-section-number">3.2.1</span> RStudioのプロジェクト</h3>
 <p>RStudioでは、プロジェクト機能を利用して</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rstudioapi<span class="sc">::</span><span class="fu">openProject</span>(<span class="st">"~/Documents/projects2024/rrr-demo"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="vscodeの利用" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="vscodeの利用"><span class="header-section-number">2.2</span> VSCodeの利用</h2>
+</section>
+<section id="vscodeの利用" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="vscodeの利用"><span class="header-section-number">3.3</span> VSCodeの利用</h2>
 <p>作業空間</p>
-<section id="positron" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="positron"><span class="header-section-number">2.2.1</span> Positron</h3>
+<section id="positron" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="positron"><span class="header-section-number">3.3.1</span> Positron</h3>
 
 
 </section>
@@ -659,13 +676,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./literacy.html" class="pagination-link" aria-label="基礎（リテラシー）">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">基礎（リテラシー）</span></span>
+      <a href="./reproducibility.html" class="pagination-link" aria-label="再現可能性">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">再現可能性</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./git.html" class="pagination-link" aria-label="Gitによるバージョン管理">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Gitによるバージョン管理</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gitによるバージョン管理</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

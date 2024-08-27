@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Gitによるバージョン管理 – Rによるデータ分析ワークフローの効率化</title>
+<title>4&nbsp; Gitによるバージョン管理 – Rによるデータ分析ワークフローの効率化</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,7 +101,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./git.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Gitによるバージョン管理</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./git.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gitによるバージョン管理</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
@@ -140,20 +140,26 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./reproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">再現可能性</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">プロジェクト</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">プロジェクト</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./git.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Gitによるバージョン管理</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gitによるバージョン管理</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./document.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ドキュメントの作成</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ドキュメントの作成</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -172,21 +178,21 @@ div.csl-indent {
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#バージョン管理" id="toc-バージョン管理" class="nav-link active" data-scroll-target="#バージョン管理"><span class="header-section-number">3.1</span> バージョン管理</a></li>
-  <li><a href="#バージョン管理システム-git" id="toc-バージョン管理システム-git" class="nav-link" data-scroll-target="#バージョン管理システム-git"><span class="header-section-number">3.2</span> バージョン管理システム: Git</a>
+  <li><a href="#バージョン管理" id="toc-バージョン管理" class="nav-link active" data-scroll-target="#バージョン管理"><span class="header-section-number">4.1</span> バージョン管理</a></li>
+  <li><a href="#バージョン管理システム-git" id="toc-バージョン管理システム-git" class="nav-link" data-scroll-target="#バージョン管理システム-git"><span class="header-section-number">4.2</span> バージョン管理システム: Git</a>
   <ul class="collapse">
-  <li><a href="#バージョン管理の流れ" id="toc-バージョン管理の流れ" class="nav-link" data-scroll-target="#バージョン管理の流れ"><span class="header-section-number">3.2.1</span> バージョン管理の流れ</a></li>
-  <li><a href="#状態を戻す" id="toc-状態を戻す" class="nav-link" data-scroll-target="#状態を戻す"><span class="header-section-number">3.2.2</span> 状態を戻す</a></li>
+  <li><a href="#バージョン管理の流れ" id="toc-バージョン管理の流れ" class="nav-link" data-scroll-target="#バージョン管理の流れ"><span class="header-section-number">4.2.1</span> バージョン管理の流れ</a></li>
+  <li><a href="#状態を戻す" id="toc-状態を戻す" class="nav-link" data-scroll-target="#状態を戻す"><span class="header-section-number">4.2.2</span> 状態を戻す</a></li>
   </ul></li>
-  <li><a href="#rstudioでのバージョン管理" id="toc-rstudioでのバージョン管理" class="nav-link" data-scroll-target="#rstudioでのバージョン管理"><span class="header-section-number">3.3</span> RStudioでのバージョン管理</a></li>
-  <li><a href="#vscodeでのバージョン管理" id="toc-vscodeでのバージョン管理" class="nav-link" data-scroll-target="#vscodeでのバージョン管理"><span class="header-section-number">3.4</span> VSCodeでのバージョン管理</a></li>
-  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github"><span class="header-section-number">3.5</span> GitHub</a>
+  <li><a href="#rstudioでのバージョン管理" id="toc-rstudioでのバージョン管理" class="nav-link" data-scroll-target="#rstudioでのバージョン管理"><span class="header-section-number">4.3</span> RStudioでのバージョン管理</a></li>
+  <li><a href="#vscodeでのバージョン管理" id="toc-vscodeでのバージョン管理" class="nav-link" data-scroll-target="#vscodeでのバージョン管理"><span class="header-section-number">4.4</span> VSCodeでのバージョン管理</a></li>
+  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github"><span class="header-section-number">4.5</span> GitHub</a>
   <ul class="collapse">
-  <li><a href="#ローカルリポジトリの紐付け" id="toc-ローカルリポジトリの紐付け" class="nav-link" data-scroll-target="#ローカルリポジトリの紐付け"><span class="header-section-number">3.5.1</span> ローカルリポジトリの紐付け</a></li>
-  <li><a href="#リモートリポジトリのクローン" id="toc-リモートリポジトリのクローン" class="nav-link" data-scroll-target="#リモートリポジトリのクローン"><span class="header-section-number">3.5.2</span> リモートリポジトリのクローン</a></li>
-  <li><a href="#github-issues" id="toc-github-issues" class="nav-link" data-scroll-target="#github-issues"><span class="header-section-number">3.5.3</span> GitHub Issues</a></li>
+  <li><a href="#ローカルリポジトリの紐付け" id="toc-ローカルリポジトリの紐付け" class="nav-link" data-scroll-target="#ローカルリポジトリの紐付け"><span class="header-section-number">4.5.1</span> ローカルリポジトリの紐付け</a></li>
+  <li><a href="#リモートリポジトリのクローン" id="toc-リモートリポジトリのクローン" class="nav-link" data-scroll-target="#リモートリポジトリのクローン"><span class="header-section-number">4.5.2</span> リモートリポジトリのクローン</a></li>
+  <li><a href="#github-issues" id="toc-github-issues" class="nav-link" data-scroll-target="#github-issues"><span class="header-section-number">4.5.3</span> GitHub Issues</a></li>
   </ul></li>
-  <li><a href="#gitignore" id="toc-gitignore" class="nav-link" data-scroll-target="#gitignore"><span class="header-section-number">3.6</span> .gitignore</a></li>
+  <li><a href="#gitignore" id="toc-gitignore" class="nav-link" data-scroll-target="#gitignore"><span class="header-section-number">4.6</span> .gitignore</a></li>
   </ul>
 </nav>
     </div>
@@ -195,7 +201,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Gitによるバージョン管理</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gitによるバージョン管理</span></h1>
 </div>
 
 
@@ -212,8 +218,8 @@ div.csl-indent {
 </header>
 
 
-<section id="バージョン管理" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="バージョン管理"><span class="header-section-number">3.1</span> バージョン管理</h2>
+<section id="バージョン管理" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="バージョン管理"><span class="header-section-number">4.1</span> バージョン管理</h2>
 <p>データ分析で用いるソースコードやデータは日々更新（バージョンアップ）されていきます。 ある日の作業では、データ読み込みのプログラムを書いて、次の日にはデータの前処理と可視化のプログラムを書くという流れです。 またある日には、これまで使っていたデータを新しいデータに差し替えることもあるでしょう。 そんな中で、ある日突然、以前実行可能だったコードがエラーを吐いたり、以前正常に動作していたコードが動かなくなったりすることがあります。</p>
 <p>バグとなるプログラムを書いてしまうことは誰にでもあることですが、そのような場合に、以前のバージョンに戻ることができると便利です。</p>
 <p>同じファイルに対して、複数のバージョンを保存しておくことがバージョン管理の目的です。</p>
@@ -229,16 +235,16 @@ div.csl-indent {
 <li>履歴</li>
 </ul>
 </section>
-<section id="バージョン管理システム-git" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="バージョン管理システム-git"><span class="header-section-number">3.2</span> バージョン管理システム: Git</h2>
+<section id="バージョン管理システム-git" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="バージョン管理システム-git"><span class="header-section-number">4.2</span> バージョン管理システム: Git</h2>
 <p>バージョン管理システムには大別して2つの種類があります。</p>
 <p>分散型</p>
 <p>複数の開発者が共同でコードを管理・開発する際に便利な機能を提供するバージョン管理システムです。</p>
 <p>バージョン管理システムを導入しないプロジェクトでは、ファイルが煩雑になりがちです。</p>
 <p>どのファイルが最新のものなのか、どのデータを使うのかがわからなくなることもあります。</p>
 <p>ここではGitのインストール方法や詳細なGitの説明は行いません。<span class="citation" data-cites="isbn9784295013617">横田紋奈 と 宇賀神みずき (<a href="reference.html#ref-isbn9784295013617" role="doc-biblioref">2022.3</a>)</span> や <span class="citation" data-cites="isbn9784065352199">渡辺宙志 (<a href="reference.html#ref-isbn9784065352199" role="doc-biblioref">2024.4</a>)</span> を参考にしてください。オンラインで読める<a href="https://git-scm.com/book/ja/v2">Pro Git</a>もあります。</p>
-<section id="バージョン管理の流れ" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="バージョン管理の流れ"><span class="header-section-number">3.2.1</span> バージョン管理の流れ</h3>
+<section id="バージョン管理の流れ" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="バージョン管理の流れ"><span class="header-section-number">4.2.1</span> バージョン管理の流れ</h3>
 <ol type="1">
 <li>リポジトリの作成</li>
 <li>ファイルの追加</li>
@@ -246,19 +252,19 @@ div.csl-indent {
 <li>ファイルのプッシュ</li>
 </ol>
 <p>Gitには100を超えるコマンドがありますが、覚えるべきコマンドは限定的です。 上記のバージョン管理の流れでは、それぞれ数個のコマンドを使います。 つまり、一連のバージョン管理で用いるコマンドは指で数えられる範囲に収まります。</p>
-<section id="リポジトリの作成" class="level4" data-number="3.2.1.1">
-<h4 data-number="3.2.1.1" class="anchored" data-anchor-id="リポジトリの作成"><span class="header-section-number">3.2.1.1</span> リポジトリの作成</h4>
+<section id="リポジトリの作成" class="level4" data-number="4.2.1.1">
+<h4 data-number="4.2.1.1" class="anchored" data-anchor-id="リポジトリの作成"><span class="header-section-number">4.2.1.1</span> リポジトリの作成</h4>
 <p><code>git init</code></p>
 <p><code>.git</code>フォルダが作成されます。</p>
 <p>このフォルダはGitのリポジトリとしての役割を果たします。隠しフォルダとなっており、ユーザーが直接操作することはありません。</p>
 </section>
-<section id="ファイルの追加" class="level4" data-number="3.2.1.2">
-<h4 data-number="3.2.1.2" class="anchored" data-anchor-id="ファイルの追加"><span class="header-section-number">3.2.1.2</span> ファイルの追加</h4>
+<section id="ファイルの追加" class="level4" data-number="4.2.1.2">
+<h4 data-number="4.2.1.2" class="anchored" data-anchor-id="ファイルの追加"><span class="header-section-number">4.2.1.2</span> ファイルの追加</h4>
 <p><code>git add</code></p>
 <p><code>git status</code></p>
 </section>
-<section id="ファイルのコミット" class="level4" data-number="3.2.1.3">
-<h4 data-number="3.2.1.3" class="anchored" data-anchor-id="ファイルのコミット"><span class="header-section-number">3.2.1.3</span> ファイルのコミット</h4>
+<section id="ファイルのコミット" class="level4" data-number="4.2.1.3">
+<h4 data-number="4.2.1.3" class="anchored" data-anchor-id="ファイルのコミット"><span class="header-section-number">4.2.1.3</span> ファイルのコミット</h4>
 <p>作成・変更したファイルの状態を記録する作業をGitでは「コミット」と呼びます。 コミットを重ねることで、ファイルの変更履歴を残すことができ、必要に応じて過去の状態に遡ることができます。</p>
 <p><code>git commit</code></p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -286,21 +292,21 @@ div.csl-indent {
 </ul>
 <p>Gitに不慣れな方は、コミットメッセージを書くことに障壁を感じるかもしれません。 ここで大事なことはコミットに残すことです。コミットメッセージは後から修正することもできます。 簡単な情報であっても、コミットメッセージを残すことが大切です。</p>
 </section>
-<section id="ファイルのプッシュ" class="level4" data-number="3.2.1.4">
-<h4 data-number="3.2.1.4" class="anchored" data-anchor-id="ファイルのプッシュ"><span class="header-section-number">3.2.1.4</span> ファイルのプッシュ</h4>
+<section id="ファイルのプッシュ" class="level4" data-number="4.2.1.4">
+<h4 data-number="4.2.1.4" class="anchored" data-anchor-id="ファイルのプッシュ"><span class="header-section-number">4.2.1.4</span> ファイルのプッシュ</h4>
 <p><code>git push</code></p>
 <p><code>git log</code></p>
 </section>
 </section>
-<section id="状態を戻す" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="状態を戻す"><span class="header-section-number">3.2.2</span> 状態を戻す</h3>
+<section id="状態を戻す" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="状態を戻す"><span class="header-section-number">4.2.2</span> 状態を戻す</h3>
 <p>バージョン管理システムを使うと、過去の状態に戻すことができます。</p>
 <p>ファイルを復元</p>
 <p>コミット後の状態に戻すには、<code>git checkout</code>コマンドを使います。</p>
 </section>
 </section>
-<section id="rstudioでのバージョン管理" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="rstudioでのバージョン管理"><span class="header-section-number">3.3</span> RStudioでのバージョン管理</h2>
+<section id="rstudioでのバージョン管理" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="rstudioでのバージョン管理"><span class="header-section-number">4.3</span> RStudioでのバージョン管理</h2>
 <p>プロジェクト内には複数のファイルが存在します。</p>
 <p>ターミナルあるいはGitパネルを使ってバージョン管理を行います。</p>
 <p>RStudioではGitとSVNによるバージョン管理をサポートしています。</p>
@@ -311,15 +317,15 @@ div.csl-indent {
 <li><code>?</code></li>
 </ul>
 </section>
-<section id="vscodeでのバージョン管理" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="vscodeでのバージョン管理"><span class="header-section-number">3.4</span> VSCodeでのバージョン管理</h2>
+<section id="vscodeでのバージョン管理" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="vscodeでのバージョン管理"><span class="header-section-number">4.4</span> VSCodeでのバージョン管理</h2>
 <ul>
 <li>リポジトリを初期化する</li>
 </ul>
 <!-- ブランチについては簡単に紹介するだけ -->
 </section>
-<section id="github" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="github"><span class="header-section-number">3.5</span> GitHub</h2>
+<section id="github" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="github"><span class="header-section-number">4.5</span> GitHub</h2>
 <p>GitHub (https://github.com/) は、Gitリポジトリをホスティングするウェブサービス（リモートリポジトリ）です。 利用の際にはアカウントの作成が必要です。</p>
 <p>プライベートリポジトリ</p>
 <p>リポジトリのURLは <code>https://github.com/&lt;アカウント名&gt;/&lt;リポジトリ名&gt;</code> となります。</p>
@@ -330,23 +336,23 @@ div.csl-indent {
 <p>GitHub上のリモートリポジトリを介して、複数のコンピュータでファイルを共有できます。</p>
 <p>バックアップとして機能します。</p>
 <p>GitHubにはここで取り上げる内容以外にも多くの機能があります。GitHub公式が提供する<a href="https://skills.github.com/">GitHub Skills</a>では、実際のGitHubリポジトリを操作してGitHubの使い方を学ぶことができます。</p>
-<section id="ローカルリポジトリの紐付け" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="ローカルリポジトリの紐付け"><span class="header-section-number">3.5.1</span> ローカルリポジトリの紐付け</h3>
+<section id="ローカルリポジトリの紐付け" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="ローカルリポジトリの紐付け"><span class="header-section-number">4.5.1</span> ローカルリポジトリの紐付け</h3>
 </section>
-<section id="リモートリポジトリのクローン" class="level3" data-number="3.5.2">
-<h3 data-number="3.5.2" class="anchored" data-anchor-id="リモートリポジトリのクローン"><span class="header-section-number">3.5.2</span> リモートリポジトリのクローン</h3>
+<section id="リモートリポジトリのクローン" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="リモートリポジトリのクローン"><span class="header-section-number">4.5.2</span> リモートリポジトリのクローン</h3>
 <p>新しいコンピュータなど、ローカルリポジトリを持っていない場合には、リモートリポジトリをクローンします。</p>
 <p><code>git clone</code></p>
 <p>変更の同期 <code>git pull</code>, <code>git fetch</code></p>
 <p>クローンしたリポジトリはローカルリポジトリとして扱うことができます。</p>
 </section>
-<section id="github-issues" class="level3" data-number="3.5.3">
-<h3 data-number="3.5.3" class="anchored" data-anchor-id="github-issues"><span class="header-section-number">3.5.3</span> GitHub Issues</h3>
+<section id="github-issues" class="level3" data-number="4.5.3">
+<h3 data-number="4.5.3" class="anchored" data-anchor-id="github-issues"><span class="header-section-number">4.5.3</span> GitHub Issues</h3>
 <p>プロジェクトに関する問題やメモのために利用できます。</p>
 </section>
 </section>
-<section id="gitignore" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="gitignore"><span class="header-section-number">3.6</span> .gitignore</h2>
+<section id="gitignore" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="gitignore"><span class="header-section-number">4.6</span> .gitignore</h2>
 <p>Gitバージョン管理を行うリポジトリでは、バージョン管理に含めたくないファイルやディレクトリが存在する場合があります。 ユーザーのアカウント情報を記録したファイルなどのクレデンシャルなデータです。 このほか、巨大なバイナリファイルやキャッシュファイルなども含まれます。</p>
 <p><code>.gitignore</code>を使って、これらのファイルをバージョン管理から除外することができます。</p>
 <p><code>.gitignore</code>ファイルは、リポジトリのルートディレクトリに配置します。</p>
@@ -787,12 +793,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./project.html" class="pagination-link" aria-label="プロジェクト">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">プロジェクト</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">プロジェクト</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./document.html" class="pagination-link" aria-label="ドキュメントの作成">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ドキュメントの作成</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ドキュメントの作成</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

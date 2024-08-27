@@ -34,7 +34,7 @@
     "href": "literacy.html#環境",
     "title": "1  基礎（リテラシー）",
     "section": "1.2 環境",
-    "text": "1.2 環境\nコンピュータには、プログラムが動作するために必要な条件、設定が存在します。 この条件や設定のことを「環境」と呼びます。 環境はコンピュータのOS（オペレーティングシステム）、ハードウェア、ソフトウェア、ネットワークなど、さまざまな要素で構成されています。 そのため、コンピュータ間で同じ環境を用意することは容易ではありません。\n環境の違いは、プログラムの動作に影響を与えることがあります。 例えば、あるコンピュータで動作するプログラムが、別のコンピュータで動作しなかったり、出力結果が異なることがあります。 例を見てみましょう。 Rの作業ディレクトリを示す getwd() 関数をmacOSとWindowsで実行した場合、それぞれのOSに応じたディレクトリが表示されます。 以下は著者のR実行環境であるmacOSでの実行結果ですが、Windowsで実行した場合、ディレクトリの先頭は通常 C:/ となります。\n\ngetwd()\n\n[1] \"/Users/suryu/Documents/projects2024/rrr\"",
+    "text": "1.2 環境\nコンピュータには、プログラムが動作するために必要な条件、設定が存在します。 この条件や設定のことを「環境」と呼びます。 環境はコンピュータのOS（オペレーティングシステム）、ハードウェア、ソフトウェア、ネットワークなど、さまざまな要素で構成されています。 そのため、コンピュータ間で同じ環境を用意することは容易ではありません。\n環境の違いは、プログラムの動作に影響を与えることがあります。 例えば、あるコンピュータで動作するプログラムが、別のコンピュータで動作しなかったり、出力結果が異なることがあります。 例を見てみましょう。 Rの作業ディレクトリを示す getwd() 関数をmacOSとWindowsで実行した場合、それぞれのOSに応じたディレクトリが表示されます。 以下は著者のR実行環境であるmacOSでの実行結果ですが、Windowsで実行した場合、ディレクトリの先頭は通常 C:/ となります。\n\ngetwd()\n\n[1] \"/Users/suryu/Documents/projects2022/rrr\"",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>基礎（リテラシー）</span>"
     ]
@@ -50,113 +50,143 @@
     ]
   },
   {
+    "objectID": "reproducibility.html",
+    "href": "reproducibility.html",
+    "title": "2  再現可能性",
+    "section": "",
+    "text": "2.1 再現性を阻害する要因\nset.seed(123)\n乱数",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>再現可能性</span>"
+    ]
+  },
+  {
+    "objectID": "reproducibility.html#再現性を阻害する要因",
+    "href": "reproducibility.html#再現性を阻害する要因",
+    "title": "2  再現可能性",
+    "section": "",
+    "text": "ランダム性\nデータの変更\n環境の違い",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>再現可能性</span>"
+    ]
+  },
+  {
     "objectID": "project.html",
     "href": "project.html",
-    "title": "2  プロジェクト",
+    "title": "3  プロジェクト",
     "section": "",
-    "text": "2.1 RStudioのプロジェクト\nRStudioでは、プロジェクト機能を利用して\nrstudioapi::openProject(\"~/Documents/projects2024/rrr-demo\")",
+    "text": "3.1 統合開発環境\nプログラム開発で必要なエディタやコンパイラ、デバッガなどのツールを一つにまとめたものを統合開発環境（IDE: Integrated Development Environment）と呼びます。",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>プロジェクト</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>プロジェクト</span>"
+    ]
+  },
+  {
+    "objectID": "project.html#rstudio",
+    "href": "project.html#rstudio",
+    "title": "3  プロジェクト",
+    "section": "3.2 RStudio",
+    "text": "3.2 RStudio\n\n3.2.1 RStudioのプロジェクト\nRStudioでは、プロジェクト機能を利用して\n\nrstudioapi::openProject(\"~/Documents/projects2024/rrr-demo\")",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>プロジェクト</span>"
     ]
   },
   {
     "objectID": "project.html#vscodeの利用",
     "href": "project.html#vscodeの利用",
-    "title": "2  プロジェクト",
-    "section": "2.2 VSCodeの利用",
-    "text": "2.2 VSCodeの利用\n作業空間\n\n2.2.1 Positron",
+    "title": "3  プロジェクト",
+    "section": "3.3 VSCodeの利用",
+    "text": "3.3 VSCodeの利用\n作業空間\n\n3.3.1 Positron",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>プロジェクト</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>プロジェクト</span>"
     ]
   },
   {
     "objectID": "git.html",
     "href": "git.html",
-    "title": "3  Gitによるバージョン管理",
+    "title": "4  Gitによるバージョン管理",
     "section": "",
-    "text": "3.1 バージョン管理\nデータ分析で用いるソースコードやデータは日々更新（バージョンアップ）されていきます。 ある日の作業では、データ読み込みのプログラムを書いて、次の日にはデータの前処理と可視化のプログラムを書くという流れです。 またある日には、これまで使っていたデータを新しいデータに差し替えることもあるでしょう。 そんな中で、ある日突然、以前実行可能だったコードがエラーを吐いたり、以前正常に動作していたコードが動かなくなったりすることがあります。\nバグとなるプログラムを書いてしまうことは誰にでもあることですが、そのような場合に、以前のバージョンに戻ることができると便利です。\n同じファイルに対して、複数のバージョンを保存しておくことがバージョン管理の目的です。\n現在バグを起こしているバージョンから遡り、以前のバージョンに戻します。すると、バグが発生する前の状態に戻ることができます。\n間違いに気がついたり\n一人で使う場合にも利点はあります。\n作業の記録\nバージョン管理で期待されること",
+    "text": "4.1 バージョン管理\nデータ分析で用いるソースコードやデータは日々更新（バージョンアップ）されていきます。 ある日の作業では、データ読み込みのプログラムを書いて、次の日にはデータの前処理と可視化のプログラムを書くという流れです。 またある日には、これまで使っていたデータを新しいデータに差し替えることもあるでしょう。 そんな中で、ある日突然、以前実行可能だったコードがエラーを吐いたり、以前正常に動作していたコードが動かなくなったりすることがあります。\nバグとなるプログラムを書いてしまうことは誰にでもあることですが、そのような場合に、以前のバージョンに戻ることができると便利です。\n同じファイルに対して、複数のバージョンを保存しておくことがバージョン管理の目的です。\n現在バグを起こしているバージョンから遡り、以前のバージョンに戻します。すると、バグが発生する前の状態に戻ることができます。\n間違いに気がついたり\n一人で使う場合にも利点はあります。\n作業の記録\nバージョン管理で期待されること",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
     ]
   },
   {
     "objectID": "git.html#バージョン管理",
     "href": "git.html#バージョン管理",
-    "title": "3  Gitによるバージョン管理",
+    "title": "4  Gitによるバージョン管理",
     "section": "",
     "text": "バックアップ\n実験的な操作\n共同作業とレビュー\n履歴",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
     ]
   },
   {
     "objectID": "git.html#バージョン管理システム-git",
     "href": "git.html#バージョン管理システム-git",
-    "title": "3  Gitによるバージョン管理",
-    "section": "3.2 バージョン管理システム: Git",
-    "text": "3.2 バージョン管理システム: Git\nバージョン管理システムには大別して2つの種類があります。\n分散型\n複数の開発者が共同でコードを管理・開発する際に便利な機能を提供するバージョン管理システムです。\nバージョン管理システムを導入しないプロジェクトでは、ファイルが煩雑になりがちです。\nどのファイルが最新のものなのか、どのデータを使うのかがわからなくなることもあります。\nここではGitのインストール方法や詳細なGitの説明は行いません。横田紋奈 と 宇賀神みずき (2022.3) や 渡辺宙志 (2024.4) を参考にしてください。オンラインで読めるPro Gitもあります。\n\n3.2.1 バージョン管理の流れ\n\nリポジトリの作成\nファイルの追加\nファイルのコミット\nファイルのプッシュ\n\nGitには100を超えるコマンドがありますが、覚えるべきコマンドは限定的です。 上記のバージョン管理の流れでは、それぞれ数個のコマンドを使います。 つまり、一連のバージョン管理で用いるコマンドは指で数えられる範囲に収まります。\n\n3.2.1.1 リポジトリの作成\ngit init\n.gitフォルダが作成されます。\nこのフォルダはGitのリポジトリとしての役割を果たします。隠しフォルダとなっており、ユーザーが直接操作することはありません。\n\n\n3.2.1.2 ファイルの追加\ngit add\ngit status\n\n\n3.2.1.3 ファイルのコミット\n作成・変更したファイルの状態を記録する作業をGitでは「コミット」と呼びます。 コミットを重ねることで、ファイルの変更履歴を残すことができ、必要に応じて過去の状態に遡ることができます。\ngit commit\n\n\n\n\n\n\nノート\n\n\n\n最低限のGit設定\n氏名とメールアドレスを設定します。\nターミナルを開いて以下のコマンドを実行します。 二重引用符で示した箇所は適宜変更してください。\ngit config --global user.name \"&lt;あなたの名前&gt;\" git config --global user.email \"&lt;あなたのメールアドレス&gt;\"\n2つの設定は、Gitのコミットログで誰がコミットしたかを示すために必要な情報です。\n\n\nコミットには、コミットメッセージと呼ばれる説明文を付けることができます。 作業後、コミットの履歴を見た際に、どのような変更を行ったかを把握するために重要な情報となります。 なぜその変更を行ったのか、どのような変更を行ったのかを記述します。\n\n1行目: 変更内容の要約\n2行目: 空行\n3行目以降: 変更内容の詳細\n\nGitに不慣れな方は、コミットメッセージを書くことに障壁を感じるかもしれません。 ここで大事なことはコミットに残すことです。コミットメッセージは後から修正することもできます。 簡単な情報であっても、コミットメッセージを残すことが大切です。\n\n\n3.2.1.4 ファイルのプッシュ\ngit push\ngit log\n\n\n\n3.2.2 状態を戻す\nバージョン管理システムを使うと、過去の状態に戻すことができます。\nファイルを復元\nコミット後の状態に戻すには、git checkoutコマンドを使います。",
+    "title": "4  Gitによるバージョン管理",
+    "section": "4.2 バージョン管理システム: Git",
+    "text": "4.2 バージョン管理システム: Git\nバージョン管理システムには大別して2つの種類があります。\n分散型\n複数の開発者が共同でコードを管理・開発する際に便利な機能を提供するバージョン管理システムです。\nバージョン管理システムを導入しないプロジェクトでは、ファイルが煩雑になりがちです。\nどのファイルが最新のものなのか、どのデータを使うのかがわからなくなることもあります。\nここではGitのインストール方法や詳細なGitの説明は行いません。横田紋奈 と 宇賀神みずき (2022.3) や 渡辺宙志 (2024.4) を参考にしてください。オンラインで読めるPro Gitもあります。\n\n4.2.1 バージョン管理の流れ\n\nリポジトリの作成\nファイルの追加\nファイルのコミット\nファイルのプッシュ\n\nGitには100を超えるコマンドがありますが、覚えるべきコマンドは限定的です。 上記のバージョン管理の流れでは、それぞれ数個のコマンドを使います。 つまり、一連のバージョン管理で用いるコマンドは指で数えられる範囲に収まります。\n\n4.2.1.1 リポジトリの作成\ngit init\n.gitフォルダが作成されます。\nこのフォルダはGitのリポジトリとしての役割を果たします。隠しフォルダとなっており、ユーザーが直接操作することはありません。\n\n\n4.2.1.2 ファイルの追加\ngit add\ngit status\n\n\n4.2.1.3 ファイルのコミット\n作成・変更したファイルの状態を記録する作業をGitでは「コミット」と呼びます。 コミットを重ねることで、ファイルの変更履歴を残すことができ、必要に応じて過去の状態に遡ることができます。\ngit commit\n\n\n\n\n\n\nノート\n\n\n\n最低限のGit設定\n氏名とメールアドレスを設定します。\nターミナルを開いて以下のコマンドを実行します。 二重引用符で示した箇所は適宜変更してください。\ngit config --global user.name \"&lt;あなたの名前&gt;\" git config --global user.email \"&lt;あなたのメールアドレス&gt;\"\n2つの設定は、Gitのコミットログで誰がコミットしたかを示すために必要な情報です。\n\n\nコミットには、コミットメッセージと呼ばれる説明文を付けることができます。 作業後、コミットの履歴を見た際に、どのような変更を行ったかを把握するために重要な情報となります。 なぜその変更を行ったのか、どのような変更を行ったのかを記述します。\n\n1行目: 変更内容の要約\n2行目: 空行\n3行目以降: 変更内容の詳細\n\nGitに不慣れな方は、コミットメッセージを書くことに障壁を感じるかもしれません。 ここで大事なことはコミットに残すことです。コミットメッセージは後から修正することもできます。 簡単な情報であっても、コミットメッセージを残すことが大切です。\n\n\n4.2.1.4 ファイルのプッシュ\ngit push\ngit log\n\n\n\n4.2.2 状態を戻す\nバージョン管理システムを使うと、過去の状態に戻すことができます。\nファイルを復元\nコミット後の状態に戻すには、git checkoutコマンドを使います。",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
     ]
   },
   {
     "objectID": "git.html#rstudioでのバージョン管理",
     "href": "git.html#rstudioでのバージョン管理",
-    "title": "3  Gitによるバージョン管理",
-    "section": "3.3 RStudioでのバージョン管理",
-    "text": "3.3 RStudioでのバージョン管理\nプロジェクト内には複数のファイルが存在します。\nターミナルあるいはGitパネルを使ってバージョン管理を行います。\nRStudioではGitとSVNによるバージョン管理をサポートしています。\nターミナルでのコマンド操作が苦手な方は、RStudioのGitパネルを使うと便利です。\n\nN\nM\n?",
+    "title": "4  Gitによるバージョン管理",
+    "section": "4.3 RStudioでのバージョン管理",
+    "text": "4.3 RStudioでのバージョン管理\nプロジェクト内には複数のファイルが存在します。\nターミナルあるいはGitパネルを使ってバージョン管理を行います。\nRStudioではGitとSVNによるバージョン管理をサポートしています。\nターミナルでのコマンド操作が苦手な方は、RStudioのGitパネルを使うと便利です。\n\nN\nM\n?",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
     ]
   },
   {
     "objectID": "git.html#vscodeでのバージョン管理",
     "href": "git.html#vscodeでのバージョン管理",
-    "title": "3  Gitによるバージョン管理",
-    "section": "3.4 VSCodeでのバージョン管理",
-    "text": "3.4 VSCodeでのバージョン管理\n\nリポジトリを初期化する",
+    "title": "4  Gitによるバージョン管理",
+    "section": "4.4 VSCodeでのバージョン管理",
+    "text": "4.4 VSCodeでのバージョン管理\n\nリポジトリを初期化する",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
     ]
   },
   {
     "objectID": "git.html#github",
     "href": "git.html#github",
-    "title": "3  Gitによるバージョン管理",
-    "section": "3.5 GitHub",
-    "text": "3.5 GitHub\nGitHub (https://github.com/) は、Gitリポジトリをホスティングするウェブサービス（リモートリポジトリ）です。 利用の際にはアカウントの作成が必要です。\nプライベートリポジトリ\nリポジトリのURLは https://github.com/&lt;アカウント名&gt;/&lt;リポジトリ名&gt; となります。\nCRANで配布されるRパッケージのソースコードも多く管理されます。\nRパッケージのソースコードをGitHubで管理する開発者も多く、CRANで配布されるものだけでなく、CRANポリシーに適合しないなどの理由でCRANでは配布されないパッケージも豊富に存在します。 remotesやpakパッケージを使えば、これらのGitHub上で配布されるRパッケージのインストールも可能です。\nGitのコミットログが増えてくる\nプロジェクトを一人で進める場合でも、複数台のコンピュータで作業を行う際に\nGitHub上のリモートリポジトリを介して、複数のコンピュータでファイルを共有できます。\nバックアップとして機能します。\nGitHubにはここで取り上げる内容以外にも多くの機能があります。GitHub公式が提供するGitHub Skillsでは、実際のGitHubリポジトリを操作してGitHubの使い方を学ぶことができます。\n\n3.5.1 ローカルリポジトリの紐付け\n\n\n3.5.2 リモートリポジトリのクローン\n新しいコンピュータなど、ローカルリポジトリを持っていない場合には、リモートリポジトリをクローンします。\ngit clone\n変更の同期 git pull, git fetch\nクローンしたリポジトリはローカルリポジトリとして扱うことができます。\n\n\n3.5.3 GitHub Issues\nプロジェクトに関する問題やメモのために利用できます。",
+    "title": "4  Gitによるバージョン管理",
+    "section": "4.5 GitHub",
+    "text": "4.5 GitHub\nGitHub (https://github.com/) は、Gitリポジトリをホスティングするウェブサービス（リモートリポジトリ）です。 利用の際にはアカウントの作成が必要です。\nプライベートリポジトリ\nリポジトリのURLは https://github.com/&lt;アカウント名&gt;/&lt;リポジトリ名&gt; となります。\nCRANで配布されるRパッケージのソースコードも多く管理されます。\nRパッケージのソースコードをGitHubで管理する開発者も多く、CRANで配布されるものだけでなく、CRANポリシーに適合しないなどの理由でCRANでは配布されないパッケージも豊富に存在します。 remotesやpakパッケージを使えば、これらのGitHub上で配布されるRパッケージのインストールも可能です。\nGitのコミットログが増えてくる\nプロジェクトを一人で進める場合でも、複数台のコンピュータで作業を行う際に\nGitHub上のリモートリポジトリを介して、複数のコンピュータでファイルを共有できます。\nバックアップとして機能します。\nGitHubにはここで取り上げる内容以外にも多くの機能があります。GitHub公式が提供するGitHub Skillsでは、実際のGitHubリポジトリを操作してGitHubの使い方を学ぶことができます。\n\n4.5.1 ローカルリポジトリの紐付け\n\n\n4.5.2 リモートリポジトリのクローン\n新しいコンピュータなど、ローカルリポジトリを持っていない場合には、リモートリポジトリをクローンします。\ngit clone\n変更の同期 git pull, git fetch\nクローンしたリポジトリはローカルリポジトリとして扱うことができます。\n\n\n4.5.3 GitHub Issues\nプロジェクトに関する問題やメモのために利用できます。",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
     ]
   },
   {
     "objectID": "git.html#gitignore",
     "href": "git.html#gitignore",
-    "title": "3  Gitによるバージョン管理",
-    "section": "3.6 .gitignore",
-    "text": "3.6 .gitignore\nGitバージョン管理を行うリポジトリでは、バージョン管理に含めたくないファイルやディレクトリが存在する場合があります。 ユーザーのアカウント情報を記録したファイルなどのクレデンシャルなデータです。 このほか、巨大なバイナリファイルやキャッシュファイルなども含まれます。\n.gitignoreを使って、これらのファイルをバージョン管理から除外することができます。\n.gitignoreファイルは、リポジトリのルートディレクトリに配置します。\n.gitignoreファイルには、除外するファイルやディレクトリのパターンを記述します。\n\n\n\n\n横田紋奈, と 宇賀神みずき. 2022.3. いちばんやさしいGit & GitHubの教本 : 人気講師が教えるバージョン管理&共有入門. 第2版 版. インプレス. https://ndlsearch.ndl.go.jp/books/R100000002-I032013125.\n\n\n渡辺宙志. 2024.4. ゼロから学ぶGit/GitHub : 現代的なソフトウェア開発のために. 講談社. https://ndlsearch.ndl.go.jp/books/R100000002-I033407628.",
+    "title": "4  Gitによるバージョン管理",
+    "section": "4.6 .gitignore",
+    "text": "4.6 .gitignore\nGitバージョン管理を行うリポジトリでは、バージョン管理に含めたくないファイルやディレクトリが存在する場合があります。 ユーザーのアカウント情報を記録したファイルなどのクレデンシャルなデータです。 このほか、巨大なバイナリファイルやキャッシュファイルなども含まれます。\n.gitignoreを使って、これらのファイルをバージョン管理から除外することができます。\n.gitignoreファイルは、リポジトリのルートディレクトリに配置します。\n.gitignoreファイルには、除外するファイルやディレクトリのパターンを記述します。\n\n\n\n\n横田紋奈, と 宇賀神みずき. 2022.3. いちばんやさしいGit & GitHubの教本 : 人気講師が教えるバージョン管理&共有入門. 第2版 版. インプレス. https://ndlsearch.ndl.go.jp/books/R100000002-I032013125.\n\n\n渡辺宙志. 2024.4. ゼロから学ぶGit/GitHub : 現代的なソフトウェア開発のために. 講談社. https://ndlsearch.ndl.go.jp/books/R100000002-I033407628.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
     ]
   },
   {
     "objectID": "document.html",
     "href": "document.html",
-    "title": "4  ドキュメントの作成",
+    "title": "5  ドキュメントの作成",
     "section": "",
-    "text": "4.1 文芸的プログラミング",
+    "text": "5.1 文芸的プログラミング\n通常のコンピュータプログラミングでは、プログラムのソースコードと実行結果は別々に扱われます。 コードと結果の関連性が失われている状態です。\n例えばRの場合、スクリプトファイルにコードを書いて実行すると、コンソールに結果が表示されます。 コンソールに表示された結果をコピーして、別のファイルに貼り付けることで、ソースコードと結果を一つのファイルにまとめることができますが、コピーをし忘れたり、間違って貼り付けたりすることがあります。 またこのような作業では、データや処理内容を変更する度に上書きの必要性が生じるので手間がかかります。\n文芸的プログラミングは、ソースコードと結果を含めた関連するドキュメントを一つのファイルにまとめることで、コードと結果の関連性を保ちながらドキュメントを作成する方法です。 コードの変更に伴って出力結果も自動的に更新されるため、手作業でのコピー&ペースト作業が不要になります。 このように動的に生成されるドキュメントを作成するツールとして、R MarkdownやJupyter Notebook(Jupyter)が有名です。",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>ドキュメントの作成</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ドキュメントの作成</span>"
     ]
   },
   {
     "objectID": "document.html#quarto",
     "href": "document.html#quarto",
-    "title": "4  ドキュメントの作成",
-    "section": "4.2 Quarto",
-    "text": "4.2 Quarto",
+    "title": "5  ドキュメントの作成",
+    "section": "5.2 Quarto",
+    "text": "5.2 Quarto\nQuartoはPositがオープンソースで開発している動的ドキュメント作成システムです。 Jupyterやプレーンテキストで書かれたファイルをもとに、HTMLやPDF、Wordなどのさまざまな形式でのドキュメントを作成することができます。 Rだけでなく、PythonやJuliaなどのプログラミング言語にも対応しています。\nRユーザにとっては、動的ドキュメントの作成にR Markdownを使うことが一般的ですが、QuartoはR Markdownの後継としても位置づけられています。 そのため、R Markdownの機能をほぼそのまま利用することができます。\nQuartoはLinux/Ubuntu、macOS、Windowsで動作します。\n\n5.2.1 Quartoによるドキュメントの作成\nQuartoでは、.qmdという拡張子のファイルを作成し、その中にコードと必要な文章を記述します。 .qmdファイルをもとに任意の形式でのドキュメントを生成します。\n.qmdファイルの基本構成は以下の通りです。\n---\ntitle: ドキュメントのタイトル\nauthor: 著者名\ndate: 作成日\n---\n\n# セクション1\n\n文章\n\n::: {.cell}\n\n```{.r .cell-code}\n# Rのコード\n:::\n\nJupyterを使っている場合、.ipynbファイルから\n\n\n5.2.2 日本語のPDF\ntypst",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>ドキュメントの作成</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ドキュメントの作成</span>"
     ]
   },
   {
