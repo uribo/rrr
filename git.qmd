@@ -164,11 +164,29 @@ GitHubにはここで取り上げる内容以外にも多くの機能があり�
 
 ### ローカルリポジトリの紐付け
 
+[プロジェクトの章](project.qmd)で作成したプロジェクト（`rrr-demo`）をGitHubと紐付けます。
+
+![GitHubでの新規リポジトリの作成](https://i.gyazo.com/ce7d7d5c7d4bcd6d4530cc520ecc54bf.jpg)
+
+![](https://i.gyazo.com/3286bed6e6384c3bd99dc839ff6d54b3.jpg)
+
+```bash
+git remote add origin https://github.com/uribo/rrr-demo.git
+git branch -M main
+git push -u origin main
+```
+
 ### リモートリポジトリのクローン
 
 新しいコンピュータなど、ローカルリポジトリを持っていない場合には、リモートリポジトリをクローンします。
 
 `git clone`
+
+![](https://i.gyazo.com/4e78331047b8452eaaeaac54493f954d.jpg)
+
+```bash
+git clone https://github.com/uribo/rrr-demo.git ~/Documents/projects2024/rrr-demo
+```
 
 変更の同期 `git pull`, `git fetch`
 

@@ -34,7 +34,7 @@
     "href": "literacy.html#環境",
     "title": "1  基礎（リテラシー）",
     "section": "1.2 環境",
-    "text": "1.2 環境\nコンピュータには、プログラムが動作するために必要な条件、設定が存在します。 この条件や設定のことを「環境」と呼びます。 環境はコンピュータのOS（オペレーティングシステム）、ハードウェア、ソフトウェア、ネットワークなど、さまざまな要素で構成されています。 そのため、コンピュータ間で同じ環境を用意することは容易ではありません。\n環境の違いは、プログラムの動作に影響を与えることがあります。 例えば、あるコンピュータで動作するプログラムが、別のコンピュータで動作しなかったり、出力結果が異なることがあります。 例を見てみましょう。 Rの作業ディレクトリを示す getwd() 関数をmacOSとWindowsで実行した場合、それぞれのOSに応じたディレクトリが表示されます。 以下は著者のR実行環境であるmacOSでの実行結果ですが、Windowsで実行した場合、ディレクトリの先頭は通常 C:/ となります。\n\ngetwd()\n\n[1] \"/Users/suryu/Documents/projects2022/rrr\"",
+    "text": "1.2 環境\nコンピュータには、プログラムが動作するために必要な条件、設定が存在します。 この条件や設定のことを「環境」と呼びます。 環境はコンピュータのOS（オペレーティングシステム）、ハードウェア、ソフトウェア、ネットワークなど、さまざまな要素で構成されています。 そのため、コンピュータ間で同じ環境を用意することは容易ではありません。\n環境の違いは、プログラムの動作に影響を与えることがあります。 例えば、あるコンピュータで動作するプログラムが、別のコンピュータで動作しなかったり、出力結果が異なることがあります。 例を見てみましょう。 Rの作業ディレクトリを示す getwd() 関数をmacOSとWindowsで実行した場合、それぞれのOSに応じたディレクトリが表示されます。 以下は著者のR実行環境であるmacOSでの実行結果ですが、Windowsで実行した場合、ディレクトリの先頭は通常 C:/ となります。\n\ngetwd()\n\n[1] \"/Users/suryu/Documents/projects2024/rrr\"",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>基礎（リテラシー）</span>"
     ]
@@ -70,11 +70,21 @@
     ]
   },
   {
+    "objectID": "reproducibility.html#rig",
+    "href": "reproducibility.html#rig",
+    "title": "2  再現可能性",
+    "section": "2.2 rig",
+    "text": "2.2 rig\n複数のRのバージョンを共存、切り替えることができます。\nhttps://github.com/r-lib/rig",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>再現可能性</span>"
+    ]
+  },
+  {
     "objectID": "project.html",
     "href": "project.html",
     "title": "3  プロジェクト",
     "section": "",
-    "text": "3.1 統合開発環境\nプログラム開発で必要なエディタやコンパイラ、デバッガなどのツールを一つにまとめたものを統合開発環境（IDE: Integrated Development Environment）と呼びます。",
+    "text": "3.1 統合開発環境\nプログラム開発で必要なエディタやコンパイラ、デバッガなどのツールを一つにまとめたものを統合開発環境（IDE: Integrated Development Environment）と呼びます。 Rは単体のアプリケーションとして提供されていますが、RStudioやVS CodeというIDEを利用することで、より使いやすく、効率的に作業を行えるようになる利点があります。",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>プロジェクト</span>"
     ]
@@ -84,17 +94,27 @@
     "href": "project.html#rstudio",
     "title": "3  プロジェクト",
     "section": "3.2 RStudio",
-    "text": "3.2 RStudio\n\n3.2.1 RStudioのプロジェクト\nRStudioでは、プロジェクト機能を利用して\n\nrstudioapi::openProject(\"~/Documents/projects2024/rrr-demo\")",
+    "text": "3.2 RStudio\nRStudioは、RおよびPythonのための統合開発環境（IDE）です。 Posit（旧RStudio）により開発されており、無償で利用可能なものとしてデスクトップ版とサーバー版が存在します。 デスクトップ版の実行には、R 3.6.0以上のインストールが必要です。\nRStudioの特徴は、Rの実行に必要、利便性を高める機能を「ペイン」と呼ばれる区画に分けて表示していることです。\nRStudioの機能は 松村優哉 ほか (2021) に詳しく記載されています。\n\n3.2.1 RStudioのプロジェクト\nRStudioではプロジェクト機能を利用して、データやコード、成果物を一つのまとまりとして扱うことができます。 また、Gitバージョン管理との連携も可能で\n\nrstudioapi::openProject(\"~/Documents/projects2024/rrr-demo\")\n\n\n\n\n再現可能なデータ分析プロジェクトの立ち上げ。2つのチェックボックスにチェックをつけて作成することで、gitリポジトリの初期化とrenvパッケージによるパッケージの管理が設定され、再現可能性が高まる。",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>プロジェクト</span>"
     ]
   },
   {
-    "objectID": "project.html#vscodeの利用",
-    "href": "project.html#vscodeの利用",
+    "objectID": "project.html#vs-codeの利用",
+    "href": "project.html#vs-codeの利用",
     "title": "3  プロジェクト",
-    "section": "3.3 VSCodeの利用",
-    "text": "3.3 VSCodeの利用\n作業空間\n\n3.3.1 Positron",
+    "section": "3.3 VS Codeの利用",
+    "text": "3.3 VS Codeの利用\nMicrosoftが提供するVisual Studio Code (VS Code)もRの開発環境の選択肢となります。 標準ではRの実行環境は提供されていませんが、拡張機能をインストールすることでRStudioのようにコーディングから実行までシームレスに行うことができます。\nVS Codeでは、作業空間と呼ばれる単位で関連するファイルを管理します。 これはRStudioのプロジェクト機能と類似の考え方です。\nVS Codeの特徴は、Rだけでなくさまざまな言語の開発に対応していることです。 拡張機能を利用することで、ユーザーが必要とする機能を追加することができます。 拡張機能には、Git、GitHubとの連携を行うものやドキュメントの生成を容易に行うものなどがあります。 これによりデータ分析の作業を効率的に行うことが期待されます。\n\n3.3.1 Positron\n現時点で正式なリリースはされていませんが、PositがオープンソースのVS Codeをベースに開発を進めるPositronも、RやPythonといったデータ分析で用いる言語に特化した統合開発環境として注目されています。\nVS Code同様に拡張機能によって、多様な機能を追加できる点も魅力の一つです。 VS Codeとの違いは、ライセンス上の問題からインストール可能な機能拡張は[Open VSX Registry] (https://open-vsx.org/)で管理されるものに限定されるという点です。 ここには数多くの拡張機能が登録されていますが、すべてではありません。 いくつかの拡張機能は本家のVS Codeでのみ利用可能です。",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>プロジェクト</span>"
+    ]
+  },
+  {
+    "objectID": "project.html#hereパッケージ",
+    "href": "project.html#hereパッケージ",
+    "title": "3  プロジェクト",
+    "section": "3.4 hereパッケージ",
+    "text": "3.4 hereパッケージ\n\n\n\n\n松村優哉, 湯谷啓明, 紀ノ定保礼, と 前田和寛. 2021. RユーザのためのRStudio〈実践〉入門 : tidyverseによるモダンな分析フローの世界. 技術評論社. https://gihyo.jp/book/2021/978-4-297-12170-9.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>プロジェクト</span>"
     ]
@@ -124,7 +144,7 @@
     "href": "git.html#バージョン管理システム-git",
     "title": "4  Gitによるバージョン管理",
     "section": "4.2 バージョン管理システム: Git",
-    "text": "4.2 バージョン管理システム: Git\nバージョン管理システムには大別して2つの種類があります。\n分散型\n複数の開発者が共同でコードを管理・開発する際に便利な機能を提供するバージョン管理システムです。\nバージョン管理システムを導入しないプロジェクトでは、ファイルが煩雑になりがちです。\nどのファイルが最新のものなのか、どのデータを使うのかがわからなくなることもあります。\nここではGitのインストール方法や詳細なGitの説明は行いません。横田紋奈 と 宇賀神みずき (2022.3) や 渡辺宙志 (2024.4) を参考にしてください。オンラインで読めるPro Gitもあります。\n\n4.2.1 バージョン管理の流れ\n\nリポジトリの作成\nファイルの追加\nファイルのコミット\nファイルのプッシュ\n\nGitには100を超えるコマンドがありますが、覚えるべきコマンドは限定的です。 上記のバージョン管理の流れでは、それぞれ数個のコマンドを使います。 つまり、一連のバージョン管理で用いるコマンドは指で数えられる範囲に収まります。\n\n4.2.1.1 リポジトリの作成\ngit init\n.gitフォルダが作成されます。\nこのフォルダはGitのリポジトリとしての役割を果たします。隠しフォルダとなっており、ユーザーが直接操作することはありません。\n\n\n4.2.1.2 ファイルの追加\ngit add\ngit status\n\n\n4.2.1.3 ファイルのコミット\n作成・変更したファイルの状態を記録する作業をGitでは「コミット」と呼びます。 コミットを重ねることで、ファイルの変更履歴を残すことができ、必要に応じて過去の状態に遡ることができます。\ngit commit\n\n\n\n\n\n\nノート\n\n\n\n最低限のGit設定\n氏名とメールアドレスを設定します。\nターミナルを開いて以下のコマンドを実行します。 二重引用符で示した箇所は適宜変更してください。\ngit config --global user.name \"&lt;あなたの名前&gt;\" git config --global user.email \"&lt;あなたのメールアドレス&gt;\"\n2つの設定は、Gitのコミットログで誰がコミットしたかを示すために必要な情報です。\n\n\nコミットには、コミットメッセージと呼ばれる説明文を付けることができます。 作業後、コミットの履歴を見た際に、どのような変更を行ったかを把握するために重要な情報となります。 なぜその変更を行ったのか、どのような変更を行ったのかを記述します。\n\n1行目: 変更内容の要約\n2行目: 空行\n3行目以降: 変更内容の詳細\n\nGitに不慣れな方は、コミットメッセージを書くことに障壁を感じるかもしれません。 ここで大事なことはコミットに残すことです。コミットメッセージは後から修正することもできます。 簡単な情報であっても、コミットメッセージを残すことが大切です。\n\n\n4.2.1.4 ファイルのプッシュ\ngit push\ngit log\n\n\n\n4.2.2 状態を戻す\nバージョン管理システムを使うと、過去の状態に戻すことができます。\nファイルを復元\nコミット後の状態に戻すには、git checkoutコマンドを使います。",
+    "text": "4.2 バージョン管理システム: Git\nバージョン管理システムには大別して2つの種類があります。\n分散型\n複数の開発者が共同でコードを管理・開発する際に便利な機能を提供するバージョン管理システムです。\nバージョン管理システムを導入しないプロジェクトでは、ファイルが煩雑になりがちです。\nどのファイルが最新のものなのか、どのデータを使うのかがわからなくなることもあります。\nここではGitのインストール方法や詳細なGitの説明は行いません。横田紋奈 と 宇賀神みずき (2022) や 渡辺宙志 (2024) を参考にしてください。オンラインで読めるPro Gitもあります。\n\n4.2.1 バージョン管理の流れ\n\nリポジトリの作成\nファイルの追加\nファイルのコミット\nファイルのプッシュ\n\nGitには100を超えるコマンドがありますが、覚えるべきコマンドは限定的です。 上記のバージョン管理の流れでは、それぞれ数個のコマンドを使います。 つまり、一連のバージョン管理で用いるコマンドは指で数えられる範囲に収まります。\n\n4.2.1.1 リポジトリの作成\ngit init\n.gitフォルダが作成されます。\nこのフォルダはGitのリポジトリとしての役割を果たします。隠しフォルダとなっており、ユーザーが直接操作することはありません。\n\n\n4.2.1.2 ファイルの追加\ngit add\ngit status\n\n\n4.2.1.3 ファイルのコミット\n作成・変更したファイルの状態を記録する作業をGitでは「コミット」と呼びます。 コミットを重ねることで、ファイルの変更履歴を残すことができ、必要に応じて過去の状態に遡ることができます。\ngit commit\n\n\n\n\n\n\nノート\n\n\n\n最低限のGit設定\n氏名とメールアドレスを設定します。\nターミナルを開いて以下のコマンドを実行します。 二重引用符で示した箇所は適宜変更してください。\ngit config --global user.name \"&lt;あなたの名前&gt;\" git config --global user.email \"&lt;あなたのメールアドレス&gt;\"\n2つの設定は、Gitのコミットログで誰がコミットしたかを示すために必要な情報です。\n\n\nコミットには、コミットメッセージと呼ばれる説明文を付けることができます。 作業後、コミットの履歴を見た際に、どのような変更を行ったかを把握するために重要な情報となります。 なぜその変更を行ったのか、どのような変更を行ったのかを記述します。\n\n1行目: 変更内容の要約\n2行目: 空行\n3行目以降: 変更内容の詳細\n\nGitに不慣れな方は、コミットメッセージを書くことに障壁を感じるかもしれません。 ここで大事なことはコミットに残すことです。コミットメッセージは後から修正することもできます。 簡単な情報であっても、コミットメッセージを残すことが大切です。\n\n\n4.2.1.4 ファイルのプッシュ\ngit push\ngit log\n\n\n\n4.2.2 状態を戻す\nバージョン管理システムを使うと、過去の状態に戻すことができます。\nファイルを復元\nコミット後の状態に戻すには、git checkoutコマンドを使います。",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
     ]
@@ -154,7 +174,7 @@
     "href": "git.html#github",
     "title": "4  Gitによるバージョン管理",
     "section": "4.5 GitHub",
-    "text": "4.5 GitHub\nGitHub (https://github.com/) は、Gitリポジトリをホスティングするウェブサービス（リモートリポジトリ）です。 利用の際にはアカウントの作成が必要です。\nプライベートリポジトリ\nリポジトリのURLは https://github.com/&lt;アカウント名&gt;/&lt;リポジトリ名&gt; となります。\nCRANで配布されるRパッケージのソースコードも多く管理されます。\nRパッケージのソースコードをGitHubで管理する開発者も多く、CRANで配布されるものだけでなく、CRANポリシーに適合しないなどの理由でCRANでは配布されないパッケージも豊富に存在します。 remotesやpakパッケージを使えば、これらのGitHub上で配布されるRパッケージのインストールも可能です。\nGitのコミットログが増えてくる\nプロジェクトを一人で進める場合でも、複数台のコンピュータで作業を行う際に\nGitHub上のリモートリポジトリを介して、複数のコンピュータでファイルを共有できます。\nバックアップとして機能します。\nGitHubにはここで取り上げる内容以外にも多くの機能があります。GitHub公式が提供するGitHub Skillsでは、実際のGitHubリポジトリを操作してGitHubの使い方を学ぶことができます。\n\n4.5.1 ローカルリポジトリの紐付け\n\n\n4.5.2 リモートリポジトリのクローン\n新しいコンピュータなど、ローカルリポジトリを持っていない場合には、リモートリポジトリをクローンします。\ngit clone\n変更の同期 git pull, git fetch\nクローンしたリポジトリはローカルリポジトリとして扱うことができます。\n\n\n4.5.3 GitHub Issues\nプロジェクトに関する問題やメモのために利用できます。",
+    "text": "4.5 GitHub\nGitHub (https://github.com/) は、Gitリポジトリをホスティングするウェブサービス（リモートリポジトリ）です。 利用の際にはアカウントの作成が必要です。\nプライベートリポジトリ\nリポジトリのURLは https://github.com/&lt;アカウント名&gt;/&lt;リポジトリ名&gt; となります。\nCRANで配布されるRパッケージのソースコードも多く管理されます。\nRパッケージのソースコードをGitHubで管理する開発者も多く、CRANで配布されるものだけでなく、CRANポリシーに適合しないなどの理由でCRANでは配布されないパッケージも豊富に存在します。 remotesやpakパッケージを使えば、これらのGitHub上で配布されるRパッケージのインストールも可能です。\nGitのコミットログが増えてくる\nプロジェクトを一人で進める場合でも、複数台のコンピュータで作業を行う際に\nGitHub上のリモートリポジトリを介して、複数のコンピュータでファイルを共有できます。\nバックアップとして機能します。\nGitHubにはここで取り上げる内容以外にも多くの機能があります。GitHub公式が提供するGitHub Skillsでは、実際のGitHubリポジトリを操作してGitHubの使い方を学ぶことができます。\n\n4.5.1 ローカルリポジトリの紐付け\nプロジェクトの章で作成したプロジェクト（rrr-demo）をGitHubと紐付けます。\n\n\n\nGitHubでの新規リポジトリの作成\n\n\n\ngit remote add origin https://github.com/uribo/rrr-demo.git\ngit branch -M main\ngit push -u origin main\n\n\n4.5.2 リモートリポジトリのクローン\n新しいコンピュータなど、ローカルリポジトリを持っていない場合には、リモートリポジトリをクローンします。\ngit clone\n\ngit clone https://github.com/uribo/rrr-demo.git ~/Documents/projects2024/rrr-demo\n変更の同期 git pull, git fetch\nクローンしたリポジトリはローカルリポジトリとして扱うことができます。\n\n\n4.5.3 GitHub Issues\nプロジェクトに関する問題やメモのために利用できます。",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
     ]
@@ -164,7 +184,7 @@
     "href": "git.html#gitignore",
     "title": "4  Gitによるバージョン管理",
     "section": "4.6 .gitignore",
-    "text": "4.6 .gitignore\nGitバージョン管理を行うリポジトリでは、バージョン管理に含めたくないファイルやディレクトリが存在する場合があります。 ユーザーのアカウント情報を記録したファイルなどのクレデンシャルなデータです。 このほか、巨大なバイナリファイルやキャッシュファイルなども含まれます。\n.gitignoreを使って、これらのファイルをバージョン管理から除外することができます。\n.gitignoreファイルは、リポジトリのルートディレクトリに配置します。\n.gitignoreファイルには、除外するファイルやディレクトリのパターンを記述します。\n\n\n\n\n横田紋奈, と 宇賀神みずき. 2022.3. いちばんやさしいGit & GitHubの教本 : 人気講師が教えるバージョン管理&共有入門. 第2版 版. インプレス. https://ndlsearch.ndl.go.jp/books/R100000002-I032013125.\n\n\n渡辺宙志. 2024.4. ゼロから学ぶGit/GitHub : 現代的なソフトウェア開発のために. 講談社. https://ndlsearch.ndl.go.jp/books/R100000002-I033407628.",
+    "text": "4.6 .gitignore\nGitバージョン管理を行うリポジトリでは、バージョン管理に含めたくないファイルやディレクトリが存在する場合があります。 ユーザーのアカウント情報を記録したファイルなどのクレデンシャルなデータです。 このほか、巨大なバイナリファイルやキャッシュファイルなども含まれます。\n.gitignoreを使って、これらのファイルをバージョン管理から除外することができます。\n.gitignoreファイルは、リポジトリのルートディレクトリに配置します。\n.gitignoreファイルには、除外するファイルやディレクトリのパターンを記述します。\n\n\n\n\n横田紋奈, と 宇賀神みずき. 2022. いちばんやさしいGit & GitHubの教本 : 人気講師が教えるバージョン管理&共有入門. 第2版 版. インプレス. https://ndlsearch.ndl.go.jp/books/R100000002-I032013125.\n\n\n渡辺宙志. 2024. ゼロから学ぶGit/GitHub : 現代的なソフトウェア開発のために. 講談社. https://ndlsearch.ndl.go.jp/books/R100000002-I033407628.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
     ]
@@ -184,9 +204,39 @@
     "href": "document.html#quarto",
     "title": "5  ドキュメントの作成",
     "section": "5.2 Quarto",
-    "text": "5.2 Quarto\nQuartoはPositがオープンソースで開発している動的ドキュメント作成システムです。 Jupyterやプレーンテキストで書かれたファイルをもとに、HTMLやPDF、Wordなどのさまざまな形式でのドキュメントを作成することができます。 Rだけでなく、PythonやJuliaなどのプログラミング言語にも対応しています。\nRユーザにとっては、動的ドキュメントの作成にR Markdownを使うことが一般的ですが、QuartoはR Markdownの後継としても位置づけられています。 そのため、R Markdownの機能をほぼそのまま利用することができます。\nQuartoはLinux/Ubuntu、macOS、Windowsで動作します。\n\n5.2.1 Quartoによるドキュメントの作成\nQuartoでは、.qmdという拡張子のファイルを作成し、その中にコードと必要な文章を記述します。 .qmdファイルをもとに任意の形式でのドキュメントを生成します。\n.qmdファイルの基本構成は以下の通りです。\n---\ntitle: ドキュメントのタイトル\nauthor: 著者名\ndate: 作成日\n---\n\n# セクション1\n\n文章\n\n::: {.cell}\n\n```{.r .cell-code}\n# Rのコード\n:::\n\nJupyterを使っている場合、.ipynbファイルから\n\n\n5.2.2 日本語のPDF\ntypst",
+    "text": "5.2 Quarto\nQuartoはPositがオープンソースで開発している動的ドキュメント作成システムです。 Jupyterやプレーンテキストで書かれたファイルをもとに、HTMLやPDF、Wordなどのさまざまな形式でのドキュメントを作成することができます。 Rだけでなく、PythonやJuliaなどのプログラミング言語にも対応しています。\nRユーザにとっては、動的ドキュメントの作成にR Markdownを使うことが一般的ですが、QuartoはR Markdownの後継としても位置づけられています。 そのため、R Markdownの機能をほぼそのまま利用することができます。 実際、QuartoでのR言語の評価はR Markdown同様、knitrパッケージを介して行われます。\nここではQuartoの基本的な使い方として単一のドキュメント生成の手順を紹介します。 一方、Quartoにはウェブサイト、ブログ、書籍執筆をサポートする機能もあります。 これらのQuartoの詳細については公式ドキュメントを参照してください。\nR Markdownの基礎は 松村優哉 ほか (2021) にまとまっています。\n\n5.2.1 Quartoによるドキュメントの作成\nQuartoでは、.qmdという拡張子のファイルを作成し、その中にコードと必要な文章を記述します。 .qmdファイルをもとに任意の形式でのドキュメントを生成します。\n.qmdファイルからのドキュメント生成の工程を、Quartoではレンダーと呼びます。 レンダーは.qmdファイルだけでなく、Jupyterで使われる.ipynbファイルからも行うことができます。\n.qmdファイルの基本構成は以下の通りです。\n\nYAMLフロントマター… ドキュメントのメタデータ（タイトルや著者名、出力形式等）を記述する部分。YAML形式で記述します。\n文章… ドキュメントの本文。プレーンテキストに加えて、Markdown記法による文字装飾、LaTeX記法による数式記述が可能です。\nコードブロック（コードセル）1\n\n\n\n\nQuartoの基本構成要素\n\n\nレンダーはコマンドラインを使って以下のように行います。\nquarto render document.qmd --to html\nこのコマンドを実行するとdocument.qmdファイルをもとにHTML形式のドキュメントを生成します。 出力形式をWordファイルに変更する場合は、--toオプションの引数をdocxに変更するだけです。\nquarto render document.qmd --to docx\nRStudioやVS Codeなどのアプリケーションでは、Quartoのコマンドを実行するためのインターフェースが提供されています。 これにより、コマンドの入力の手間がなくなり、より直感的にQuartoを使うことができます。\n\n\n5.2.2 RStudioでのQuartoの利用\nQuartoの機能を試すために、RStudioで新しい.qmdファイルを作成してみましょう。 Quartoが利用可能な状況であれば、RStudioからQuartoを使うことができます。 メニューから「File」、「New File」、「Quarto Document…」の順に進むと以下のような画面が表示されます。\n\n\n\nRStudioでのqmdファイルの新規作成\n\n\nタイトルや出力形式を指定して「Create」ボタンをクリックすると新しい.qmdファイルが作成されます。 ここにコードと文章を記述して、レンダーを行います。\nレンダーはソースパネル上の「Render」ボタンより実行します。ボタンをクリックすると、バックグラウンドでquartoのコマンドが実行され、.qmdファイル中のソースコードの実行結果をもとに指定した形式のドキュメントが生成されます。\n\n\n5.2.3 PDFの出力\nQuartoで日本語のPDFを生成する場合、2つの選択肢があります。 一つは出力形式を指定する際にpdfを指定する方法です。これはLaTeXを使ってPDFを生成する方法です。 もう一つの方法はtypstを出力形式として指定する方法です。 まじは一般的なLaTeXによるPDF出力方法を見てみましょう。\nLaTeXを使ったPDF出力を行う場合、事前にLaTeXの環境を揃える必要があります。\nQuartoのコマンドからもLaTeX環境を導入可能です。\nquarto install tinytex\nこのコマンドを実行すると、TinyTeXというLaTeXディストリビューションがインストールされます。 ここまでで最低限のPDF出力環境が整います。\n次にTypstを利用したPDF出力方法を紹介します。 TypstはLaTeXなどの高度で詳細な組版システムとWordやGoogleドキュメントなどの単純なツールの代替となるように設計された新しい組版システムです。\nはLaTeXを使わずにPDFを生成する方法です。 typst\n\n\n\n\n松村優哉, 湯谷啓明, 紀ノ定保礼, と 前田和寛. 2021. RユーザのためのRStudio〈実践〉入門 : tidyverseによるモダンな分析フローの世界. 技術評論社. https://gihyo.jp/book/2021/978-4-297-12170-9.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>ドキュメントの作成</span>"
+    ]
+  },
+  {
+    "objectID": "document.html#footnotes",
+    "href": "document.html#footnotes",
+    "title": "5  ドキュメントの作成",
+    "section": "",
+    "text": "コードを記述する箇所。Jupyterではコードセルと呼ばれます。↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ドキュメントの作成</span>"
+    ]
+  },
+  {
+    "objectID": "packages.html",
+    "href": "packages.html",
+    "title": "6  再現性を高めるRパッケージ",
+    "section": "",
+    "text": "6.1 renvパッケージ",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>再現性を高めるRパッケージ</span>"
+    ]
+  },
+  {
+    "objectID": "packages.html#pointblankパッケージ",
+    "href": "packages.html#pointblankパッケージ",
+    "title": "6  再現性を高めるRパッケージ",
+    "section": "6.2 pointblankパッケージ",
+    "text": "6.2 pointblankパッケージ",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>再現性を高めるRパッケージ</span>"
     ]
   },
   {
@@ -194,7 +244,7 @@
     "href": "reference.html",
     "title": "参考文献",
     "section": "",
-    "text": "横田紋奈, and 宇賀神みずき. 2022.3. いちばんやさしいGit &\nGitHubの教本 : 人気講師が教えるバージョン管理&共有入門. 第2版\ned. インプレス. https://ndlsearch.ndl.go.jp/books/R100000002-I032013125.\n\n\n渡辺宙志. 2024.4. ゼロから学ぶGit/GitHub :\n現代的なソフトウェア開発のために. 講談社. https://ndlsearch.ndl.go.jp/books/R100000002-I033407628.",
+    "text": "松村優哉, 湯谷啓明, 紀ノ定保礼, and 前田和寛. 2021.\nRユーザのためのRStudio〈実践〉入門 :\nTidyverseによるモダンな分析フローの世界. 技術評論社. https://gihyo.jp/book/2021/978-4-297-12170-9.\n\n\n横田紋奈, and 宇賀神みずき. 2022. いちばんやさしいGit &\nGitHubの教本 : 人気講師が教えるバージョン管理&共有入門. 第2版\ned. インプレス. https://ndlsearch.ndl.go.jp/books/R100000002-I032013125.\n\n\n渡辺宙志. 2024. ゼロから学ぶGit/GitHub :\n現代的なソフトウェア開発のために. 講談社. https://ndlsearch.ndl.go.jp/books/R100000002-I033407628.",
     "crumbs": [
       "参考文献"
     ]

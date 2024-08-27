@@ -20,7 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./reference.html" rel="next">
+<link href="./packages.html" rel="next">
 <link href="./git.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -144,6 +198,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">再現性を高めるRパッケージ</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./reference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">参考文献</span></a>
   </div>
@@ -162,7 +222,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto"><span class="header-section-number">5.2</span> Quarto</a>
   <ul class="collapse">
   <li><a href="#quartoによるドキュメントの作成" id="toc-quartoによるドキュメントの作成" class="nav-link" data-scroll-target="#quartoによるドキュメントの作成"><span class="header-section-number">5.2.1</span> Quartoによるドキュメントの作成</a></li>
-  <li><a href="#日本語のpdf" id="toc-日本語のpdf" class="nav-link" data-scroll-target="#日本語のpdf"><span class="header-section-number">5.2.2</span> 日本語のPDF</a></li>
+  <li><a href="#rstudioでのquartoの利用" id="toc-rstudioでのquartoの利用" class="nav-link" data-scroll-target="#rstudioでのquartoの利用"><span class="header-section-number">5.2.2</span> RStudioでのQuartoの利用</a></li>
+  <li><a href="#pdfの出力" id="toc-pdfの出力" class="nav-link" data-scroll-target="#pdfの出力"><span class="header-section-number">5.2.3</span> PDFの出力</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -199,36 +260,66 @@ ul.task-list li input[type="checkbox"] {
 <section id="quarto" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="quarto"><span class="header-section-number">5.2</span> Quarto</h2>
 <p><a href="https://quarto.org/">Quarto</a>はPositがオープンソースで開発している動的ドキュメント作成システムです。 Jupyterやプレーンテキストで書かれたファイルをもとに、HTMLやPDF、Wordなどのさまざまな形式でのドキュメントを作成することができます。 Rだけでなく、PythonやJuliaなどのプログラミング言語にも対応しています。</p>
-<p>Rユーザにとっては、動的ドキュメントの作成にR Markdownを使うことが一般的ですが、QuartoはR Markdownの後継としても位置づけられています。 そのため、R Markdownの機能をほぼそのまま利用することができます。</p>
-<p>QuartoはLinux/Ubuntu、macOS、Windowsで動作します。</p>
+<p>Rユーザにとっては、動的ドキュメントの作成に<a href="https://rmarkdown.rstudio.com/">R Markdown</a>を使うことが一般的ですが、QuartoはR Markdownの後継としても位置づけられています。 そのため、R Markdownの機能をほぼそのまま利用することができます。 実際、QuartoでのR言語の評価はR Markdown同様、knitrパッケージを介して行われます。</p>
+<p>ここではQuartoの基本的な使い方として単一のドキュメント生成の手順を紹介します。 一方、Quartoにはウェブサイト、ブログ、書籍執筆をサポートする機能もあります。 これらのQuartoの詳細については<a href="https://quarto.org/docs/guide/">公式ドキュメント</a>を参照してください。</p>
+<p>R Markdownの基礎は <span class="citation" data-cites="isbn9784297121709">松村優哉 ほか (<a href="reference.html#ref-isbn9784297121709" role="doc-biblioref">2021</a>)</span> にまとまっています。</p>
 <section id="quartoによるドキュメントの作成" class="level3" data-number="5.2.1">
 <h3 data-number="5.2.1" class="anchored" data-anchor-id="quartoによるドキュメントの作成"><span class="header-section-number">5.2.1</span> Quartoによるドキュメントの作成</h3>
 <p>Quartoでは、<code>.qmd</code>という拡張子のファイルを作成し、その中にコードと必要な文章を記述します。 <code>.qmd</code>ファイルをもとに任意の形式でのドキュメントを生成します。</p>
+<p><code>.qmd</code>ファイルからのドキュメント生成の工程を、Quartoではレンダーと呼びます。 レンダーは<code>.qmd</code>ファイルだけでなく、Jupyterで使われる<code>.ipynb</code>ファイルからも行うことができます。</p>
 <p><code>.qmd</code>ファイルの基本構成は以下の通りです。</p>
-<pre><code>---
-title: ドキュメントのタイトル
-author: 著者名
-date: 作成日
----
+<ul>
+<li>YAMLフロントマター… ドキュメントのメタデータ（タイトルや著者名、出力形式等）を記述する部分。YAML形式で記述します。</li>
+<li>文章… ドキュメントの本文。プレーンテキストに加えて、Markdown記法による文字装飾、LaTeX記法による数式記述が可能です。</li>
+<li>コードブロック（コードセル）<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.gyazo.com/2e47b271e91f0e6a175bbb91668519f6.png" class="img-fluid figure-img"></p>
+<figcaption>Quartoの基本構成要素</figcaption>
+</figure>
+</div>
+<p>レンダーはコマンドラインを使って以下のように行います。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> html</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>このコマンドを実行すると<code>document.qmd</code>ファイルをもとにHTML形式のドキュメントを生成します。 出力形式をWordファイルに変更する場合は、<code>--to</code>オプションの引数を<code>docx</code>に変更するだけです。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> docx</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>RStudioやVS Codeなどのアプリケーションでは、Quartoのコマンドを実行するためのインターフェースが提供されています。 これにより、コマンドの入力の手間がなくなり、より直感的にQuartoを使うことができます。</p>
+</section>
+<section id="rstudioでのquartoの利用" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="rstudioでのquartoの利用"><span class="header-section-number">5.2.2</span> RStudioでのQuartoの利用</h3>
+<p>Quartoの機能を試すために、RStudioで新しい<code>.qmd</code>ファイルを作成してみましょう。 Quartoが利用可能な状況であれば、RStudioからQuartoを使うことができます。 メニューから「File」、「New File」、「Quarto Document…」の順に進むと以下のような画面が表示されます。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.gyazo.com/d16522748784a3f6cf9dfa85b69f4e64.png" class="img-fluid figure-img"></p>
+<figcaption>RStudioでのqmdファイルの新規作成</figcaption>
+</figure>
+</div>
+<p>タイトルや出力形式を指定して「Create」ボタンをクリックすると新しい<code>.qmd</code>ファイルが作成されます。 ここにコードと文章を記述して、レンダーを行います。</p>
+<p>レンダーはソースパネル上の「Render」ボタンより実行します。ボタンをクリックすると、バックグラウンドで<code>quarto</code>のコマンドが実行され、<code>.qmd</code>ファイル中のソースコードの実行結果をもとに指定した形式のドキュメントが生成されます。</p>
+</section>
+<section id="pdfの出力" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="pdfの出力"><span class="header-section-number">5.2.3</span> PDFの出力</h3>
+<p>Quartoで日本語のPDFを生成する場合、2つの選択肢があります。 一つは出力形式を指定する際に<code>pdf</code>を指定する方法です。これはLaTeXを使ってPDFを生成する方法です。 もう一つの方法は<code>typst</code>を出力形式として指定する方法です。 まじは一般的なLaTeXによるPDF出力方法を見てみましょう。</p>
+<p>LaTeXを使ったPDF出力を行う場合、事前にLaTeXの環境を揃える必要があります。</p>
+<p>QuartoのコマンドからもLaTeX環境を導入可能です。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>このコマンドを実行すると、<a href="https://yihui.org/tinytex/">TinyTeX</a>というLaTeXディストリビューションがインストールされます。 ここまでで最低限のPDF出力環境が整います。</p>
+<p>次に<a href="https://typst.app/docs">Typst</a>を利用したPDF出力方法を紹介します。 TypstはLaTeXなどの高度で詳細な組版システムとWordやGoogleドキュメントなどの単純なツールの代替となるように設計された新しい組版システムです。</p>
+<p>はLaTeXを使わずにPDFを生成する方法です。 typst</p>
 
-# セクション1
 
-文章
-
-::: {.cell}
-
-```{.r .cell-code}
-# Rのコード</code></pre>
-<p>:::</p>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-isbn9784297121709" class="csl-entry" role="listitem">
+松村優哉, 湯谷啓明, 紀ノ定保礼, と 前田和寛. 2021. <em>RユーザのためのRStudio〈実践〉入門 : tidyverseによるモダンな分析フローの世界</em>. 技術評論社. <a href="https://gihyo.jp/book/2021/978-4-297-12170-9">https://gihyo.jp/book/2021/978-4-297-12170-9</a>.
+</div>
+</div>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
-<p>Jupyterを使っている場合、<code>.ipynb</code>ファイルから</p>
-</section>
-<section id="日本語のpdf" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="日本語のpdf"><span class="header-section-number">5.2.2</span> 日本語のPDF</h3>
-<p>typst</p>
-
-
-</section>
+<ol>
+<li id="fn1"><p>コードを記述する箇所。Jupyterではコードセルと呼ばれます。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -659,8 +750,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./reference.html" class="pagination-link" aria-label="参考文献">
-        <span class="nav-page-text">参考文献</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./packages.html" class="pagination-link" aria-label="再現性を高めるRパッケージ">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">再現性を高めるRパッケージ</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

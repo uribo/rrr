@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -164,6 +198,12 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">再現性を高めるRパッケージ</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./reference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">参考文献</span></a>
   </div>
@@ -242,7 +282,7 @@ div.csl-indent {
 <p>複数の開発者が共同でコードを管理・開発する際に便利な機能を提供するバージョン管理システムです。</p>
 <p>バージョン管理システムを導入しないプロジェクトでは、ファイルが煩雑になりがちです。</p>
 <p>どのファイルが最新のものなのか、どのデータを使うのかがわからなくなることもあります。</p>
-<p>ここではGitのインストール方法や詳細なGitの説明は行いません。<span class="citation" data-cites="isbn9784295013617">横田紋奈 と 宇賀神みずき (<a href="reference.html#ref-isbn9784295013617" role="doc-biblioref">2022.3</a>)</span> や <span class="citation" data-cites="isbn9784065352199">渡辺宙志 (<a href="reference.html#ref-isbn9784065352199" role="doc-biblioref">2024.4</a>)</span> を参考にしてください。オンラインで読める<a href="https://git-scm.com/book/ja/v2">Pro Git</a>もあります。</p>
+<p>ここではGitのインストール方法や詳細なGitの説明は行いません。<span class="citation" data-cites="isbn9784295013617">横田紋奈 と 宇賀神みずき (<a href="reference.html#ref-isbn9784295013617" role="doc-biblioref">2022</a>)</span> や <span class="citation" data-cites="isbn9784065352199">渡辺宙志 (<a href="reference.html#ref-isbn9784065352199" role="doc-biblioref">2024</a>)</span> を参考にしてください。オンラインで読める<a href="https://git-scm.com/book/ja/v2">Pro Git</a>もあります。</p>
 <section id="バージョン管理の流れ" class="level3" data-number="4.2.1">
 <h3 data-number="4.2.1" class="anchored" data-anchor-id="バージョン管理の流れ"><span class="header-section-number">4.2.1</span> バージョン管理の流れ</h3>
 <ol type="1">
@@ -338,11 +378,24 @@ div.csl-indent {
 <p>GitHubにはここで取り上げる内容以外にも多くの機能があります。GitHub公式が提供する<a href="https://skills.github.com/">GitHub Skills</a>では、実際のGitHubリポジトリを操作してGitHubの使い方を学ぶことができます。</p>
 <section id="ローカルリポジトリの紐付け" class="level3" data-number="4.5.1">
 <h3 data-number="4.5.1" class="anchored" data-anchor-id="ローカルリポジトリの紐付け"><span class="header-section-number">4.5.1</span> ローカルリポジトリの紐付け</h3>
+<p><a href="./project.html">プロジェクトの章</a>で作成したプロジェクト（<code>rrr-demo</code>）をGitHubと紐付けます。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.gyazo.com/ce7d7d5c7d4bcd6d4530cc520ecc54bf.jpg" class="img-fluid figure-img"></p>
+<figcaption>GitHubでの新規リポジトリの作成</figcaption>
+</figure>
+</div>
+<p><img src="https://i.gyazo.com/3286bed6e6384c3bd99dc839ff6d54b3.jpg" class="img-fluid"></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/uribo/rrr-demo.git</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="リモートリポジトリのクローン" class="level3" data-number="4.5.2">
 <h3 data-number="4.5.2" class="anchored" data-anchor-id="リモートリポジトリのクローン"><span class="header-section-number">4.5.2</span> リモートリポジトリのクローン</h3>
 <p>新しいコンピュータなど、ローカルリポジトリを持っていない場合には、リモートリポジトリをクローンします。</p>
 <p><code>git clone</code></p>
+<p><img src="https://i.gyazo.com/4e78331047b8452eaaeaac54493f954d.jpg" class="img-fluid"></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/uribo/rrr-demo.git ~/Documents/projects2024/rrr-demo</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>変更の同期 <code>git pull</code>, <code>git fetch</code></p>
 <p>クローンしたリポジトリはローカルリポジトリとして扱うことができます。</p>
 </section>
@@ -361,10 +414,10 @@ div.csl-indent {
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-isbn9784295013617" class="csl-entry" role="listitem">
-横田紋奈, と 宇賀神みずき. 2022.3. <em>いちばんやさしいGit &amp; GitHubの教本 : 人気講師が教えるバージョン管理&amp;共有入門</em>. 第2版 版. インプレス. <a href="https://ndlsearch.ndl.go.jp/books/R100000002-I032013125">https://ndlsearch.ndl.go.jp/books/R100000002-I032013125</a>.
+横田紋奈, と 宇賀神みずき. 2022. <em>いちばんやさしいGit &amp; GitHubの教本 : 人気講師が教えるバージョン管理&amp;共有入門</em>. 第2版 版. インプレス. <a href="https://ndlsearch.ndl.go.jp/books/R100000002-I032013125">https://ndlsearch.ndl.go.jp/books/R100000002-I032013125</a>.
 </div>
 <div id="ref-isbn9784065352199" class="csl-entry" role="listitem">
-渡辺宙志. 2024.4. <em>ゼロから学ぶGit/GitHub : 現代的なソフトウェア開発のために</em>. 講談社. <a href="https://ndlsearch.ndl.go.jp/books/R100000002-I033407628">https://ndlsearch.ndl.go.jp/books/R100000002-I033407628</a>.
+渡辺宙志. 2024. <em>ゼロから学ぶGit/GitHub : 現代的なソフトウェア開発のために</em>. 講談社. <a href="https://ndlsearch.ndl.go.jp/books/R100000002-I033407628">https://ndlsearch.ndl.go.jp/books/R100000002-I033407628</a>.
 </div>
 </div>
 </section>
