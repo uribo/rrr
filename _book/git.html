@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Gitによるバージョン管理 – Rによるデータ分析ワークフローの効率化</title>
+<title>4&nbsp; バージョン管理 – Rによるデータ分析ワークフローの効率化</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -135,7 +135,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./git.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gitによるバージョン管理</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./git.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">バージョン管理</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
@@ -187,7 +187,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./git.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gitによるバージョン管理</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">バージョン管理</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -230,21 +230,33 @@ div.csl-indent {
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#バージョン管理" id="toc-バージョン管理" class="nav-link active" data-scroll-target="#バージョン管理"><span class="header-section-number">4.1</span> バージョン管理</a></li>
+  <li><a href="#バージョン管理の必要性" id="toc-バージョン管理の必要性" class="nav-link active" data-scroll-target="#バージョン管理の必要性"><span class="header-section-number">4.1</span> バージョン管理の必要性</a></li>
   <li><a href="#バージョン管理システム-git" id="toc-バージョン管理システム-git" class="nav-link" data-scroll-target="#バージョン管理システム-git"><span class="header-section-number">4.2</span> バージョン管理システム: Git</a>
   <ul class="collapse">
-  <li><a href="#バージョン管理の流れ" id="toc-バージョン管理の流れ" class="nav-link" data-scroll-target="#バージョン管理の流れ"><span class="header-section-number">4.2.1</span> バージョン管理の流れ</a></li>
-  <li><a href="#状態を戻す" id="toc-状態を戻す" class="nav-link" data-scroll-target="#状態を戻す"><span class="header-section-number">4.2.2</span> 状態を戻す</a></li>
+  <li><a href="#リポジトリ" id="toc-リポジトリ" class="nav-link" data-scroll-target="#リポジトリ"><span class="header-section-number">4.2.1</span> リポジトリ</a></li>
   </ul></li>
-  <li><a href="#rstudioでのバージョン管理" id="toc-rstudioでのバージョン管理" class="nav-link" data-scroll-target="#rstudioでのバージョン管理"><span class="header-section-number">4.3</span> RStudioでのバージョン管理</a></li>
-  <li><a href="#vscodeでのバージョン管理" id="toc-vscodeでのバージョン管理" class="nav-link" data-scroll-target="#vscodeでのバージョン管理"><span class="header-section-number">4.4</span> VSCodeでのバージョン管理</a></li>
+  <li><a href="#バージョン管理の流れ" id="toc-バージョン管理の流れ" class="nav-link" data-scroll-target="#バージョン管理の流れ"><span class="header-section-number">4.3</span> バージョン管理の流れ</a>
+  <ul class="collapse">
+  <li><a href="#リポジトリの作成" id="toc-リポジトリの作成" class="nav-link" data-scroll-target="#リポジトリの作成"><span class="header-section-number">4.3.1</span> リポジトリの作成</a></li>
+  <li><a href="#ファイルの追加-ステージングエリアへの登録" id="toc-ファイルの追加-ステージングエリアへの登録" class="nav-link" data-scroll-target="#ファイルの追加-ステージングエリアへの登録"><span class="header-section-number">4.3.2</span> ファイルの追加: ステージングエリアへの登録</a></li>
+  <li><a href="#ファイルのコミット" id="toc-ファイルのコミット" class="nav-link" data-scroll-target="#ファイルのコミット"><span class="header-section-number">4.3.3</span> ファイルのコミット</a></li>
+  </ul></li>
+  <li><a href="#アプリケーションを利用したバージョン管理" id="toc-アプリケーションを利用したバージョン管理" class="nav-link" data-scroll-target="#アプリケーションを利用したバージョン管理"><span class="header-section-number">4.4</span> アプリケーションを利用したバージョン管理</a>
+  <ul class="collapse">
+  <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio"><span class="header-section-number">4.4.1</span> RStudio</a></li>
+  <li><a href="#vscode" id="toc-vscode" class="nav-link" data-scroll-target="#vscode"><span class="header-section-number">4.4.2</span> VSCode</a></li>
+  </ul></li>
   <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github"><span class="header-section-number">4.5</span> GitHub</a>
   <ul class="collapse">
   <li><a href="#ローカルリポジトリの紐付け" id="toc-ローカルリポジトリの紐付け" class="nav-link" data-scroll-target="#ローカルリポジトリの紐付け"><span class="header-section-number">4.5.1</span> ローカルリポジトリの紐付け</a></li>
   <li><a href="#リモートリポジトリのクローン" id="toc-リモートリポジトリのクローン" class="nav-link" data-scroll-target="#リモートリポジトリのクローン"><span class="header-section-number">4.5.2</span> リモートリポジトリのクローン</a></li>
   <li><a href="#github-issues" id="toc-github-issues" class="nav-link" data-scroll-target="#github-issues"><span class="header-section-number">4.5.3</span> GitHub Issues</a></li>
   </ul></li>
-  <li><a href="#gitignore" id="toc-gitignore" class="nav-link" data-scroll-target="#gitignore"><span class="header-section-number">4.6</span> .gitignore</a></li>
+  <li><a href="#バージョン管理の流れ再び" id="toc-バージョン管理の流れ再び" class="nav-link" data-scroll-target="#バージョン管理の流れ再び"><span class="header-section-number">4.6</span> バージョン管理の流れ再び</a>
+  <ul class="collapse">
+  <li><a href="#ファイルのプッシュ" id="toc-ファイルのプッシュ" class="nav-link" data-scroll-target="#ファイルのプッシュ"><span class="header-section-number">4.6.1</span> ファイルのプッシュ</a></li>
+  </ul></li>
+  <li><a href="#gitignore" id="toc-gitignore" class="nav-link" data-scroll-target="#gitignore"><span class="header-section-number">4.7</span> .gitignore</a></li>
   </ul>
 </nav>
     </div>
@@ -253,7 +265,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gitによるバージョン管理</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">バージョン管理</span></h1>
 </div>
 
 
@@ -270,8 +282,8 @@ div.csl-indent {
 </header>
 
 
-<section id="バージョン管理" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="バージョン管理"><span class="header-section-number">4.1</span> バージョン管理</h2>
+<section id="バージョン管理の必要性" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="バージョン管理の必要性"><span class="header-section-number">4.1</span> バージョン管理の必要性</h2>
 <p>データ分析で用いるソースコードやデータは日々更新（バージョンアップ）されていきます。 ある日の作業では、データ読み込みのプログラムを書いて、次の日にはデータの前処理と可視化のプログラムを書くという流れです。 またある日には、これまで使っていたデータを新しいデータに差し替えることもあるでしょう。 そんな中で、ある日突然、以前実行可能だったコードがエラーを吐いたり、以前正常に動作していたコードが動かなくなったりすることがあります。</p>
 <p>バグとなるプログラムを書いてしまうことは誰にでもあることですが、そのような場合に、以前のバージョンに戻ることができると便利です。</p>
 <p>同じファイルに対して、複数のバージョンを保存しておくことがバージョン管理の目的です。</p>
@@ -295,91 +307,142 @@ div.csl-indent {
 <p>バージョン管理システムを導入しないプロジェクトでは、ファイルが煩雑になりがちです。</p>
 <p>どのファイルが最新のものなのか、どのデータを使うのかがわからなくなることもあります。</p>
 <p>ここではGitのインストール方法や詳細なGitの説明は行いません。<span class="citation" data-cites="isbn9784295013617">横田紋奈 と 宇賀神みずき (<a href="reference.html#ref-isbn9784295013617" role="doc-biblioref">2022</a>)</span> や <span class="citation" data-cites="isbn9784065352199">渡辺宙志 (<a href="reference.html#ref-isbn9784065352199" role="doc-biblioref">2024</a>)</span> を参考にしてください。オンラインで読める<a href="https://git-scm.com/book/ja/v2">Pro Git</a>もあります。</p>
-<section id="バージョン管理の流れ" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="バージョン管理の流れ"><span class="header-section-number">4.2.1</span> バージョン管理の流れ</h3>
+<section id="リポジトリ" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="リポジトリ"><span class="header-section-number">4.2.1</span> リポジトリ</h3>
+<p>Gitではファイルやディレクトリの状態を記録し、変更履歴を管理する場所をリポジトリと呼びます。 リポジトリには、プロジェクトに関連するコードやファイルが含まれます。</p>
+<p>リポジトリは、性質の違いによりローカルリポジトリとリモートリポジトリに分けられます。 ローカルリポジトリは、自分のコンピュータ上に保存されているリポジトリです。 個々の開発者が自身の作業を管理し、変更履歴を保存するために使用されます。</p>
+<p>リモートリポジトリは、ネットワーク上のサーバーに保存されているリポジトリです。 ネットワークを介して、複数の開発者がアクセス可能であり、共同作業（共有と同期）を行うために使用されます。</p>
+<p>Gitリポジトリを使った開発の流れは、開発者個人がそれぞれのローカルリポジトリで作業を行い、リモートリポジトリに変更を反映するというものです。 そのため、リモートリポジトリはバックアップとしての役割も果たします。</p>
+</section>
+</section>
+<section id="バージョン管理の流れ" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="バージョン管理の流れ"><span class="header-section-number">4.3</span> バージョン管理の流れ</h2>
+<p>最低限必要なコマンドを紹介しますので、まずはバージョン管理の雰囲気をつかんでください。 Gitバージョン管理は次の3つのステップで行います。</p>
 <ol type="1">
 <li>リポジトリの作成</li>
 <li>ファイルの追加</li>
 <li>ファイルのコミット</li>
-<li>ファイルのプッシュ</li>
 </ol>
 <p>Gitには100を超えるコマンドがありますが、覚えるべきコマンドは限定的です。 上記のバージョン管理の流れでは、それぞれ数個のコマンドを使います。 つまり、一連のバージョン管理で用いるコマンドは指で数えられる範囲に収まります。</p>
-<section id="リポジトリの作成" class="level4" data-number="4.2.1.1">
-<h4 data-number="4.2.1.1" class="anchored" data-anchor-id="リポジトリの作成"><span class="header-section-number">4.2.1.1</span> リポジトリの作成</h4>
-<p><code>git init</code></p>
-<p><code>.git</code>フォルダが作成されます。</p>
-<p>このフォルダはGitのリポジトリとしての役割を果たします。隠しフォルダとなっており、ユーザーが直接操作することはありません。</p>
+<p>最初の作業は一度行えば、その後は実行する必要がなくなるので、実際は2つのステップとなります。</p>
+<section id="リポジトリの作成" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="リポジトリの作成"><span class="header-section-number">4.3.1</span> リポジトリの作成</h3>
+<p>これからプロジェクトを立ち上げる、あるいは既存のプロジェクトをGitで管理する場合、まずリポジトリを作成します。 <code>git init</code>コマンドを実行すると、現在のディレクトリに<code>.git</code>フォルダが作成されます。 このフォルダはGitリポジトリの中心的な役割を果たします。隠しフォルダとなっており、ユーザーが直接操作することはありません。</p>
 </section>
-<section id="ファイルの追加" class="level4" data-number="4.2.1.2">
-<h4 data-number="4.2.1.2" class="anchored" data-anchor-id="ファイルの追加"><span class="header-section-number">4.2.1.2</span> ファイルの追加</h4>
-<p><code>git add</code></p>
-<p><code>git status</code></p>
+<section id="ファイルの追加-ステージングエリアへの登録" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="ファイルの追加-ステージングエリアへの登録"><span class="header-section-number">4.3.2</span> ファイルの追加: ステージングエリアへの登録</h3>
+<p>リポジトリにバージョン管理の対象とするファイルを追加するには、<code>git add</code>コマンドを使います。 リポジトリにファイルがない場合、何かファイルを作成してみてください。 その後、<code>git status</code>というコマンドを実行すると <code>Untracked files</code> という箇所に作成したファイル名が表示されます。 この状態のファイルをリポジトリに追加するには、<code>git add</code>コマンドを使います。</p>
+<pre><code>`git add &lt;ファイル名&gt;`</code></pre>
+<p><code>git add</code>したファイルは、ステージングエリアという仮想的な場所に追加されます。 ステージングエリアに追加されたファイルは、次にコミットする対象となります。</p>
+<p>Untracked状態のファイルが複数ある場合、<code>git add .</code>というコマンドを使うと、全てのファイルを一括で追加できます。</p>
 </section>
-<section id="ファイルのコミット" class="level4" data-number="4.2.1.3">
-<h4 data-number="4.2.1.3" class="anchored" data-anchor-id="ファイルのコミット"><span class="header-section-number">4.2.1.3</span> ファイルのコミット</h4>
+<section id="ファイルのコミット" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="ファイルのコミット"><span class="header-section-number">4.3.3</span> ファイルのコミット</h3>
 <p>作成・変更したファイルの状態を記録する作業をGitでは「コミット」と呼びます。 コミットを重ねることで、ファイルの変更履歴を残すことができ、必要に応じて過去の状態に遡ることができます。</p>
-<p><code>git commit</code></p>
+<p>コミットの対象となるのは、ステージングエリアに追加されたファイルです。 そのため<code>git add</code>を行う前に<code>git commit</code>を行うと、コミット対象のファイルがないというエラーが表示されるので注意してください。</p>
+<p><code>git commit</code>コマンドを使って、ファイルの変更をコミットします。 コミットには、コミットメッセージと呼ばれる説明文を付けることができます。 作業後、コミットの履歴を見た際に、どのような変更を行ったかを把握するために重要な情報となります。 なぜその変更を行ったのか、どのような変更を行ったのかを記述します。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-ノート
+最低限のGit設定
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>最低限のGit設定</p>
-<p>氏名とメールアドレスを設定します。</p>
+<p>コミットを行う際には、氏名とメールアドレスの設定が必要となります。 2つの設定は、Gitのコミットログで誰がコミットしたかを示すために必要な情報です。</p>
 <p>ターミナルを開いて以下のコマンドを実行します。 二重引用符で示した箇所は適宜変更してください。</p>
-<p><code>git config --global user.name "&lt;あなたの名前&gt;"</code> <code>git config --global user.email "&lt;あなたのメールアドレス&gt;"</code></p>
-<p>2つの設定は、Gitのコミットログで誰がコミットしたかを示すために必要な情報です。</p>
+<pre><code>`git config --global user.name "&lt;あなたの名前&gt;"`
+`git config --global user.email "&lt;あなたのメールアドレス&gt;"`</code></pre>
+<p>設定が完了したかどうかは、以下のコマンドで確認できます。</p>
+<pre><code>`git config --list`</code></pre>
+<p>この出力で<code>user.name</code>と<code>user.email</code>が正しく表示されていれば、設定が完了しています。</p>
 </div>
 </div>
-<p>コミットには、コミットメッセージと呼ばれる説明文を付けることができます。 作業後、コミットの履歴を見た際に、どのような変更を行ったかを把握するために重要な情報となります。 なぜその変更を行ったのか、どのような変更を行ったのかを記述します。</p>
+<p>コミットメッセージは、以下のような形式で記述します。</p>
 <ul>
 <li>1行目: 変更内容の要約</li>
 <li>2行目: 空行</li>
 <li>3行目以降: 変更内容の詳細</li>
 </ul>
-<p>Gitに不慣れな方は、コミットメッセージを書くことに障壁を感じるかもしれません。 ここで大事なことはコミットに残すことです。コミットメッセージは後から修正することもできます。 簡単な情報であっても、コミットメッセージを残すことが大切です。</p>
-</section>
-<section id="ファイルのプッシュ" class="level4" data-number="4.2.1.4">
-<h4 data-number="4.2.1.4" class="anchored" data-anchor-id="ファイルのプッシュ"><span class="header-section-number">4.2.1.4</span> ファイルのプッシュ</h4>
-<p><code>git push</code></p>
-<p><code>git log</code></p>
+<p>Gitに不慣れな方は、コミットメッセージを書くことに障壁を感じるかもしれません。 しかし、難しく考える必要はありません。 ここで大事なことはコミットを残すことです。コミットメッセージは後から修正することもできますし、正解があるわけではありません。 簡単な情報であっても、コミットメッセージを残すことが大切です。</p>
 </section>
 </section>
-<section id="状態を戻す" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="状態を戻す"><span class="header-section-number">4.2.2</span> 状態を戻す</h3>
-<p>バージョン管理システムを使うと、過去の状態に戻すことができます。</p>
-<p>ファイルを復元</p>
-<p>コミット後の状態に戻すには、<code>git checkout</code>コマンドを使います。</p>
-</section>
-</section>
-<section id="rstudioでのバージョン管理" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="rstudioでのバージョン管理"><span class="header-section-number">4.3</span> RStudioでのバージョン管理</h2>
-<p>プロジェクト内には複数のファイルが存在します。</p>
-<p>ターミナルあるいはGitパネルを使ってバージョン管理を行います。</p>
-<p>RStudioではGitとSVNによるバージョン管理をサポートしています。</p>
-<p>ターミナルでのコマンド操作が苦手な方は、RStudioのGitパネルを使うと便利です。</p>
+<section id="アプリケーションを利用したバージョン管理" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="アプリケーションを利用したバージョン管理"><span class="header-section-number">4.4</span> アプリケーションを利用したバージョン管理</h2>
+<p>Gitはコマンドラインツールですが、GUIアプリケーションを使うことで、より簡単にバージョン管理を行うことができます。 Rの統合開発環境であるRStudioやVSCodeでも、Gitと連携した操作が可能です。 分析作業から離れずにバージョン管理を行うことができるため、非常に便利です。 すべてのコマンドを実行可能なわけではありませんが、基本的な操作はGUIを通して行えます。</p>
+<section id="rstudio" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">4.4.1</span> RStudio</h3>
+<p>ターミナルあるいはGitパネルを使ってバージョン管理を行います。 ここではGUIで操作可能な方法を紹介します。 なおRStudioのGUIでは、GitとSVNによるバージョン管理をサポートしています。</p>
+<p><code>.git</code>フォルダが存在するプロジェクトを開くと、RStudioはGitパネルを表示します。 この画面がRStudioでのGUIによるバージョン管理処理の中心となります。 もしもGitパネルが見つからない場合、メニューのTools、Global Options…から、Git/SVNにて<code>Enable version control interface for RStudio projects</code>にチェックを入れてください。</p>
+<p>Gitパネルには、ファイルの差分やコミット履歴を確認するボタンが用意されています。 メインとなるのは<code>Staged</code>、<code>Status</code>、<code>Path</code>の3列で構成される箇所です。 それぞれの列には次の意味があります。</p>
 <ul>
-<li><code>N</code></li>
-<li><code>M</code></li>
-<li><code>?</code></li>
+<li><code>Staged</code>: ステージングエリアに追加されたファイル</li>
+<li><code>Status</code>: ファイルの状態</li>
+<li><code>Path</code>: ファイルのパス</li>
 </ul>
+<p><code>Staged</code>はチェックボックスになっており、ステージングエリアに追加するファイルを選択できるようになっています。 これにより、<code>git add</code>コマンドを使わずにステージングエリアへの登録が行えます。 Shiftキーを押しながらの選択で、複数ファイルの選択も可能です。</p>
+<p>次の<code>Status</code>には、いくつかのアイコンが表示されます。 各アイコンの意味は下記の通りです。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 73%">
+<col style="width: 2%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>アイコン</th>
+<th>色</th>
+<th style="text-align: left;">状態</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>?</strong> <img src="https://qiita-image-store.s3.amazonaws.com/0/19462/6701f0b2-8008-08b5-fd1b-4f52e9cf8092.png" class="img-fluid" alt="git-unknown.png"></td>
+<td>黄</td>
+<td style="text-align: left;">untracked バージョン管理の対象になっていない</td>
+</tr>
+<tr class="even">
+<td><strong>M</strong>odified <img src="https://qiita-image-store.s3.amazonaws.com/0/19462/003a537c-a381-b341-5657-eec3fe5039ab.png" class="img-fluid" alt="git-modified.png"></td>
+<td>青</td>
+<td style="text-align: left;">リポジトリの状態から変更された</td>
+</tr>
+<tr class="odd">
+<td><strong>D</strong>elete <img src="https://qiita-image-store.s3.amazonaws.com/0/19462/95e26e47-1f6e-f383-9a23-781feb9124d9.png" class="img-fluid" alt="git-deleted.png"></td>
+<td>赤</td>
+<td style="text-align: left;">リポジトリにあったファイルが削除された</td>
+</tr>
+<tr class="even">
+<td><strong>A</strong>dded <img src="https://qiita-image-store.s3.amazonaws.com/0/19462/45aed923-c813-657f-b9c9-c9a5f919ffde.png" class="img-fluid" alt="git-added.png"></td>
+<td>緑</td>
+<td style="text-align: left;">新たにバージョン管理状態になった</td>
+</tr>
+<tr class="odd">
+<td><strong>U</strong>nresolved <img src="https://qiita-image-store.s3.amazonaws.com/0/19462/18f55d6e-704a-803b-4e96-776a00a13da0.png" class="img-fluid" alt="git-commit-conflict.png"></td>
+<td>橙</td>
+<td style="text-align: left;">リポジトリ間で差分が衝突している</td>
+</tr>
+<tr class="even">
+<td><strong>R</strong>renamed</td>
+<td>紫</td>
+<td style="text-align: left;">ファイル名が変更された</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="vscodeでのバージョン管理" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="vscodeでのバージョン管理"><span class="header-section-number">4.4</span> VSCodeでのバージョン管理</h2>
+<section id="vscode" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="vscode"><span class="header-section-number">4.4.2</span> VSCode</h3>
 <ul>
 <li>リポジトリを初期化する</li>
 </ul>
 <!-- ブランチについては簡単に紹介するだけ -->
 </section>
+</section>
 <section id="github" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="github"><span class="header-section-number">4.5</span> GitHub</h2>
-<p>GitHub (https://github.com/) は、Gitリポジトリをホスティングするウェブサービス（リモートリポジトリ）です。 利用の際にはアカウントの作成が必要です。</p>
-<p>プライベートリポジトリ</p>
+<p>GitHub (https://github.com/) は、Gitリポジトリをホスティングするウェブサービス（リモートリポジトリ）です。 世界中のさまざまなプロジェクトで採用されるリモートリポジトリであり、オープンソースプロジェクトの共有やコラボレーションに広く利用されています。 ウェブサイトの閲覧は誰でもできますが、主要な機能を利用する際にはアカウントの作成が必要です。</p>
+<p>GitHub上のリポジトリには、誰でもアクセス可能なパブリックリポジトリと、特定のユーザーのみがアクセス可能なプライベートリポジトリの2種類があります。 プライベートリポジトリは</p>
 <p>リポジトリのURLは <code>https://github.com/&lt;アカウント名&gt;/&lt;リポジトリ名&gt;</code> となります。</p>
 <p>CRANで配布されるRパッケージのソースコードも多く管理されます。</p>
 <p>RパッケージのソースコードをGitHubで管理する開発者も多く、CRANで配布されるものだけでなく、CRANポリシーに適合しないなどの理由でCRANでは配布されないパッケージも豊富に存在します。 remotesやpakパッケージを使えば、これらのGitHub上で配布されるRパッケージのインストールも可能です。</p>
@@ -398,16 +461,16 @@ div.csl-indent {
 </figure>
 </div>
 <p><img src="https://i.gyazo.com/3286bed6e6384c3bd99dc839ff6d54b3.jpg" class="img-fluid"></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/uribo/rrr-demo.git</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/uribo/rrr-demo.git</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="リモートリポジトリのクローン" class="level3" data-number="4.5.2">
 <h3 data-number="4.5.2" class="anchored" data-anchor-id="リモートリポジトリのクローン"><span class="header-section-number">4.5.2</span> リモートリポジトリのクローン</h3>
 <p>新しいコンピュータなど、ローカルリポジトリを持っていない場合には、リモートリポジトリをクローンします。</p>
 <p><code>git clone</code></p>
 <p><img src="https://i.gyazo.com/4e78331047b8452eaaeaac54493f954d.jpg" class="img-fluid"></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/uribo/rrr-demo.git ~/Documents/projects2024/rrr-demo</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/uribo/rrr-demo.git ~/Documents/projects2024/rrr-demo</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>変更の同期 <code>git pull</code>, <code>git fetch</code></p>
 <p>クローンしたリポジトリはローカルリポジトリとして扱うことができます。</p>
 </section>
@@ -416,8 +479,21 @@ div.csl-indent {
 <p>プロジェクトに関する問題やメモのために利用できます。</p>
 </section>
 </section>
-<section id="gitignore" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="gitignore"><span class="header-section-number">4.6</span> .gitignore</h2>
+<section id="バージョン管理の流れ再び" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="バージョン管理の流れ再び"><span class="header-section-number">4.6</span> バージョン管理の流れ再び</h2>
+<p>コミット後のステップとして、以下が追加されます。</p>
+<ol type="1">
+<li>リモートリポジトリの指定</li>
+<li>ファイルのプッシュ</li>
+</ol>
+<section id="ファイルのプッシュ" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="ファイルのプッシュ"><span class="header-section-number">4.6.1</span> ファイルのプッシュ</h3>
+<p>コミットを行ったら、変更を確定させるためのプッシュを行います。 プッシュを行うことで、リモートリポジトリに変更内容が反映されます。</p>
+<p><code>git push</code></p>
+</section>
+</section>
+<section id="gitignore" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="gitignore"><span class="header-section-number">4.7</span> .gitignore</h2>
 <p>Gitバージョン管理を行うリポジトリでは、バージョン管理に含めるべきではないファイルが存在します。 例えば、セキュリティ上重要な情報を含むファイルやキャッシュファイルなどです。 これらがバージョン管理に含まれると、セキュリティリスクが高まったり、リポジトリのサイズが大きくなるなどの問題が発生します。 実際に、GitHubなどのリモートリポジトリにデータベースの接続情報やAPIキーなどの機密情報が含まれていると、悪意のある第三者によって悪用される可能性があります。</p>
 <p>Gitでは<code>.gitignore</code>にバージョン管理の対象外とするファイルを記録することで、上記の問題の解決を図っています。 バージョン管理を行わないファイルの指定方法は、<code>gitignore</code>にそのファイル名や名称のパターンを記述することで行います。 <code>.gitignore</code>ファイルはリポジトリ内の任意の場所に配置することができますが、通常はリポジトリのルートディレクトリ、<code>.git/</code>フォルダと同じ階層に配置します。</p>
 <p><code>.gitignore</code>に記録するファイルはプロジェクトによって異なりますが、一般的にバージョン管理から除外される種類のファイルが存在します。 特にファイルやフォルダ名の先頭に <code>.</code> が付いているものは、バージョン管理から除外することが一般的です。 こうしたファイルやフォルダは隠しファイル、隠しフォルダと呼ばれ、システムによって生成され、ユーザーが直接操作することは限定的です。 加えて、サイズが大きかったり差分管理が困難なバイナリファイルはバージョン管理の対象外となることが多いです。</p>
