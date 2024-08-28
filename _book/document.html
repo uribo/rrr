@@ -204,6 +204,18 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ワークフロー</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./container.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">コンテナ</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./reference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">参考文献</span></a>
   </div>
@@ -255,23 +267,21 @@ div.csl-indent {
 <h2 data-number="5.1" class="anchored" data-anchor-id="文芸的プログラミング"><span class="header-section-number">5.1</span> 文芸的プログラミング</h2>
 <p>通常のコンピュータプログラミングでは、プログラムのソースコードと実行結果は別々に扱われます。 コードと結果の関連性が失われている状態です。</p>
 <p>例えばRの場合、スクリプトファイルにコードを書いて実行すると、コンソールに結果が表示されます。 コンソールに表示された結果をコピーして、別のファイルに貼り付けることで、ソースコードと結果を一つのファイルにまとめることができますが、コピーをし忘れたり、間違って貼り付けたりすることがあります。 またこのような作業では、データや処理内容を変更する度に上書きの必要性が生じるので手間がかかります。</p>
-<p>文芸的プログラミングは、ソースコードと結果を含めた関連するドキュメントを一つのファイルにまとめることで、コードと結果の関連性を保ちながらドキュメントを作成する方法です。 コードの変更に伴って出力結果も自動的に更新されるため、手作業でのコピー&amp;ペースト作業が不要になります。 このように動的に生成されるドキュメントを作成するツールとして、R MarkdownやJupyter Notebook(Jupyter)が有名です。</p>
+<p>文芸的プログラミングは、ソースコードと結果を含めた関連するドキュメントを一つのファイルにまとめることで、コードと結果の関連性を保ちながらドキュメントを作成する方法です。 コードの変更に伴って出力結果も自動的に更新されるため、手作業でのコピー&amp;ペースト作業が不要になります。 このように動的に生成されるドキュメントを作成するツールとして、<a href="https://rmarkdown.rstudio.com/">R Markdown</a>や<a href="https://jupyter.org/">Jupyter Notebook(Jupyter)</a>が有名です。</p>
 </section>
 <section id="quarto" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="quarto"><span class="header-section-number">5.2</span> Quarto</h2>
 <p><a href="https://quarto.org/">Quarto</a>はPositがオープンソースで開発している動的ドキュメント作成システムです。 Jupyterやプレーンテキストで書かれたファイルをもとに、HTMLやPDF、Wordなどのさまざまな形式でのドキュメントを作成することができます。 Rだけでなく、PythonやJuliaなどのプログラミング言語にも対応しています。</p>
-<p>Rユーザにとっては、動的ドキュメントの作成に<a href="https://rmarkdown.rstudio.com/">R Markdown</a>を使うことが一般的ですが、QuartoはR Markdownの後継としても位置づけられています。 そのため、R Markdownの機能をほぼそのまま利用することができます。 実際、QuartoでのR言語の評価はR Markdown同様、knitrパッケージを介して行われます。</p>
+<p>Rユーザにとっては、動的ドキュメントの作成にR Markdownを使うことが一般的ですが、QuartoはR Markdownの後継としても位置づけられています。 そのため、R Markdownの機能をほぼそのまま利用することができます。 実際、QuartoでのR言語の評価はR Markdown同様、knitrパッケージを介して行われます。</p>
 <p>ここではQuartoの基本的な使い方として単一のドキュメント生成の手順を紹介します。 一方、Quartoにはウェブサイト、ブログ、書籍執筆をサポートする機能もあります。 これらのQuartoの詳細については<a href="https://quarto.org/docs/guide/">公式ドキュメント</a>を参照してください。</p>
 <p>R Markdownの基礎は <span class="citation" data-cites="isbn9784297121709">松村優哉 ほか (<a href="reference.html#ref-isbn9784297121709" role="doc-biblioref">2021</a>)</span> にまとまっています。</p>
 <section id="quartoによるドキュメントの作成" class="level3" data-number="5.2.1">
 <h3 data-number="5.2.1" class="anchored" data-anchor-id="quartoによるドキュメントの作成"><span class="header-section-number">5.2.1</span> Quartoによるドキュメントの作成</h3>
-<p>Quartoでは、<code>.qmd</code>という拡張子のファイルを作成し、その中にコードと必要な文章を記述します。 <code>.qmd</code>ファイルをもとに任意の形式でのドキュメントを生成します。</p>
-<p><code>.qmd</code>ファイルからのドキュメント生成の工程を、Quartoではレンダーと呼びます。 レンダーは<code>.qmd</code>ファイルだけでなく、Jupyterで使われる<code>.ipynb</code>ファイルからも行うことができます。</p>
-<p><code>.qmd</code>ファイルの基本構成は以下の通りです。</p>
+<p>Quartoでは、<code>.qmd</code>という拡張子のファイルを作成し、その中にコードと必要な文章を記述します。 <code>.qmd</code>ファイルをもとに任意の形式でのドキュメントを生成します。 <code>.qmd</code>ファイルの基本構成は以下の通りです。</p>
 <ul>
-<li>YAMLフロントマター… ドキュメントのメタデータ（タイトルや著者名、出力形式等）を記述する部分。YAML形式で記述します。</li>
+<li>YAMLフロントマター… ドキュメントのメタデータ（タイトルや著者名、出力形式などの実行オプション等）を記述する部分。YAML形式で記述します。</li>
 <li>文章… ドキュメントの本文。プレーンテキストに加えて、Markdown記法による文字装飾、LaTeX記法による数式記述が可能です。</li>
-<li>コードブロック（コードセル）<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li>コードブロック（コードセル）<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> …</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -279,10 +289,28 @@ div.csl-indent {
 <figcaption>Quartoの基本構成要素</figcaption>
 </figure>
 </div>
+<p>ファイルの先頭にYAMLの形式でメタデータを記述します。 以降はドキュメントの文章とコードとなります。</p>
+<p>コードブロックの宣言は、R Markdown同様、バッククォート(`)を使います。 コードブロックの宣言部分には <code>{}</code> の中に言語名を記述します。 Rの場合は<code>r</code>、Pythonでは<code>python</code>、Juliaでは<code>julia</code>となります。</p>
+<p>コードブロックには、プログラムやその出力に関する挙動を制御する実行オプションを記述できます<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>。 指定可能なオプションとして、<code>echo</code>（コードの表示有無）、<code>eval</code>（コードの評価有無）、図のサイズやキャプションなどがあります。</p>
+<p>コードブロックの実行オプションは以下のように記述します。 コードブロックの上部に<code>#|</code>を記述し、その後にオプション名とパラメータを記述します。 論理値での指定が必要な実行オプションは<code>true</code>または<code>false</code>で指定します。 Rの論理値の指定はすべて大文字で行いますが、ここではすべて小文字で表記するので注意してください。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| eval: true</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 5</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-height: 5</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "グラフの描画"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggplot2)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="in">mtcars |&gt; </span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = wt, y = mpg)) +</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_point() +</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(title = "燃費と重量の関係")</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>必要な文章とコードを記載したら、Quartoのコマンドを使ってドキュメントを生成します。 <code>.qmd</code>ファイルからのドキュメント生成の工程を、Quartoではレンダーと呼びます。 レンダーは<code>.qmd</code>ファイルだけでなく、Jupyterで使われる<code>.ipynb</code>ファイルからも行うことができます。</p>
 <p>レンダーはコマンドラインを使って以下のように行います。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> html</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> html</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>このコマンドを実行すると<code>document.qmd</code>ファイルをもとにHTML形式のドキュメントを生成します。 出力形式をWordファイルに変更する場合は、<code>--to</code>オプションの引数を<code>docx</code>に変更するだけです。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> docx</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> docx</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>RStudioやVS Codeなどのアプリケーションでは、Quartoのコマンドを実行するためのインターフェースが提供されています。 これにより、コマンドの入力の手間がなくなり、より直感的にQuartoを使うことができます。</p>
 </section>
 <section id="rstudioでのquartoの利用" class="level3" data-number="5.2.2">
@@ -294,18 +322,68 @@ div.csl-indent {
 <figcaption>RStudioでのqmdファイルの新規作成</figcaption>
 </figure>
 </div>
-<p>タイトルや出力形式を指定して「Create」ボタンをクリックすると新しい<code>.qmd</code>ファイルが作成されます。 ここにコードと文章を記述して、レンダーを行います。</p>
-<p>レンダーはソースパネル上の「Render」ボタンより実行します。ボタンをクリックすると、バックグラウンドで<code>quarto</code>のコマンドが実行され、<code>.qmd</code>ファイル中のソースコードの実行結果をもとに指定した形式のドキュメントが生成されます。</p>
+<p>タイトルや出力形式を指定して「Create」ボタンをクリックすると新しい<code>.qmd</code>ファイルが作成されます。 また、エンジンとしてKnitrかJupyterが選択可能です。Knitr、つまりRのエンジンであってもreticulateパッケージにより Pythonの実行ができますが、Jupyterを指定することで直接Pythonの実行が可能になります。</p>
+<p>ソースパネルに新たに作成されたファイル内にコードと文章を記述して、レンダーを行います。 レンダーはソースパネル上の「Render」ボタンより実行します。ボタンをクリックすると、バックグラウンドで<code>quarto</code>のコマンドが実行され、<code>.qmd</code>ファイル中のソースコードの実行結果をもとに指定した形式のドキュメントが生成されます。</p>
+<p>RStudioでは、<code>Ctrl</code>+<code>Alt</code>+<code>I</code>（macOSでは<code>Command</code>+<code>Option</code>+<code>I</code>）のショートカットキーを使うことで、コードブロックを追加できます。</p>
 </section>
 <section id="pdfの出力" class="level3" data-number="5.2.3">
 <h3 data-number="5.2.3" class="anchored" data-anchor-id="pdfの出力"><span class="header-section-number">5.2.3</span> PDFの出力</h3>
-<p>Quartoで日本語のPDFを生成する場合、2つの選択肢があります。 一つは出力形式を指定する際に<code>pdf</code>を指定する方法です。これはLaTeXを使ってPDFを生成する方法です。 もう一つの方法は<code>typst</code>を出力形式として指定する方法です。 まじは一般的なLaTeXによるPDF出力方法を見てみましょう。</p>
+<p>Quartoで日本語のPDFを生成する場合、2つの選択肢があります。 一つは出力形式を指定する際に<code>pdf</code>を指定する方法です。これはLaTeXを使ってPDFを生成する方法です。 もう一つの方法は<code>typst</code>を出力形式として指定する方法です。 まずは一般的なLaTeXによるPDF出力方法を見てみましょう。</p>
+<section id="latex" class="level4" data-number="5.2.3.1">
+<h4 data-number="5.2.3.1" class="anchored" data-anchor-id="latex"><span class="header-section-number">5.2.3.1</span> LaTeX</h4>
 <p>LaTeXを使ったPDF出力を行う場合、事前にLaTeXの環境を揃える必要があります。</p>
 <p>QuartoのコマンドからもLaTeX環境を導入可能です。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>このコマンドを実行すると、<a href="https://yihui.org/tinytex/">TinyTeX</a>というLaTeXディストリビューションがインストールされます。 ここまでで最低限のPDF出力環境が整います。</p>
-<p>次に<a href="https://typst.app/docs">Typst</a>を利用したPDF出力方法を紹介します。 TypstはLaTeXなどの高度で詳細な組版システムとWordやGoogleドキュメントなどの単純なツールの代替となるように設計された新しい組版システムです。</p>
-<p>はLaTeXを使わずにPDFを生成する方法です。 typst</p>
+<p>新規で<code>.qmd</code>ファイルを作成する手順を思い出し、出力形式をPDFにして作成してみましょう。 YAMLフロントマターのformatの項目が<code>pdf</code>になっていることを確認してください。 ファイルを編集してレンダーを行ってファイルを出力する点はこれまでの手順と同じです。</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+LaTeXでの日本語のPDF出力
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>LaTeXを使ったPDF出力を行う際、いくつか追加設定が必要な場合があります。 以下は日本語を扱うPDFの生成のためのYAMLフロントマターの指定例です。</p>
+<pre><code>---
+title: "日本語を含んだPDF"
+format: 
+  pdf:
+    include-in-header:
+      text: |
+        \usepackage{zxjatype}
+        \usepackage[ipaex]{zxjafont}
+        \setmainfont{IPAexGothic}
+---</code></pre>
+<p>LaTeXのパッケージである<code>zxjatype</code>と<code>zxjafont</code>を使って日本語の組版、フォントを指定しています。 日本語フォントの種類として<code>IPAexGothic</code>を指定していますが、他のフォントを指定することも可能です。 詳細は<code>zxjafont</code>の<a href="https://ctan.org/pkg/zxjafont">ドキュメント</a>をご覧下さい。</p>
+</div>
+</div>
+</section>
+<section id="typst" class="level4" data-number="5.2.3.2">
+<h4 data-number="5.2.3.2" class="anchored" data-anchor-id="typst"><span class="header-section-number">5.2.3.2</span> Typst</h4>
+<p>次に<a href="https://typst.app/docs">Typst</a>を利用したPDF出力方法を紹介します。 TypstはHTMLなどと同じマークアップ言語の一種です。 LaTeXの高度で柔軟な組版システムとWordやGoogleドキュメントなどのツールの代替となるように設計された新しい組版システムです。</p>
+<p>バージョン1.4以降のQuartoでは、標準的にTypstが利用可能です。 YAMLフロントマターで<code>format: typst</code>を指定するか、コマンドラインで<code>--to typst</code>を指定することでTypstによるPDFの生成が可能です。</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Typstでの日本語のPDF出力
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>LaTeXを使ったPDF出力を行う際、いくつか追加設定が必要な場合があります。 以下は日本語を扱うPDFの生成のためのYAMLフロントマターの指定例です。</p>
+<pre><code>---
+title: "日本語を含んだPDF"
+format: 
+  typst:
+    mainfont: "Noto Sans JP"
+---</code></pre>
+</div>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -315,10 +393,12 @@ div.csl-indent {
 </div>
 </section>
 </section>
+</section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn1"><p>コードを記述する箇所。Jupyterではコードセルと呼ばれます。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>ドキュメント全体での制御はYAMLフロントマター内で行います。個別のコードブロックに対して記述したオプションが優先されます。実行オプションの詳細はQuarto公式ページの<a href="https://quarto.org/docs/computations/execution-options.html">ドキュメント</a>に記載されています。<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
