@@ -204,6 +204,18 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ワークフロー</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./container.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">コンテナ</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./reference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">参考文献</span></a>
   </div>
@@ -406,10 +418,24 @@ div.csl-indent {
 </section>
 <section id="gitignore" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="gitignore"><span class="header-section-number">4.6</span> .gitignore</h2>
-<p>Gitバージョン管理を行うリポジトリでは、バージョン管理に含めたくないファイルやディレクトリが存在する場合があります。 ユーザーのアカウント情報を記録したファイルなどのクレデンシャルなデータです。 このほか、巨大なバイナリファイルやキャッシュファイルなども含まれます。</p>
-<p><code>.gitignore</code>を使って、これらのファイルをバージョン管理から除外することができます。</p>
-<p><code>.gitignore</code>ファイルは、リポジトリのルートディレクトリに配置します。</p>
-<p><code>.gitignore</code>ファイルには、除外するファイルやディレクトリのパターンを記述します。</p>
+<p>Gitバージョン管理を行うリポジトリでは、バージョン管理に含めるべきではないファイルが存在します。 例えば、セキュリティ上重要な情報を含むファイルやキャッシュファイルなどです。 これらがバージョン管理に含まれると、セキュリティリスクが高まったり、リポジトリのサイズが大きくなるなどの問題が発生します。 実際に、GitHubなどのリモートリポジトリにデータベースの接続情報やAPIキーなどの機密情報が含まれていると、悪意のある第三者によって悪用される可能性があります。</p>
+<p>Gitでは<code>.gitignore</code>にバージョン管理の対象外とするファイルを記録することで、上記の問題の解決を図っています。 バージョン管理を行わないファイルの指定方法は、<code>gitignore</code>にそのファイル名や名称のパターンを記述することで行います。 <code>.gitignore</code>ファイルはリポジトリ内の任意の場所に配置することができますが、通常はリポジトリのルートディレクトリ、<code>.git/</code>フォルダと同じ階層に配置します。</p>
+<p><code>.gitignore</code>に記録するファイルはプロジェクトによって異なりますが、一般的にバージョン管理から除外される種類のファイルが存在します。 特にファイルやフォルダ名の先頭に <code>.</code> が付いているものは、バージョン管理から除外することが一般的です。 こうしたファイルやフォルダは隠しファイル、隠しフォルダと呼ばれ、システムによって生成され、ユーザーが直接操作することは限定的です。 加えて、サイズが大きかったり差分管理が困難なバイナリファイルはバージョン管理の対象外となることが多いです。</p>
+<p><code>.gitignore</code>の記載例を示します。<code>.gitignore</code>では特定の正規表現を使って複数のファイルを指定したり、否定の表現（つまり管理に含める）を使った柔軟な指定が可能です。</p>
+<pre><code>Thumbs.db
+.DS_Store
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.pdf
+*.log
+README.html</code></pre>
+<p><code>Thumbs.db</code>や<code>.DS_Store</code>は目にしたことがない方もいるかもしれません。 これらはWindowsやmacOSで生成されるファイルで、フォルダ内のファイルのサムネイルや表示方法を記録するファイルです。 プロジェクト内のコードには影響を与えないため、バージョン管理は不要です。</p>
+<p>続いての<code>.Rproj.user</code>から<code>.Ruserdata</code>はRに関連するものです。 特に<code>.Rproj.user</code>はRStudioのプロジェクト設定ファイルを含むフォルダでバージョン管理を行いません。 <code>.Rhistory</code>や<code>.RData</code>はRの履歴やデータを保存するファイルですが、ユーザーやセッションの度に更新されるものであるため、これらもバージョン管理を行いません。</p>
+<p><code>*.pdf</code>、<code>*.log</code>はPDFおよびlog形式のファイル一式を除外する指示です。ファイル名に関わらず、拡張子によって除外される複数のファイルを想定しています。 アスタリスク（<code>*</code>）は任意の文字列を表し、<code>*.pdf</code>は拡張子が<code>.pdf</code>であるファイルをすべて指定します。</p>
+<p>拡張子による指定という点で、その次の行 <code>README.html</code> も同様ですが、<code>*.pdf</code>や<code>*.log</code>と異なるのはプロジェクト内のすべてのHTMLファイルを除外するわけではないという点です。 <code>README.html</code>は特定のファイル名を指定しています。つまり対象外となるのは1つのファイルだけです。</p>
+<p>作成した覚えのないファイルやフォルダがGitバージョン管理の対象となっているときは、注意してそのファイルをバージョン管理に含めるべきかを検討してください。 著者の経験では、身に覚えのないファイルは一時的に生成されたものや成果物であることが多く、バージョン管理の対象外とすることが多いです。</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">

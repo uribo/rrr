@@ -114,7 +114,17 @@
     "href": "project.html#hereパッケージ",
     "title": "3  プロジェクト",
     "section": "3.4 hereパッケージ",
-    "text": "3.4 hereパッケージ\n\n\n\n\n松村優哉, 湯谷啓明, 紀ノ定保礼, と 前田和寛. 2021. RユーザのためのRStudio〈実践〉入門 : tidyverseによるモダンな分析フローの世界. 技術評論社. https://gihyo.jp/book/2021/978-4-297-12170-9.",
+    "text": "3.4 hereパッケージ",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>プロジェクト</span>"
+    ]
+  },
+  {
+    "objectID": "project.html#スタイルガイド",
+    "href": "project.html#スタイルガイド",
+    "title": "3  プロジェクト",
+    "section": "3.5 スタイルガイド",
+    "text": "3.5 スタイルガイド\n\n\n\n\n松村優哉, 湯谷啓明, 紀ノ定保礼, と 前田和寛. 2021. RユーザのためのRStudio〈実践〉入門 : tidyverseによるモダンな分析フローの世界. 技術評論社. https://gihyo.jp/book/2021/978-4-297-12170-9.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>プロジェクト</span>"
     ]
@@ -184,7 +194,7 @@
     "href": "git.html#gitignore",
     "title": "4  Gitによるバージョン管理",
     "section": "4.6 .gitignore",
-    "text": "4.6 .gitignore\nGitバージョン管理を行うリポジトリでは、バージョン管理に含めたくないファイルやディレクトリが存在する場合があります。 ユーザーのアカウント情報を記録したファイルなどのクレデンシャルなデータです。 このほか、巨大なバイナリファイルやキャッシュファイルなども含まれます。\n.gitignoreを使って、これらのファイルをバージョン管理から除外することができます。\n.gitignoreファイルは、リポジトリのルートディレクトリに配置します。\n.gitignoreファイルには、除外するファイルやディレクトリのパターンを記述します。\n\n\n\n\n横田紋奈, と 宇賀神みずき. 2022. いちばんやさしいGit & GitHubの教本 : 人気講師が教えるバージョン管理&共有入門. 第2版 版. インプレス. https://ndlsearch.ndl.go.jp/books/R100000002-I032013125.\n\n\n渡辺宙志. 2024. ゼロから学ぶGit/GitHub : 現代的なソフトウェア開発のために. 講談社. https://ndlsearch.ndl.go.jp/books/R100000002-I033407628.",
+    "text": "4.6 .gitignore\nGitバージョン管理を行うリポジトリでは、バージョン管理に含めるべきではないファイルが存在します。 例えば、セキュリティ上重要な情報を含むファイルやキャッシュファイルなどです。 これらがバージョン管理に含まれると、セキュリティリスクが高まったり、リポジトリのサイズが大きくなるなどの問題が発生します。 実際に、GitHubなどのリモートリポジトリにデータベースの接続情報やAPIキーなどの機密情報が含まれていると、悪意のある第三者によって悪用される可能性があります。\nGitでは.gitignoreにバージョン管理の対象外とするファイルを記録することで、上記の問題の解決を図っています。 バージョン管理を行わないファイルの指定方法は、gitignoreにそのファイル名や名称のパターンを記述することで行います。 .gitignoreファイルはリポジトリ内の任意の場所に配置することができますが、通常はリポジトリのルートディレクトリ、.git/フォルダと同じ階層に配置します。\n.gitignoreに記録するファイルはプロジェクトによって異なりますが、一般的にバージョン管理から除外される種類のファイルが存在します。 特にファイルやフォルダ名の先頭に . が付いているものは、バージョン管理から除外することが一般的です。 こうしたファイルやフォルダは隠しファイル、隠しフォルダと呼ばれ、システムによって生成され、ユーザーが直接操作することは限定的です。 加えて、サイズが大きかったり差分管理が困難なバイナリファイルはバージョン管理の対象外となることが多いです。\n.gitignoreの記載例を示します。.gitignoreでは特定の正規表現を使って複数のファイルを指定したり、否定の表現（つまり管理に含める）を使った柔軟な指定が可能です。\nThumbs.db\n.DS_Store\n.Rproj.user\n.Rhistory\n.RData\n.Ruserdata\n*.pdf\n*.log\nREADME.html\nThumbs.dbや.DS_Storeは目にしたことがない方もいるかもしれません。 これらはWindowsやmacOSで生成されるファイルで、フォルダ内のファイルのサムネイルや表示方法を記録するファイルです。 プロジェクト内のコードには影響を与えないため、バージョン管理は不要です。\n続いての.Rproj.userから.RuserdataはRに関連するものです。 特に.Rproj.userはRStudioのプロジェクト設定ファイルを含むフォルダでバージョン管理を行いません。 .Rhistoryや.RDataはRの履歴やデータを保存するファイルですが、ユーザーやセッションの度に更新されるものであるため、これらもバージョン管理を行いません。\n*.pdf、*.logはPDFおよびlog形式のファイル一式を除外する指示です。ファイル名に関わらず、拡張子によって除外される複数のファイルを想定しています。 アスタリスク（*）は任意の文字列を表し、*.pdfは拡張子が.pdfであるファイルをすべて指定します。\n拡張子による指定という点で、その次の行 README.html も同様ですが、*.pdfや*.logと異なるのはプロジェクト内のすべてのHTMLファイルを除外するわけではないという点です。 README.htmlは特定のファイル名を指定しています。つまり対象外となるのは1つのファイルだけです。\n作成した覚えのないファイルやフォルダがGitバージョン管理の対象となっているときは、注意してそのファイルをバージョン管理に含めるべきかを検討してください。 著者の経験では、身に覚えのないファイルは一時的に生成されたものや成果物であることが多く、バージョン管理の対象外とすることが多いです。\n\n\n\n\n横田紋奈, と 宇賀神みずき. 2022. いちばんやさしいGit & GitHubの教本 : 人気講師が教えるバージョン管理&共有入門. 第2版 版. インプレス. https://ndlsearch.ndl.go.jp/books/R100000002-I032013125.\n\n\n渡辺宙志. 2024. ゼロから学ぶGit/GitHub : 現代的なソフトウェア開発のために. 講談社. https://ndlsearch.ndl.go.jp/books/R100000002-I033407628.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Gitによるバージョン管理</span>"
     ]
@@ -204,7 +214,7 @@
     "href": "document.html#quarto",
     "title": "5  ドキュメントの作成",
     "section": "5.2 Quarto",
-    "text": "5.2 Quarto\nQuartoはPositがオープンソースで開発している動的ドキュメント作成システムです。 Jupyterやプレーンテキストで書かれたファイルをもとに、HTMLやPDF、Wordなどのさまざまな形式でのドキュメントを作成することができます。 Rだけでなく、PythonやJuliaなどのプログラミング言語にも対応しています。\nRユーザにとっては、動的ドキュメントの作成にR Markdownを使うことが一般的ですが、QuartoはR Markdownの後継としても位置づけられています。 そのため、R Markdownの機能をほぼそのまま利用することができます。 実際、QuartoでのR言語の評価はR Markdown同様、knitrパッケージを介して行われます。\nここではQuartoの基本的な使い方として単一のドキュメント生成の手順を紹介します。 一方、Quartoにはウェブサイト、ブログ、書籍執筆をサポートする機能もあります。 これらのQuartoの詳細については公式ドキュメントを参照してください。\nR Markdownの基礎は 松村優哉 ほか (2021) にまとまっています。\n\n5.2.1 Quartoによるドキュメントの作成\nQuartoでは、.qmdという拡張子のファイルを作成し、その中にコードと必要な文章を記述します。 .qmdファイルをもとに任意の形式でのドキュメントを生成します。\n.qmdファイルからのドキュメント生成の工程を、Quartoではレンダーと呼びます。 レンダーは.qmdファイルだけでなく、Jupyterで使われる.ipynbファイルからも行うことができます。\n.qmdファイルの基本構成は以下の通りです。\n\nYAMLフロントマター… ドキュメントのメタデータ（タイトルや著者名、出力形式等）を記述する部分。YAML形式で記述します。\n文章… ドキュメントの本文。プレーンテキストに加えて、Markdown記法による文字装飾、LaTeX記法による数式記述が可能です。\nコードブロック（コードセル）1\n\n\n\n\nQuartoの基本構成要素\n\n\nレンダーはコマンドラインを使って以下のように行います。\nquarto render document.qmd --to html\nこのコマンドを実行するとdocument.qmdファイルをもとにHTML形式のドキュメントを生成します。 出力形式をWordファイルに変更する場合は、--toオプションの引数をdocxに変更するだけです。\nquarto render document.qmd --to docx\nRStudioやVS Codeなどのアプリケーションでは、Quartoのコマンドを実行するためのインターフェースが提供されています。 これにより、コマンドの入力の手間がなくなり、より直感的にQuartoを使うことができます。\n\n\n5.2.2 RStudioでのQuartoの利用\nQuartoの機能を試すために、RStudioで新しい.qmdファイルを作成してみましょう。 Quartoが利用可能な状況であれば、RStudioからQuartoを使うことができます。 メニューから「File」、「New File」、「Quarto Document…」の順に進むと以下のような画面が表示されます。\n\n\n\nRStudioでのqmdファイルの新規作成\n\n\nタイトルや出力形式を指定して「Create」ボタンをクリックすると新しい.qmdファイルが作成されます。 ここにコードと文章を記述して、レンダーを行います。\nレンダーはソースパネル上の「Render」ボタンより実行します。ボタンをクリックすると、バックグラウンドでquartoのコマンドが実行され、.qmdファイル中のソースコードの実行結果をもとに指定した形式のドキュメントが生成されます。\n\n\n5.2.3 PDFの出力\nQuartoで日本語のPDFを生成する場合、2つの選択肢があります。 一つは出力形式を指定する際にpdfを指定する方法です。これはLaTeXを使ってPDFを生成する方法です。 もう一つの方法はtypstを出力形式として指定する方法です。 まじは一般的なLaTeXによるPDF出力方法を見てみましょう。\nLaTeXを使ったPDF出力を行う場合、事前にLaTeXの環境を揃える必要があります。\nQuartoのコマンドからもLaTeX環境を導入可能です。\nquarto install tinytex\nこのコマンドを実行すると、TinyTeXというLaTeXディストリビューションがインストールされます。 ここまでで最低限のPDF出力環境が整います。\n次にTypstを利用したPDF出力方法を紹介します。 TypstはLaTeXなどの高度で詳細な組版システムとWordやGoogleドキュメントなどの単純なツールの代替となるように設計された新しい組版システムです。\nはLaTeXを使わずにPDFを生成する方法です。 typst\n\n\n\n\n松村優哉, 湯谷啓明, 紀ノ定保礼, と 前田和寛. 2021. RユーザのためのRStudio〈実践〉入門 : tidyverseによるモダンな分析フローの世界. 技術評論社. https://gihyo.jp/book/2021/978-4-297-12170-9.",
+    "text": "5.2 Quarto\nQuartoはPositがオープンソースで開発している動的ドキュメント作成システムです。 Jupyterやプレーンテキストで書かれたファイルをもとに、HTMLやPDF、Wordなどのさまざまな形式でのドキュメントを作成することができます。 Rだけでなく、PythonやJuliaなどのプログラミング言語にも対応しています。\nRユーザにとっては、動的ドキュメントの作成にR Markdownを使うことが一般的ですが、QuartoはR Markdownの後継としても位置づけられています。 そのため、R Markdownの機能をほぼそのまま利用することができます。 実際、QuartoでのR言語の評価はR Markdown同様、knitrパッケージを介して行われます。\nここではQuartoの基本的な使い方として単一のドキュメント生成の手順を紹介します。 一方、Quartoにはウェブサイト、ブログ、書籍執筆をサポートする機能もあります。 これらのQuartoの詳細については公式ドキュメントを参照してください。\nR Markdownの基礎は 松村優哉 ほか (2021) にまとまっています。\n\n5.2.1 Quartoによるドキュメントの作成\nQuartoでは、.qmdという拡張子のファイルを作成し、その中にコードと必要な文章を記述します。 .qmdファイルをもとに任意の形式でのドキュメントを生成します。 .qmdファイルの基本構成は以下の通りです。\n\nYAMLフロントマター… ドキュメントのメタデータ（タイトルや著者名、出力形式などの実行オプション等）を記述する部分。YAML形式で記述します。\n文章… ドキュメントの本文。プレーンテキストに加えて、Markdown記法による文字装飾、LaTeX記法による数式記述が可能です。\nコードブロック（コードセル）1 …\n\n\n\n\nQuartoの基本構成要素\n\n\nファイルの先頭にYAMLの形式でメタデータを記述します。 以降はドキュメントの文章とコードとなります。\nコードブロックの宣言は、R Markdown同様、バッククォート(`)を使います。 コードブロックの宣言部分には {} の中に言語名を記述します。 Rの場合はr、Pythonではpython、Juliaではjuliaとなります。\nコードブロックには、プログラムやその出力に関する挙動を制御する実行オプションを記述できます2。 指定可能なオプションとして、echo（コードの表示有無）、eval（コードの評価有無）、図のサイズやキャプションなどがあります。\nコードブロックの実行オプションは以下のように記述します。 コードブロックの上部に#|を記述し、その後にオプション名とパラメータを記述します。 論理値での指定が必要な実行オプションはtrueまたはfalseで指定します。 Rの論理値の指定はすべて大文字で行いますが、ここではすべて小文字で表記するので注意してください。\n```{r}\n#| eval: true\n#| echo: false\n#| fig-width: 5\n#| fig-height: 5\n#| fig-cap: \"グラフの描画\"\nlibrary(ggplot2)\n\nmtcars |&gt; \n  ggplot(aes(x = wt, y = mpg)) +\n  geom_point() +\n  labs(title = \"燃費と重量の関係\")\n```\n必要な文章とコードを記載したら、Quartoのコマンドを使ってドキュメントを生成します。 .qmdファイルからのドキュメント生成の工程を、Quartoではレンダーと呼びます。 レンダーは.qmdファイルだけでなく、Jupyterで使われる.ipynbファイルからも行うことができます。\nレンダーはコマンドラインを使って以下のように行います。\nquarto render document.qmd --to html\nこのコマンドを実行するとdocument.qmdファイルをもとにHTML形式のドキュメントを生成します。 出力形式をWordファイルに変更する場合は、--toオプションの引数をdocxに変更するだけです。\nquarto render document.qmd --to docx\nRStudioやVS Codeなどのアプリケーションでは、Quartoのコマンドを実行するためのインターフェースが提供されています。 これにより、コマンドの入力の手間がなくなり、より直感的にQuartoを使うことができます。\n\n\n5.2.2 RStudioでのQuartoの利用\nQuartoの機能を試すために、RStudioで新しい.qmdファイルを作成してみましょう。 Quartoが利用可能な状況であれば、RStudioからQuartoを使うことができます。 メニューから「File」、「New File」、「Quarto Document…」の順に進むと以下のような画面が表示されます。\n\n\n\nRStudioでのqmdファイルの新規作成\n\n\nタイトルや出力形式を指定して「Create」ボタンをクリックすると新しい.qmdファイルが作成されます。 また、エンジンとしてKnitrかJupyterが選択可能です。Knitr、つまりRのエンジンであってもreticulateパッケージにより Pythonの実行ができますが、Jupyterを指定することで直接Pythonの実行が可能になります。\nソースパネルに新たに作成されたファイル内にコードと文章を記述して、レンダーを行います。 レンダーはソースパネル上の「Render」ボタンより実行します。ボタンをクリックすると、バックグラウンドでquartoのコマンドが実行され、.qmdファイル中のソースコードの実行結果をもとに指定した形式のドキュメントが生成されます。\nRStudioでは、Ctrl+Alt+I（macOSではCommand+Option+I）のショートカットキーを使うことで、コードブロックを追加できます。\n\n\n5.2.3 PDFの出力\nQuartoで日本語のPDFを生成する場合、2つの選択肢があります。 一つは出力形式を指定する際にpdfを指定する方法です。これはLaTeXを使ってPDFを生成する方法です。 もう一つの方法はtypstを出力形式として指定する方法です。 まずは一般的なLaTeXによるPDF出力方法を見てみましょう。\n\n5.2.3.1 LaTeX\nLaTeXを使ったPDF出力を行う場合、事前にLaTeXの環境を揃える必要があります。\nQuartoのコマンドからもLaTeX環境を導入可能です。\nquarto install tinytex\nこのコマンドを実行すると、TinyTeXというLaTeXディストリビューションがインストールされます。 ここまでで最低限のPDF出力環境が整います。\n新規で.qmdファイルを作成する手順を思い出し、出力形式をPDFにして作成してみましょう。 YAMLフロントマターのformatの項目がpdfになっていることを確認してください。 ファイルを編集してレンダーを行ってファイルを出力する点はこれまでの手順と同じです。\n\n\n\n\n\n\nLaTeXでの日本語のPDF出力\n\n\n\nLaTeXを使ったPDF出力を行う際、いくつか追加設定が必要な場合があります。 以下は日本語を扱うPDFの生成のためのYAMLフロントマターの指定例です。\n---\ntitle: \"日本語を含んだPDF\"\nformat: \n  pdf:\n    include-in-header:\n      text: |\n        \\usepackage{zxjatype}\n        \\usepackage[ipaex]{zxjafont}\n        \\setmainfont{IPAexGothic}\n---\nLaTeXのパッケージであるzxjatypeとzxjafontを使って日本語の組版、フォントを指定しています。 日本語フォントの種類としてIPAexGothicを指定していますが、他のフォントを指定することも可能です。 詳細はzxjafontのドキュメントをご覧下さい。\n\n\n\n\n5.2.3.2 Typst\n次にTypstを利用したPDF出力方法を紹介します。 TypstはHTMLなどと同じマークアップ言語の一種です。 LaTeXの高度で柔軟な組版システムとWordやGoogleドキュメントなどのツールの代替となるように設計された新しい組版システムです。\nバージョン1.4以降のQuartoでは、標準的にTypstが利用可能です。 YAMLフロントマターでformat: typstを指定するか、コマンドラインで--to typstを指定することでTypstによるPDFの生成が可能です。\n\n\n\n\n\n\nTypstでの日本語のPDF出力\n\n\n\nLaTeXを使ったPDF出力を行う際、いくつか追加設定が必要な場合があります。 以下は日本語を扱うPDFの生成のためのYAMLフロントマターの指定例です。\n---\ntitle: \"日本語を含んだPDF\"\nformat: \n  typst:\n    mainfont: \"Noto Sans JP\"\n---\n\n\n\n\n\n\n松村優哉, 湯谷啓明, 紀ノ定保礼, と 前田和寛. 2021. RユーザのためのRStudio〈実践〉入門 : tidyverseによるモダンな分析フローの世界. 技術評論社. https://gihyo.jp/book/2021/978-4-297-12170-9.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>ドキュメントの作成</span>"
     ]
@@ -214,7 +224,7 @@
     "href": "document.html#footnotes",
     "title": "5  ドキュメントの作成",
     "section": "",
-    "text": "コードを記述する箇所。Jupyterではコードセルと呼ばれます。↩︎",
+    "text": "コードを記述する箇所。Jupyterではコードセルと呼ばれます。↩︎\nドキュメント全体での制御はYAMLフロントマター内で行います。個別のコードブロックに対して記述したオプションが優先されます。実行オプションの詳細はQuarto公式ページのドキュメントに記載されています。↩︎",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>ドキュメントの作成</span>"
     ]
@@ -237,6 +247,36 @@
     "text": "6.2 pointblankパッケージ",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>再現性を高めるRパッケージ</span>"
+    ]
+  },
+  {
+    "objectID": "packages.html#pinsパッケージ",
+    "href": "packages.html#pinsパッケージ",
+    "title": "6  再現性を高めるRパッケージ",
+    "section": "6.3 pinsパッケージ",
+    "text": "6.3 pinsパッケージ",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>再現性を高めるRパッケージ</span>"
+    ]
+  },
+  {
+    "objectID": "workflow.html",
+    "href": "workflow.html",
+    "title": "7  ワークフロー",
+    "section": "",
+    "text": "targetsパッケージ",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ワークフロー</span>"
+    ]
+  },
+  {
+    "objectID": "container.html",
+    "href": "container.html",
+    "title": "8  コンテナ",
+    "section": "",
+    "text": "8.1 Docker",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>コンテナ</span>"
     ]
   },
   {

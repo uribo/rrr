@@ -3,8 +3,11 @@ Package: reproducible-research-with-r
 Version: 0.0.0.9000
 Imports: 
     here,
+    renv,
+    pins,
     pointblank,
     targets
 Suggests:
+    httr2,
     rstudioapi,
     rversions
