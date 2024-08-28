@@ -187,7 +187,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gitによるバージョン管理</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">バージョン管理</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -279,7 +279,7 @@ div.csl-indent {
 <h3 data-number="5.2.1" class="anchored" data-anchor-id="quartoによるドキュメントの作成"><span class="header-section-number">5.2.1</span> Quartoによるドキュメントの作成</h3>
 <p>Quartoでは、<code>.qmd</code>という拡張子のファイルを作成し、その中にコードと必要な文章を記述します。 <code>.qmd</code>ファイルをもとに任意の形式でのドキュメントを生成します。 <code>.qmd</code>ファイルの基本構成は以下の通りです。</p>
 <ul>
-<li>YAMLフロントマター… ドキュメントのメタデータ（タイトルや著者名、出力形式などの実行オプション等）を記述する部分。YAML形式で記述します。</li>
+<li>フロントマター… ドキュメントのメタデータ（タイトルや著者名、出力形式などの実行オプション等）を記述する部分。YAML形式で記述します。</li>
 <li>文章… ドキュメントの本文。プレーンテキストに加えて、Markdown記法による文字装飾、LaTeX記法による数式記述が可能です。</li>
 <li>コードブロック（コードセル）<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> …</li>
 </ul>
@@ -335,7 +335,7 @@ div.csl-indent {
 <p>QuartoのコマンドからもLaTeX環境を導入可能です。</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>このコマンドを実行すると、<a href="https://yihui.org/tinytex/">TinyTeX</a>というLaTeXディストリビューションがインストールされます。 ここまでで最低限のPDF出力環境が整います。</p>
-<p>新規で<code>.qmd</code>ファイルを作成する手順を思い出し、出力形式をPDFにして作成してみましょう。 YAMLフロントマターのformatの項目が<code>pdf</code>になっていることを確認してください。 ファイルを編集してレンダーを行ってファイルを出力する点はこれまでの手順と同じです。</p>
+<p>新規で<code>.qmd</code>ファイルを作成する手順を思い出し、出力形式をPDFにして作成してみましょう。 フロントマターのformatの項目が<code>pdf</code>になっていることを確認してください。 ファイルを編集してレンダーを行ってファイルを出力する点はこれまでの手順と同じです。</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -346,7 +346,7 @@ LaTeXでの日本語のPDF出力
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>LaTeXを使ったPDF出力を行う際、いくつか追加設定が必要な場合があります。 以下は日本語を扱うPDFの生成のためのYAMLフロントマターの指定例です。</p>
+<p>LaTeXを使ったPDF出力を行う際、いくつか追加設定が必要な場合があります。 以下は日本語を扱うPDFの生成のためのフロントマターの指定例です。</p>
 <pre><code>---
 title: "日本語を含んだPDF"
 format: 
@@ -364,7 +364,7 @@ format:
 <section id="typst" class="level4" data-number="5.2.3.2">
 <h4 data-number="5.2.3.2" class="anchored" data-anchor-id="typst"><span class="header-section-number">5.2.3.2</span> Typst</h4>
 <p>次に<a href="https://typst.app/docs">Typst</a>を利用したPDF出力方法を紹介します。 TypstはHTMLなどと同じマークアップ言語の一種です。 LaTeXの高度で柔軟な組版システムとWordやGoogleドキュメントなどのツールの代替となるように設計された新しい組版システムです。</p>
-<p>バージョン1.4以降のQuartoでは、標準的にTypstが利用可能です。 YAMLフロントマターで<code>format: typst</code>を指定するか、コマンドラインで<code>--to typst</code>を指定することでTypstによるPDFの生成が可能です。</p>
+<p>バージョン1.4以降のQuartoでは、標準的にTypstが利用可能です。 フロントマターで<code>format: typst</code>を指定するか、コマンドラインで<code>--to typst</code>を指定することでTypstによるPDFの生成が可能です。</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -375,7 +375,7 @@ Typstでの日本語のPDF出力
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>LaTeXを使ったPDF出力を行う際、いくつか追加設定が必要な場合があります。 以下は日本語を扱うPDFの生成のためのYAMLフロントマターの指定例です。</p>
+<p>LaTeXを使ったPDF出力を行う際、いくつか追加設定が必要な場合があります。 以下は日本語を扱うPDFの生成のためのフロントマターの指定例です。</p>
 <pre><code>---
 title: "日本語を含んだPDF"
 format: 
@@ -398,7 +398,7 @@ format:
 <hr>
 <ol>
 <li id="fn1"><p>コードを記述する箇所。Jupyterではコードセルと呼ばれます。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>ドキュメント全体での制御はYAMLフロントマター内で行います。個別のコードブロックに対して記述したオプションが優先されます。実行オプションの詳細はQuarto公式ページの<a href="https://quarto.org/docs/computations/execution-options.html">ドキュメント</a>に記載されています。<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>ドキュメント全体での制御はフロントマター内で行います。個別のコードブロックに対して記述したオプションが優先されます。実行オプションの詳細はQuarto公式ページの<a href="https://quarto.org/docs/computations/execution-options.html">ドキュメント</a>に記載されています。<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -825,8 +825,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./git.html" class="pagination-link" aria-label="Gitによるバージョン管理">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Gitによるバージョン管理</span></span>
+      <a href="./git.html" class="pagination-link" aria-label="バージョン管理">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">バージョン管理</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
