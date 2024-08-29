@@ -6,3 +6,6 @@ README.html
 _book/
 /.quarto/
 *.pdf
+*.aux
+*.log
+*.toc
