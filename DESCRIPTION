@@ -6,6 +6,7 @@ Imports:
     renv,
     pins,
     pointblank,
+    ragg,
     targets
 Suggests:
     config,
