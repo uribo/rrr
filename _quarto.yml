@@ -1,11 +1,13 @@
 project:
   type: book
   
-lang: ja
+lang: "ja"
 
 book:
   title: "Rによる再現可能なデータ分析"
-  author: "瓜生真也"
+  author:
+    name: "瓜生真也"
+    institute: "徳島大学デザイン型AI教育研究センター"
   date: "2024-08-29"
   chapters:
     - index.qmd
@@ -18,9 +20,37 @@ book:
     - workflow.qmd
     - container.qmd
     - reference.qmd
+  site-url: https://uribo.github.io/rrr/
+  repo-url: https://github.com/uribo/rrr
+  page-footer: 
+    background: light
+    left: "Copyright 2024, Shinya Uryu"
+    right: 
+      - icon: github
+        href: https://github.com/uribo
+      - icon: twitter-x
+        href: https://x.com/u_ribo
+
+
+callout-appearance: default
+callout-icon: true
 
 bibliography: references.bib
 
+ascii: false
+
+knitr:
+  opts_chunk: 
+    dev: "ragg_png"
+
 format:
   html:
-    theme: cosmo
+    theme: 
+      light: cosmo
+      dark: darkly
+    code-link: false
+    highlight-style: github
+    toc: true
+    code-fold: true
+    code-summary: "コードを表示"
+    df-print: kable
