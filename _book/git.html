@@ -204,18 +204,6 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ワークフロー</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./container.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">コンテナ</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./reference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">参考文献</span></a>
   </div>
@@ -231,7 +219,7 @@ div.csl-indent {
    
   <ul>
   <li><a href="#バージョン管理の必要性" id="toc-バージョン管理の必要性" class="nav-link active" data-scroll-target="#バージョン管理の必要性"><span class="header-section-number">4.1</span> バージョン管理の必要性</a></li>
-  <li><a href="#バージョン管理システム-git" id="toc-バージョン管理システム-git" class="nav-link" data-scroll-target="#バージョン管理システム-git"><span class="header-section-number">4.2</span> バージョン管理システム: Git</a>
+  <li><a href="#分散型バージョン管理システム-git" id="toc-分散型バージョン管理システム-git" class="nav-link" data-scroll-target="#分散型バージョン管理システム-git"><span class="header-section-number">4.2</span> 分散型バージョン管理システム: Git</a>
   <ul class="collapse">
   <li><a href="#リポジトリ" id="toc-リポジトリ" class="nav-link" data-scroll-target="#リポジトリ"><span class="header-section-number">4.2.1</span> リポジトリ</a></li>
   </ul></li>
@@ -282,31 +270,34 @@ div.csl-indent {
 </header>
 
 
+<p>データ分析作業に再現性をもたせる次のステップは、バージョン管理です。 バージョン管理は、データ分析のプロジェクトにおいて、コードやデータの変更履歴を記録し、管理する方法です。 この章では、バージョン管理の基本的な考え方と、代表的なバージョン管理システムであるGitの使い方について説明します。</p>
 <section id="バージョン管理の必要性" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="バージョン管理の必要性"><span class="header-section-number">4.1</span> バージョン管理の必要性</h2>
 <p>データ分析で用いるソースコードやデータは日々更新（バージョンアップ）されていきます。 ある日の作業では、データ読み込みのプログラムを書いて、次の日にはデータの前処理と可視化のプログラムを書くという流れです。 またある日には、これまで使っていたデータを新しいデータに差し替えることもあるでしょう。 そんな中で、ある日突然、以前実行可能だったコードがエラーを吐いたり、以前正常に動作していたコードが動かなくなったりすることがあります。</p>
-<p>バグとなるプログラムを書いてしまうことは誰にでもあることですが、そのような場合に、以前のバージョンに戻ることができると便利です。</p>
-<p>同じファイルに対して、複数のバージョンを保存しておくことがバージョン管理の目的です。</p>
-<p>現在バグを起こしているバージョンから遡り、以前のバージョンに戻します。すると、バグが発生する前の状態に戻ることができます。</p>
-<p>間違いに気がついたり</p>
-<p>一人で使う場合にも利点はあります。</p>
-<p>作業の記録</p>
-<p>バージョン管理で期待されること</p>
-<ul>
-<li>バックアップ</li>
-<li>実験的な操作</li>
-<li>共同作業とレビュー</li>
-<li>履歴</li>
-</ul>
+<p>バグとなるプログラムを書いてしまうことは誰にでもあることですが、そのような場合に、以前のバージョンに戻ることができると便利です。 別の場面として、複数人で共同作業を行う場合、いつだれがどのような変更を加えたのかを把握することも重要です。 分析に用いる解析手法の変更に気がつかず、誤ったコードを使って分析を行ってしまうことは避けるべきでしょう。</p>
+<p>バージョン管理システムを導入しないプロジェクトでは、ファイルが煩雑になりがちです。 どのファイルが最新のものなのか、どのデータを使うのかがわからなくなることもあります。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.gyazo.com/0f4b0ddd9ec0777faeaffad47aa3a0dd.png" class="img-fluid figure-img"></p>
+<figcaption>とあるデータ分析プロジェクトでのフォルダ構成。あるファイルから派生したことが覗えるファイルが複数存在し、最終的にどのファイルを利用するのが適切なのかわからない状態。</figcaption>
+</figure>
+</div>
+<p>バージョン管理は、このような問題を解決するための選択肢となります。 つまり、ファイルに対して、複数のバージョンを保存しておくこととと、共同作業を行う際に、誰がどのような変更を加えたのかを記録するのがバージョン管理の役割です。</p>
+<p>本書では、データ分析のためにバージョン管理システムを導入しますが、バージョン管理本来の目的は、プログラム開発においても同じです。 プログラム開発では、データ分析と同じく、長期にわたるプロジェクトや多くの開発者による共同作業です。 ソースコードを管理する点は変わりません。 データ分析の場合、ソースコードの他にデータやドキュメントも管理する必要がありますが、バージョン管理システムはそれらを一元管理することができます。</p>
 </section>
-<section id="バージョン管理システム-git" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="バージョン管理システム-git"><span class="header-section-number">4.2</span> バージョン管理システム: Git</h2>
-<p>バージョン管理システムには大別して2つの種類があります。</p>
-<p>分散型</p>
-<p>複数の開発者が共同でコードを管理・開発する際に便利な機能を提供するバージョン管理システムです。</p>
-<p>バージョン管理システムを導入しないプロジェクトでは、ファイルが煩雑になりがちです。</p>
-<p>どのファイルが最新のものなのか、どのデータを使うのかがわからなくなることもあります。</p>
-<p>ここではGitのインストール方法や詳細なGitの説明は行いません。<span class="citation" data-cites="isbn9784295013617">横田紋奈 と 宇賀神みずき (<a href="reference.html#ref-isbn9784295013617" role="doc-biblioref">2022</a>)</span> や <span class="citation" data-cites="isbn9784065352199">渡辺宙志 (<a href="reference.html#ref-isbn9784065352199" role="doc-biblioref">2024</a>)</span> を参考にしてください。オンラインで読める<a href="https://git-scm.com/book/ja/v2">Pro Git</a>もあります。</p>
+<section id="分散型バージョン管理システム-git" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="分散型バージョン管理システム-git"><span class="header-section-number">4.2</span> 分散型バージョン管理システム: Git</h2>
+<p>複数の開発者が共同でコードを管理・開発する際に便利な機能を提供するバージョン管理システムです。 バージョン管理システムには大別して2つの種類があります。 集中管理型は、ファイルの変更履歴を一つのリポジトリ（中央リポジトリ）に保存する方式です。 中央リポジトリはサーバー上に置かれるため、編集作業を行う際にはサーバーに接続する必要があります。</p>
+<p>もう一つが分散管理型です。 分散管理型は、ファイルの変更履歴を各ユーザーの端末にリポジトリ（リモートリポジトリ）のコピーをローカルリポジトリとして保存する方式です。 各自の端末で行われる編集作業が行われる点は集中管理型と変わりませんが、リモートリポジトリのコピーをローカルリポジトリとして持つことで、オフラインでも作業が可能です。 リモートリポジトリに変更を反映する際には、リモートリポジトリに変更をプッシュすることで、他のユーザーとの共有が可能です。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.gyazo.com/8d11d29396f1a141cf492c5ad39f9982.png" class="img-fluid figure-img"></p>
+<figcaption>分散管理型のバージョン管理システム</figcaption>
+</figure>
+</div>
+<p>分散管理型の代表として、Gitがあります。 Gitは、Linuxカーネルの開発者であるLinus Torvalds氏によって開発されました。</p>
+<p>Gitが開発された背景には、Linuxカーネルの開発と、従来利用されていたバージョン管理システムであるBitKeeperの利用停止があります。 バージョン管理システムを模索する中、完全な分散型やブランチ機能を強化した新たなバージョン管理システムが必要とされました。 Gitの最初のリリースは2005年で、バージョン管理システムの中では比較的新しいものですが、現在では最も広く使われているバージョン管理システムの一つとなっています。</p>
+<p>ここではGitのインストール方法を含めた詳細なGitの説明は行いません。<span class="citation" data-cites="isbn9784295013617">横田紋奈 と 宇賀神みずき (<a href="reference.html#ref-isbn9784295013617" role="doc-biblioref">2022</a>)</span> や <span class="citation" data-cites="isbn9784065352199">渡辺宙志 (<a href="reference.html#ref-isbn9784065352199" role="doc-biblioref">2024</a>)</span> を参考にしてください。オンラインで読める<a href="https://git-scm.com/book/ja/v2">Pro Git</a>やRユーザー向けの<a href="https://happygitwithr.com/">Happy Git and GitHub for the useR</a>もあります。</p>
 <section id="リポジトリ" class="level3" data-number="4.2.1">
 <h3 data-number="4.2.1" class="anchored" data-anchor-id="リポジトリ"><span class="header-section-number">4.2.1</span> リポジトリ</h3>
 <p>Gitではファイルやディレクトリの状態を記録し、変更履歴を管理する場所をリポジトリと呼びます。 リポジトリには、プロジェクトに関連するコードやファイルが含まれます。</p>
@@ -353,11 +344,17 @@ div.csl-indent {
 <div class="callout-body-container callout-body">
 <p>コミットを行う際には、氏名とメールアドレスの設定が必要となります。 2つの設定は、Gitのコミットログで誰がコミットしたかを示すために必要な情報です。</p>
 <p>ターミナルを開いて以下のコマンドを実行します。 二重引用符で示した箇所は適宜変更してください。</p>
-<pre><code>`git config --global user.name "&lt;あなたの名前&gt;"`
-`git config --global user.email "&lt;あなたのメールアドレス&gt;"`</code></pre>
+<pre><code>git config --global user.name "&lt;あなたの名前&gt;"
+git config --global user.email "&lt;あなたのメールアドレス&gt;"</code></pre>
 <p>設定が完了したかどうかは、以下のコマンドで確認できます。</p>
-<pre><code>`git config --list`</code></pre>
+<pre><code>git config --list</code></pre>
 <p>この出力で<code>user.name</code>と<code>user.email</code>が正しく表示されていれば、設定が完了しています。</p>
+<p>上記の処理はRパッケージであるusethisを使ってRからも行えます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usethis)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">use_git_config</span>(<span class="at">user.name =</span> <span class="st">"&lt;あなたの名前&gt;"</span>, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">user.email =</span> <span class="st">"&lt;あなたのメールアドレス&gt;"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </div>
 <p>コミットメッセージは、以下のような形式で記述します。</p>
@@ -376,6 +373,12 @@ div.csl-indent {
 <h3 data-number="4.4.1" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">4.4.1</span> RStudio</h3>
 <p>ターミナルあるいはGitパネルを使ってバージョン管理を行います。 ここではGUIで操作可能な方法を紹介します。 なおRStudioのGUIでは、GitとSVNによるバージョン管理をサポートしています。</p>
 <p><code>.git</code>フォルダが存在するプロジェクトを開くと、RStudioはGitパネルを表示します。 この画面がRStudioでのGUIによるバージョン管理処理の中心となります。 もしもGitパネルが見つからない場合、メニューのTools、Global Options…から、Git/SVNにて<code>Enable version control interface for RStudio projects</code>にチェックを入れてください。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.gyazo.com/a26d3419e9c422c7dd533656e24c0bf4.png" class="img-fluid figure-img"></p>
+<figcaption>RStudioにおけるGitパネル</figcaption>
+</figure>
+</div>
 <p>Gitパネルには、ファイルの差分やコミット履歴を確認するボタンが用意されています。 メインとなるのは<code>Staged</code>、<code>Status</code>、<code>Path</code>の3列で構成される箇所です。 それぞれの列には次の意味があります。</p>
 <ul>
 <li><code>Staged</code>: ステージングエリアに追加されたファイル</li>
@@ -386,46 +389,38 @@ div.csl-indent {
 <p>次の<code>Status</code>には、いくつかのアイコンが表示されます。 各アイコンの意味は下記の通りです。</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 73%">
-<col style="width: 2%">
-<col style="width: 23%">
+<col style="width: 67%">
+<col style="width: 32%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>アイコン</th>
-<th>色</th>
 <th style="text-align: left;">状態</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>?</strong> <img src="https://qiita-image-store.s3.amazonaws.com/0/19462/6701f0b2-8008-08b5-fd1b-4f52e9cf8092.png" class="img-fluid" alt="git-unknown.png"></td>
-<td>黄</td>
+<td><strong>?</strong> <img src="https://i.gyazo.com/d8876c28c231266f3e98bf35e07a35dd.png" class="img-fluid" alt="unknown.png"></td>
 <td style="text-align: left;">untracked バージョン管理の対象になっていない</td>
 </tr>
 <tr class="even">
-<td><strong>M</strong>odified <img src="https://qiita-image-store.s3.amazonaws.com/0/19462/003a537c-a381-b341-5657-eec3fe5039ab.png" class="img-fluid" alt="git-modified.png"></td>
-<td>青</td>
+<td><strong>M</strong>odified <img src="https://i.gyazo.com/5c4f61a340a5fab3e44a9175957f4b52.png" class="img-fluid" alt="modified"></td>
 <td style="text-align: left;">リポジトリの状態から変更された</td>
 </tr>
 <tr class="odd">
-<td><strong>D</strong>elete <img src="https://qiita-image-store.s3.amazonaws.com/0/19462/95e26e47-1f6e-f383-9a23-781feb9124d9.png" class="img-fluid" alt="git-deleted.png"></td>
-<td>赤</td>
+<td><strong>D</strong>elete <img src="https://i.gyazo.com/f74939b1a9cd0b03fd1c137c68c833b9.png" class="img-fluid" alt="deleted"></td>
 <td style="text-align: left;">リポジトリにあったファイルが削除された</td>
 </tr>
 <tr class="even">
-<td><strong>A</strong>dded <img src="https://qiita-image-store.s3.amazonaws.com/0/19462/45aed923-c813-657f-b9c9-c9a5f919ffde.png" class="img-fluid" alt="git-added.png"></td>
-<td>緑</td>
+<td><strong>A</strong>dded <img src="https://i.gyazo.com/9c8a3f4a2f2382f835d23c147050bbac.png" class="img-fluid" alt="added"></td>
 <td style="text-align: left;">新たにバージョン管理状態になった</td>
 </tr>
 <tr class="odd">
-<td><strong>U</strong>nresolved <img src="https://qiita-image-store.s3.amazonaws.com/0/19462/18f55d6e-704a-803b-4e96-776a00a13da0.png" class="img-fluid" alt="git-commit-conflict.png"></td>
-<td>橙</td>
+<td><strong>U</strong>nmerged <img src="https://i.gyazo.com/6919169ff6c700056f511dba8176e426.png" class="img-fluid" alt="unmerged"></td>
 <td style="text-align: left;">リポジトリ間で差分が衝突している</td>
 </tr>
 <tr class="even">
-<td><strong>R</strong>renamed</td>
-<td>紫</td>
+<td><strong>R</strong>enamed <img src="https://i.gyazo.com/9a665efc73319c717b86e6a5c23ade01.png" class="img-fluid" alt="renamed"></td>
 <td style="text-align: left;">ファイル名が変更された</td>
 </tr>
 </tbody>
@@ -461,16 +456,16 @@ div.csl-indent {
 </figure>
 </div>
 <p><img src="https://i.gyazo.com/3286bed6e6384c3bd99dc839ff6d54b3.jpg" class="img-fluid"></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/uribo/rrr-demo.git</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/uribo/rrr-demo.git</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="リモートリポジトリのクローン" class="level3" data-number="4.5.2">
 <h3 data-number="4.5.2" class="anchored" data-anchor-id="リモートリポジトリのクローン"><span class="header-section-number">4.5.2</span> リモートリポジトリのクローン</h3>
 <p>新しいコンピュータなど、ローカルリポジトリを持っていない場合には、リモートリポジトリをクローンします。</p>
 <p><code>git clone</code></p>
 <p><img src="https://i.gyazo.com/4e78331047b8452eaaeaac54493f954d.jpg" class="img-fluid"></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/uribo/rrr-demo.git ~/Documents/projects2024/rrr-demo</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/uribo/rrr-demo.git ~/Documents/projects2024/rrr-demo</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>変更の同期 <code>git pull</code>, <code>git fetch</code></p>
 <p>クローンしたリポジトリはローカルリポジトリとして扱うことができます。</p>
 </section>

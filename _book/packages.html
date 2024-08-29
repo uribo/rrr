@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./workflow.html" rel="next">
+<link href="./reference.html" rel="next">
 <link href="./document.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -150,18 +150,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ワークフロー</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./container.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">コンテナ</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./reference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">参考文献</span></a>
   </div>
@@ -179,6 +167,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#renvパッケージ" id="toc-renvパッケージ" class="nav-link active" data-scroll-target="#renvパッケージ"><span class="header-section-number">6.1</span> renvパッケージ</a></li>
   <li><a href="#pointblankパッケージ" id="toc-pointblankパッケージ" class="nav-link" data-scroll-target="#pointblankパッケージ"><span class="header-section-number">6.2</span> pointblankパッケージ</a></li>
   <li><a href="#pinsパッケージ" id="toc-pinsパッケージ" class="nav-link" data-scroll-target="#pinsパッケージ"><span class="header-section-number">6.3</span> pinsパッケージ</a></li>
+  <li><a href="#configパッケージ" id="toc-configパッケージ" class="nav-link" data-scroll-target="#configパッケージ"><span class="header-section-number">6.4</span> configパッケージ</a></li>
   </ul>
 </nav>
     </div>
@@ -204,14 +193,22 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Rでの分析環境の再現性を保障するには、いくつかの要素が重要です。 例えば利用するパッケージのバージョンや、データの変更、環境の違いなどが再現性を阻害する要因となります。 幸いなことに、これらの問題に対処するためのRパッケージが提供されています。 hereやreprexなど、いくつかのRパッケージについてはすでに取り上げていますが、 この章では、再現性の問題となりやすい要因について、さらに詳しく解説し、それらに対処するためのRパッケージを紹介します。</p>
 <section id="renvパッケージ" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="renvパッケージ"><span class="header-section-number">6.1</span> renvパッケージ</h2>
+<p>複数環境でRを実行する際は、ある環境では必要なパッケージがインストールされていなかったり、インストール済みであってもバージョンが異なることがあります。 このような環境間でのパッケージの違いは、対象のパッケージの特定のバージョンをインストールすれば解決することですが、パッケージが多い場合は管理が煩雑になります。</p>
+<p>renvパッケージは、プロジェクトごとに必要なパッケージを管理するためのRパッケージです。</p>
+<p>Rパッケージの管理</p>
 </section>
 <section id="pointblankパッケージ" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="pointblankパッケージ"><span class="header-section-number">6.2</span> pointblankパッケージ</h2>
+<p>アサート</p>
 </section>
 <section id="pinsパッケージ" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="pinsパッケージ"><span class="header-section-number">6.3</span> pinsパッケージ</h2>
+</section>
+<section id="configパッケージ" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="configパッケージ"><span class="header-section-number">6.4</span> configパッケージ</h2>
 
 
 </section>
@@ -644,8 +641,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./workflow.html" class="pagination-link" aria-label="ワークフロー">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ワークフロー</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./reference.html" class="pagination-link" aria-label="参考文献">
+        <span class="nav-page-text">参考文献</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

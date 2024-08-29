@@ -8,6 +8,11 @@ Imports:
     pointblank,
     targets
 Suggests:
+    config,
     httr2,
+    lintr,
     rstudioapi,
-    rversions
+    reprex,
+    rversions,
+    styler,
+    usethis
