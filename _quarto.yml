@@ -4,9 +4,9 @@ project:
 lang: ja
 
 book:
-  title: "Rによるデータ分析ワークフローの効率化"
+  title: "Rによる再現可能なデータ分析"
   author: "瓜生真也"
-  date: "2024-08-27"
+  date: "2024-08-29"
   chapters:
     - index.qmd
     - literacy.qmd
@@ -15,6 +15,8 @@ book:
     - git.qmd
     - document.qmd
     - packages.qmd
+    - workflow.qmd
+    - container.qmd
     - reference.qmd
 
 bibliography: references.bib
