@@ -240,17 +240,14 @@ div.csl-indent {
   <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio"><span class="header-section-number">3.2</span> RStudio</a>
   <ul class="collapse">
   <li><a href="#rstudioのプロジェクト" id="toc-rstudioのプロジェクト" class="nav-link" data-scroll-target="#rstudioのプロジェクト"><span class="header-section-number">3.2.1</span> RStudioのプロジェクト</a></li>
+  <li><a href="#positron" id="toc-positron" class="nav-link" data-scroll-target="#positron"><span class="header-section-number">3.2.2</span> Positron</a></li>
   </ul></li>
-  <li><a href="#vs-codeの利用" id="toc-vs-codeの利用" class="nav-link" data-scroll-target="#vs-codeの利用"><span class="header-section-number">3.3</span> VS Codeの利用</a>
+  <li><a href="#hereパッケージ" id="toc-hereパッケージ" class="nav-link" data-scroll-target="#hereパッケージ"><span class="header-section-number">3.3</span> hereパッケージ</a></li>
+  <li><a href="#ディレクトリ構成" id="toc-ディレクトリ構成" class="nav-link" data-scroll-target="#ディレクトリ構成"><span class="header-section-number">3.4</span> ディレクトリ構成</a></li>
+  <li><a href="#スタイルガイド" id="toc-スタイルガイド" class="nav-link" data-scroll-target="#スタイルガイド"><span class="header-section-number">3.5</span> スタイルガイド</a>
   <ul class="collapse">
-  <li><a href="#positron" id="toc-positron" class="nav-link" data-scroll-target="#positron"><span class="header-section-number">3.3.1</span> Positron</a></li>
-  </ul></li>
-  <li><a href="#hereパッケージ" id="toc-hereパッケージ" class="nav-link" data-scroll-target="#hereパッケージ"><span class="header-section-number">3.4</span> hereパッケージ</a></li>
-  <li><a href="#ディレクトリ構成" id="toc-ディレクトリ構成" class="nav-link" data-scroll-target="#ディレクトリ構成"><span class="header-section-number">3.5</span> ディレクトリ構成</a></li>
-  <li><a href="#スタイルガイド" id="toc-スタイルガイド" class="nav-link" data-scroll-target="#スタイルガイド"><span class="header-section-number">3.6</span> スタイルガイド</a>
-  <ul class="collapse">
-  <li><a href="#stylerパッケージ" id="toc-stylerパッケージ" class="nav-link" data-scroll-target="#stylerパッケージ"><span class="header-section-number">3.6.1</span> stylerパッケージ</a></li>
-  <li><a href="#lintrパッケージ" id="toc-lintrパッケージ" class="nav-link" data-scroll-target="#lintrパッケージ"><span class="header-section-number">3.6.2</span> lintrパッケージ</a></li>
+  <li><a href="#stylerパッケージ" id="toc-stylerパッケージ" class="nav-link" data-scroll-target="#stylerパッケージ"><span class="header-section-number">3.5.1</span> stylerパッケージ</a></li>
+  <li><a href="#lintrパッケージ" id="toc-lintrパッケージ" class="nav-link" data-scroll-target="#lintrパッケージ"><span class="header-section-number">3.5.2</span> lintrパッケージ</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -288,56 +285,59 @@ div.csl-indent {
 </section>
 <section id="rstudio" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">3.2</span> RStudio</h2>
-<p>RStudioは、RおよびPythonのための統合開発環境（IDE）です。 Posit（旧RStudio）により開発されており、無償で利用可能なものとしてデスクトップ版とサーバー版が存在します。 デスクトップ版の実行には、R 3.6.0以上のインストールが必要です。</p>
-<p>RStudioの特徴は、Rの実行に必要、利便性を高める機能を「ペイン」と呼ばれる区画に分けて表示していることです。</p>
-<p>RStudioの機能は <span class="citation" data-cites="isbn9784297121709">松村優哉 ほか (<a href="reference.html#ref-isbn9784297121709" role="doc-biblioref">2021</a>)</span> に詳しく記載されています。</p>
+<p><a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a>は、RおよびPythonのための統合開発環境（IDE）です。 Posit（旧RStudio）により開発されており、無償で利用可能なものとしてデスクトップ版とサーバー版が存在します。 デスクトップ版の実行には、R 3.6.0以上のインストールが必要です。</p>
+<p>RStudioの特徴は、Rの実行に必要、利便性を高める機能を「ペイン」と呼ばれる区画に分けて表示していることです。 ペインはさらに複数のタブを持つことができます。 例えば、ソースコードを編集するソースペインでは、タブにより複数のファイルを開くことができます。 セッションで生成したオブジェクトについて把握できるEnvironタブや、プロットした図を表示させるPlotsタブなど、さまざまなタブ機能が用意されています。 これらのRStudioの機能は <span class="citation" data-cites="isbn9784297121709">松村優哉 ほか (<a href="reference.html#ref-isbn9784297121709" role="doc-biblioref">2021</a>)</span> に詳しく記載されています。</p>
 <section id="rstudioのプロジェクト" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="rstudioのプロジェクト"><span class="header-section-number">3.2.1</span> RStudioのプロジェクト</h3>
-<p>RStudioではプロジェクト機能を利用して、データやコード、成果物を一つのまとまりとして扱うことができます。 また、Gitバージョン管理との連携も可能で</p>
+<p>RStudioではプロジェクト機能を利用して、データやコード、成果物を一つのまとまりとして扱うことができます。 またGitバージョン管理との連携も可能です。 このことは<a href="./git.html">次章</a>で詳しく説明します。</p>
+<p>プロジェクトの作成はメニューバーあるいはrstudioapiパッケージの関数を使って行います。 メニューバーでは、<code>File</code>、<code>New Project</code>の順に進むと、新規のフォルダにプロジェクトを用意するか、既存のフォルダをプロジェクトとして扱うか、あるいはバージョン管理システムを利用するかの選択を行う画面が表示されます。</p>
+<p>ここでは新規フォルダにプロジェクトを用意する前提で進めます。 RStudioでは、パッケージの開発やShinyアプリケーションなど、用途に応じたプロジェクトのテンプレートが用意されており、目的に応じて選択することができます。 一般的なデータ分析プロジェクトを作成する場合は、<code>New Directory</code>を選択します。</p>
+<p>次の画面でプロジェクトの名前と保存先を指定します。 簡潔で明瞭なプロジェクト名をつけるとよいでしょう。 著者は、プロジェクトの保存先のフォルダ名に、プロジェクト発足の西暦をつけるようにしています。 また、プロジェクト名に西暦の末尾2桁をつけることも、プロジェクトの識別に役立つテクニックです。</p>
 <div class="cell">
-<details class="code-fold">
-<summary>コードを表示</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rstudioapi<span class="sc">::</span><span class="fu">openProject</span>(<span class="st">"~/Documents/projects2024/rrr-demo"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rstudioapiパッケージを使ってプロジェクトを作成する</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rstudioapi<span class="sc">::</span><span class="fu">openProject</span>(<span class="st">"~/Documents/projects2024/rrr-demo"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><img src="https://i.gyazo.com/ade72f5ee60d987e52c5cc4d1dc5adc6.png" class="img-fluid" alt="再現可能なデータ分析プロジェクトの立ち上げ。2つのチェックボックスにチェックをつけて作成することで、gitリポジトリの初期化とrenvパッケージによるパッケージの管理が設定され、再現可能性が高まる。"> プロジェクトを作成すると、プロジェクト用のディレクトリが作成され、その中にプロジェクトファイル（<code>.Rproj</code>）が作成されます。 プロジェクト作成後は、<code>.Rproj</code>ファイルのあるディレクトリが作業ディレクトリとして設定されます。 RStudioでは、プロジェクトの利用を想定しているため、簡単にプロジェクトを切り替えたり、複数のプロジェクトを同時に立ち上げることが可能です。</p>
+<p>RStudioプロジェクトでは、プロジェクト単位で環境を管理します。 メニューバーの <code>Tools</code>、<code>Project Options</code>からプロジェクトの設定を変更できます。 ここでは、プロジェクト全般にかかわる設定、パイプ演算子の種類やタブの幅、バージョン管理システムの設定などを行うことができます。 これらの設定はプロジェクトを利用する全員に適用されます。</p>
+<p>プロジェクトの設定で特に重要なのは、作業空間に関する項目です。 立ち上げ時に<code>.RData</code>を読み込むか、終了時に<code>.RData</code>への保存を行うか、履歴を保存するかの3つの項目について設定できます。 著者の考えでは、<code>.RData</code>についてはいずれも <code>No</code> （読み込まない、保存しない）を選択することをお勧めします。 履歴については、<code>Yes</code>で良いでしょう。 ソースコードに残っていない履歴が、作業の再現に役立つこともあるためです。</p>
+<p><code>.RData</code>に関する設定を行わない理由を説明します。 <code>.RData</code>はRの作業空間を保存するファイルです。 作成、定義したRオブジェクトが保存されるため、以前の作業状態を再現する際に便利です。 特に作成に時間がかかるオブジェクトを再利用する場合には有用です。 しかし、常にそれを行う必要性はありません。 利点よりも、<code>.RData</code>の読み込みによって、起動時に意図しないオブジェクトが存在してしまう可能性を考慮するべきです。 また<code>.RData</code>を読み込み・保存するようにすると、起動と終了時に時間がかかることもあります。</p>
+<p><img src="https://i.gyazo.com/dd5cf88284958e22e46afa724bbe29c1.png" class="img-fluid" alt="プロジェクトの設定。作業空間に関する項目では.RDataを読み込まない、保存しないようにすることが推奨される。"> ## VS Codeの利用</p>
+<p>Microsoftが提供する<a href="https://code.visualstudio.com/">Visual Studio Code (VS Code)</a>もRの開発環境の選択肢となります。 標準ではRの実行環境は提供されていませんが、拡張機能をインストールすることでRStudioのようにコーディングから実行までシームレスに行うことができます。</p>
+<p>VS Codeでは、作業空間と呼ばれる単位で関連するファイルを管理します。 これはRStudioのプロジェクト機能と類似の考え方です。</p>
+<p>VS Codeの特徴は、Rだけでなくさまざまな言語の開発に対応していることです。 拡張機能を利用することで、ユーザーが必要とする機能を追加することができます。 拡張機能には、Git、GitHubとの連携を行うものや<a href="./document.html">ドキュメント</a>の生成を容易に行うものなどがあります。 これによりデータ分析の作業を効率的に行うことが期待されます。</p>
+</section>
+<section id="positron" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="positron"><span class="header-section-number">3.2.2</span> Positron</h3>
+<p>現時点で正式なリリースはされていませんが、PositがオープンソースのVS Codeをベースに開発を進める<a href="https://github.com/posit-dev/positron">Positron</a>も注目されています。</p>
+<p>Positronの特徴は、RやPythonといったデータ分析で用いる言語の実行、ドキュメント作成に特化している点です。 RStudioのような環境変数の管理を、RだけでなくPythonの環境でも提供します。 またQuarto、Jupyterといったドキュメント生成ツールとの連携が容易に行えるようになっています。 これについては<a href="./document.html">ドキュメントの章</a>で取り上げます。</p>
+<p>VS Code同様に拡張機能によって、多様な機能を追加できる点も魅力の一つです。 VS Codeとの違いは、ライセンス上の問題からインストール可能な機能拡張は[Open VSX Registry] (https://open-vsx.org/)で管理されるものに限定されるという点です。 ここには数多くの拡張機能が登録されていますが、すべてではありません。 いくつかの拡張機能は本家のVS Codeでのみ利用可能です。</p>
+<p>また、rig（<a href="./reproducibility.html">第2章参照</a>）などで複数バージョンのRが利用可能な環境であれば、 アプリケーションの中で任意のバージョンへの切り替えが可能です<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>。</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://i.gyazo.com/ade72f5ee60d987e52c5cc4d1dc5adc6.png" class="img-fluid figure-img"></p>
-<figcaption>再現可能なデータ分析プロジェクトの立ち上げ。2つのチェックボックスにチェックをつけて作成することで、gitリポジトリの初期化とrenvパッケージによるパッケージの管理が設定され、再現可能性が高まる。</figcaption>
+<p><img src="https://i.gyazo.com/3da59a98bd1086371ba987aacb81a913.png" class="img-fluid figure-img"></p>
+<figcaption>PositronでのR実行バージョンの切り替え</figcaption>
 </figure>
 </div>
 </section>
 </section>
-<section id="vs-codeの利用" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="vs-codeの利用"><span class="header-section-number">3.3</span> VS Codeの利用</h2>
-<p>Microsoftが提供する<a href="https://code.visualstudio.com/">Visual Studio Code (VS Code)</a>もRの開発環境の選択肢となります。 標準ではRの実行環境は提供されていませんが、拡張機能をインストールすることでRStudioのようにコーディングから実行までシームレスに行うことができます。</p>
-<p>VS Codeでは、作業空間と呼ばれる単位で関連するファイルを管理します。 これはRStudioのプロジェクト機能と類似の考え方です。</p>
-<p>VS Codeの特徴は、Rだけでなくさまざまな言語の開発に対応していることです。 拡張機能を利用することで、ユーザーが必要とする機能を追加することができます。 拡張機能には、Git、GitHubとの連携を行うものや<a href="./document.html">ドキュメント</a>の生成を容易に行うものなどがあります。 これによりデータ分析の作業を効率的に行うことが期待されます。</p>
-<section id="positron" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="positron"><span class="header-section-number">3.3.1</span> Positron</h3>
-<p>現時点で正式なリリースはされていませんが、PositがオープンソースのVS Codeをベースに開発を進めるPositronも、RやPythonといったデータ分析で用いる言語に特化した統合開発環境として注目されています。</p>
-<p>VS Code同様に拡張機能によって、多様な機能を追加できる点も魅力の一つです。 VS Codeとの違いは、ライセンス上の問題からインストール可能な機能拡張は[Open VSX Registry] (https://open-vsx.org/)で管理されるものに限定されるという点です。 ここには数多くの拡張機能が登録されていますが、すべてではありません。 いくつかの拡張機能は本家のVS Codeでのみ利用可能です。</p>
-</section>
-</section>
-<section id="hereパッケージ" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="hereパッケージ"><span class="header-section-number">3.4</span> hereパッケージ</h2>
-<!-- hereパッケージ、rstudioプロジェクト -->
+<section id="hereパッケージ" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="hereパッケージ"><span class="header-section-number">3.3</span> hereパッケージ</h2>
 <!-- バックスラッシュ? -->
 </section>
-<section id="ディレクトリ構成" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="ディレクトリ構成"><span class="header-section-number">3.5</span> ディレクトリ構成</h2>
+<section id="ディレクトリ構成" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="ディレクトリ構成"><span class="header-section-number">3.4</span> ディレクトリ構成</h2>
 <pre><code>- data/
 - data-raw/
 - R/
 - src/</code></pre>
 </section>
-<section id="スタイルガイド" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="スタイルガイド"><span class="header-section-number">3.6</span> スタイルガイド</h2>
-<section id="stylerパッケージ" class="level3" data-number="3.6.1">
-<h3 data-number="3.6.1" class="anchored" data-anchor-id="stylerパッケージ"><span class="header-section-number">3.6.1</span> stylerパッケージ</h3>
+<section id="スタイルガイド" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="スタイルガイド"><span class="header-section-number">3.5</span> スタイルガイド</h2>
+<section id="stylerパッケージ" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="stylerパッケージ"><span class="header-section-number">3.5.1</span> stylerパッケージ</h3>
 </section>
-<section id="lintrパッケージ" class="level3" data-number="3.6.2">
-<h3 data-number="3.6.2" class="anchored" data-anchor-id="lintrパッケージ"><span class="header-section-number">3.6.2</span> lintrパッケージ</h3>
+<section id="lintrパッケージ" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="lintrパッケージ"><span class="header-section-number">3.5.2</span> lintrパッケージ</h3>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -346,6 +346,12 @@ div.csl-indent {
 </div>
 </div>
 </section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Positronの動作環境として、R 4.2.0以上、Pythonでは 3.8以上が必要です。これ以下のバージョンはインストールされていても利用できません。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

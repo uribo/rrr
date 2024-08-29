@@ -241,7 +241,12 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#quartoによるドキュメントの作成" id="toc-quartoによるドキュメントの作成" class="nav-link" data-scroll-target="#quartoによるドキュメントの作成"><span class="header-section-number">5.2.1</span> Quartoによるドキュメントの作成</a></li>
   <li><a href="#rstudioでのquartoの利用" id="toc-rstudioでのquartoの利用" class="nav-link" data-scroll-target="#rstudioでのquartoの利用"><span class="header-section-number">5.2.2</span> RStudioでのQuartoの利用</a></li>
-  <li><a href="#pdfの出力" id="toc-pdfの出力" class="nav-link" data-scroll-target="#pdfの出力"><span class="header-section-number">5.2.3</span> PDFの出力</a></li>
+  <li><a href="#positronでのquartoの利用" id="toc-positronでのquartoの利用" class="nav-link" data-scroll-target="#positronでのquartoの利用"><span class="header-section-number">5.2.3</span> PositronでのQuartoの利用</a></li>
+  </ul></li>
+  <li><a href="#pdfの出力" id="toc-pdfの出力" class="nav-link" data-scroll-target="#pdfの出力"><span class="header-section-number">5.3</span> PDFの出力</a>
+  <ul class="collapse">
+  <li><a href="#latex" id="toc-latex" class="nav-link" data-scroll-target="#latex"><span class="header-section-number">5.3.1</span> LaTeX</a></li>
+  <li><a href="#typst" id="toc-typst" class="nav-link" data-scroll-target="#typst"><span class="header-section-number">5.3.2</span> Typst</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -325,18 +330,38 @@ div.csl-indent {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://i.gyazo.com/d16522748784a3f6cf9dfa85b69f4e64.png" class="img-fluid figure-img"></p>
-<figcaption>RStudioでのqmdファイルの新規作成</figcaption>
+<figcaption>RStudioでのqmdファイルの新規作成。Editorの箇所にチェックを入れるとビジュアルモードでの編集が可能となる（後述）</figcaption>
 </figure>
 </div>
 <p>タイトルや出力形式を指定して「Create」ボタンをクリックすると新しい<code>.qmd</code>ファイルが作成されます。 また、エンジンとしてKnitrかJupyterが選択可能です。Knitr、つまりRのエンジンであってもreticulateパッケージにより Pythonの実行ができますが、Jupyterを指定することで直接Pythonの実行が可能になります。</p>
-<p>ソースパネルに新たに作成されたファイル内にコードと文章を記述して、レンダーを行います。 レンダーはソースパネル上の「Render」ボタンより実行します。ボタンをクリックすると、バックグラウンドで<code>quarto</code>のコマンドが実行され、<code>.qmd</code>ファイル中のソースコードの実行結果をもとに指定した形式のドキュメントが生成されます。</p>
-<p>RStudioでは、<code>Ctrl</code>+<code>Alt</code>+<code>I</code>（macOSでは<code>Command</code>+<code>Option</code>+<code>I</code>）のショートカットキーを使うことで、コードブロックを追加できます。</p>
+<p>ソースペインに新たに作成されたファイル内にコードと文章を記述して、レンダーを行います。 レンダーはソースペイン上の「Render」ボタンより実行します。ボタンをクリックすると、バックグラウンドで<code>quarto</code>のコマンドが実行され、<code>.qmd</code>ファイル中のソースコードの実行結果をもとに指定した形式のドキュメントが生成されます。</p>
+<p>RStudioでは、<code>Ctrl</code>+<code>Alt</code>+<code>I</code>（macOSでは<code>Command</code>+<code>Option</code>+<code>I</code>）のショートカットキーを使うことで、コードブロックを追加できます。 このショートカットキーを使うと、コードブロックのエンジンとして<code>{r}</code>が自動的に挿入されます。</p>
+<p>レンダーのとき、通常コードブロックの評価はコードの上部に記載されたものから行われますが、 その場での実行も可能です。 これはレンダーをする前に結果を確認するのに役立ちます。 対象のコードが書かれた行にカーソルを置いて<code>Ctrl</code>+<code>Enter</code>（macOSでは<code>Command</code>+<code>Enter</code>）を押すことで、そのコードを実行できます。 コードブロック全体のコードを実行するには、<code>Ctrl</code>+<code>Shift</code>+<code>Enter</code>（macOSでは<code>Command</code>+<code>Shift</code>+<code>Enter</code>）を使います。 あるいは、コードブロックの右上にある右向きの三角形ボタンをクリックすることでも実行できます。</p>
+<!-- ![RStudioでのqmdファイルのインタラクティブ操作](https://i.gyazo.com/5e9e349b78ccb1ef38e7a057d13d69d6.png) -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.gyazo.com/f7f0b1a95814db2e88254428fe370526.gif" class="img-fluid figure-img"></p>
+<figcaption>RStudioでのqmdファイルのインタラクティブ操作</figcaption>
+</figure>
+</div>
+<p>文字装飾、図や数式、参考文献等の挿入結果を表示しながら、ファイルを編集するときにはビジュアルモードの利用が便利です。 ビジュアルモードは、ソースペイン中にある編集中のqmdファイルのタブで「Visual」を選択すると切り替わります。 あるいはフロントマターで<code>editor: visual</code>を宣言しておくことで、ファイルを開いたときにビジュアルモードが自動的に適用されます。</p>
 </section>
-<section id="pdfの出力" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="pdfの出力"><span class="header-section-number">5.2.3</span> PDFの出力</h3>
+<section id="positronでのquartoの利用" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="positronでのquartoの利用"><span class="header-section-number">5.2.3</span> PositronでのQuartoの利用</h3>
+<p>PositronもRStudio同様に、qmdファイルのインタラクティブな編集と実行をサポートしています。 レンダーやビジュアルモードの切り替えも可能です。 RStudioと異なるのは、Positronではipynbファイルの編集・実行ができる点です。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.gyazo.com/600dfab433d556972bce35312795db9e.png" class="img-fluid figure-img"></p>
+<figcaption>Positronでのqmdファイルの編集。コードブロック中のコード実行、レンダーボタンの配置はRStudioと同様。</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="pdfの出力" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="pdfの出力"><span class="header-section-number">5.3</span> PDFの出力</h2>
 <p>Quartoで日本語のPDFを生成する場合、2つの選択肢があります。 一つは出力形式を指定する際に<code>pdf</code>を指定する方法です。これはLaTeXを使ってPDFを生成する方法です。 もう一つの方法は<code>typst</code>を出力形式として指定する方法です。 まずは一般的なLaTeXによるPDF出力方法を見てみましょう。</p>
-<section id="latex" class="level4" data-number="5.2.3.1">
-<h4 data-number="5.2.3.1" class="anchored" data-anchor-id="latex"><span class="header-section-number">5.2.3.1</span> LaTeX</h4>
+<section id="latex" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="latex"><span class="header-section-number">5.3.1</span> LaTeX</h3>
 <p>LaTeXを使ったPDF出力を行う場合、事前にLaTeXの環境を揃える必要があります。</p>
 <p>QuartoのコマンドからもLaTeX環境を導入可能です。</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -367,8 +392,8 @@ format:
 </div>
 </div>
 </section>
-<section id="typst" class="level4" data-number="5.2.3.2">
-<h4 data-number="5.2.3.2" class="anchored" data-anchor-id="typst"><span class="header-section-number">5.2.3.2</span> Typst</h4>
+<section id="typst" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="typst"><span class="header-section-number">5.3.2</span> Typst</h3>
 <p>次に<a href="https://typst.app/docs">Typst</a>を利用したPDF出力方法を紹介します。 TypstはHTMLなどと同じマークアップ言語の一種です。 LaTeXの高度で柔軟な組版システムとWordやGoogleドキュメントなどのツールの代替となるように設計された新しい組版システムです。</p>
 <p>バージョン1.4以降のQuartoでは、標準的にTypstが利用可能です。 フロントマターで<code>format: typst</code>を指定するか、コマンドラインで<code>--to typst</code>を指定することでTypstによるPDFの生成が可能です。</p>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -397,7 +422,6 @@ format:
 松村優哉, 湯谷啓明, 紀ノ定保礼, と 前田和寛. 2021. <em>RユーザのためのRStudio〈実践〉入門 : tidyverseによるモダンな分析フローの世界</em>. 技術評論社. <a href="https://gihyo.jp/book/2021/978-4-297-12170-9">https://gihyo.jp/book/2021/978-4-297-12170-9</a>.
 </div>
 </div>
-</section>
 </section>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">

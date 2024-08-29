@@ -218,11 +218,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#再現性を阻害する要因" id="toc-再現性を阻害する要因" class="nav-link active" data-scroll-target="#再現性を阻害する要因"><span class="header-section-number">2.1</span> 再現性を阻害する要因</a>
   <ul class="collapse">
-  <li><a href="#rprofile" id="toc-rprofile" class="nav-link" data-scroll-target="#rprofile"><span class="header-section-number">2.1.1</span> .Rprofile</a></li>
-  <li><a href="#reprexパッケージ" id="toc-reprexパッケージ" class="nav-link" data-scroll-target="#reprexパッケージ"><span class="header-section-number">2.1.2</span> reprexパッケージ</a></li>
+  <li><a href="#reprexパッケージ" id="toc-reprexパッケージ" class="nav-link" data-scroll-target="#reprexパッケージ"><span class="header-section-number">2.1.1</span> reprexパッケージ</a></li>
   </ul></li>
   <li><a href="#rig" id="toc-rig" class="nav-link" data-scroll-target="#rig"><span class="header-section-number">2.2</span> rig</a></li>
-  <li><a href="#命名規則" id="toc-命名規則" class="nav-link" data-scroll-target="#命名規則"><span class="header-section-number">2.3</span> 命名規則</a></li>
   </ul>
 </nav>
     </div>
@@ -248,38 +246,95 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>R言語を使ったデータ分析において、結果が再現しない原因は何でしょうか。 原因を知ることで対策を講じることができます。 ここでは、Rを扱ううえでの再現性を阻害する要因を紹介します。</p>
 <section id="再現性を阻害する要因" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="再現性を阻害する要因"><span class="header-section-number">2.1</span> 再現性を阻害する要因</h2>
+<p>R言語はプログラミング言語の一種であるため、プログラムやデータによって結果が変わることがあります。 特に意識しておくべき要因として、以下のようなものがあります。</p>
 <ul>
+<li>環境、環境変数の違い</li>
 <li>ランダム性</li>
-<li>データの変更</li>
-<li>環境の違い</li>
 </ul>
+<p>環境については<a href="./literacy.html">前章</a>で述べたとおり、 Rのバージョンやパッケージのバージョン、OSなどが該当します。</p>
+<p>環境変数とは、名前の通り、環境に関する情報を保持する変数のことです。 R言語では、環境変数を設定することで、Rの挙動を変えることができます。</p>
+<p>もう一つのランダム性は、乱数を利用する関数を使う場面で発生します。 乱数を使う関数は、実行のたびに異なる値を返すために再現性が損なわれる原因となります。</p>
+<p>具体例を見てみましょう。 標準正規分布に従う乱数を、<code>rnorm</code>関数を使って生成してみます。 同じ関数・引数であっても実行のたびに異なる結果が得られます。</p>
 <div class="cell">
-<details class="code-fold">
-<summary>コードを表示</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 乱数生成アルゴリズムを利用する関数では、実行の度に出力が変化する。</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.3082004</code></pre>
 </div>
-<p>乱数</p>
-<section id="rprofile" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="rprofile"><span class="header-section-number">2.1.1</span> .Rprofile</h3>
-</section>
-<section id="reprexパッケージ" class="level3" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="reprexパッケージ"><span class="header-section-number">2.1.2</span> reprexパッケージ</h3>
-<p><strong>rep</strong>roducible <strong>ex</strong>ample</p>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7109559</code></pre>
+</div>
+</div>
+<p>乱数の利用は、シミュレーションやモンテカルロ法などの分野で重要ですが、 再現性を確保するためには、<code>set.seed()</code>関数を使って乱数生成アルゴリズムのシードを固定する必要があります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.5604756</code></pre>
+</div>
+</div>
+<p><code>set.seed()</code>関数は、乱数を利用する関数の実行前に呼び出します。 引数には単一の整数を指定します。 この値が乱数のシードとして使われ、同じシードを指定すると同じ乱数が生成されるようになり、結果が再現可能になります。</p>
+<p>そのため、私は上記の結果がどのような値になるかを知っています。 私の予言が正しければ、 -0.5604756となるはずです。 乱数はRのさまざまな関数で利用されるため、再現性が求められる場面では<code>set.seed()</code>関数を意識することが大事です。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+.Rprofile
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Rでは、<code>.Rprofile</code>に書かれた内容が起動時に実行されます。 このファイルは起動時に読み込まれるので、Rの起動中に適用するオプションや環境変数などが記述されます。 これにより、毎回オプションを設定する手間が省けます。 よく使うパッケージを読み込む、デフォルトのグラフィックデバイスを設定する、さまざまな指定が可能です。</p>
+</div>
+</div>
+<section id="reprexパッケージ" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="reprexパッケージ"><span class="header-section-number">2.1.1</span> reprexパッケージ</h3>
+<p>ソースコードが再現性をもつことや、第三者に状況を伝えるためには、再現可能な例を示す必要があります。 ここでの再現可能には、エラーの出力も含まれます。 reprexパッケージを使うと、Rのコードとその出力を含む再現可能な例（<strong>rep</strong>roducible <strong>ex</strong>ample）を作成できます。</p>
+<p>使い方は、<code>reprex()</code>関数内に再現の対象とするコードを記述し、実行するだけです。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reprex)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">reprex</span>({</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>コードを実行すると、実行中のRセッションとは別のRセッションが立ち上がり、再現可能な例が作成されます。 作成された例は、コンソールに表示されるだけでなく、クリップボードにコピーされるため、簡単に共有できます。 外部出力のために結果をテキストファイルに保存することもできます。</p>
+<p>reprexパッケージの便利な点は、実行環境の情報も含めて再現可能な例を作成できることです。 <code>reprex()</code>関数の引数に<code>session_info = TRUE</code>を指定すると、セッション情報も出力されるので、コードの外にある環境についても再現性を検証する題材として使えるようになります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># session_info = TRUEを指定すると、セッション情報も出力される。</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># wd引数で作業ディレクトリを指定する。ここでは現在の作業ディレクトリを指定し、実行コードと結果が外部ファイルに保存するようにした。</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">reprex</span>({</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"hello"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>}, </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">session_info =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">wd =</span> <span class="st">"."</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>実際、Rコードの不具合を報告する際には、再現可能な例を示すことが求められることがあります。 GitHub issuesやStack Overflow、Slackなどで質問する際には、reprexパッケージを使って再現可能な例を作成すると、問題の解決がスムーズに進むことがあります。</p>
 </section>
 </section>
 <section id="rig" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="rig"><span class="header-section-number">2.2</span> rig</h2>
-<p>複数のRのバージョンを共存、切り替えることができます。</p>
-<p>https://github.com/r-lib/rig</p>
+<p>Rを使ったデータ分析を行う際、複数のRのバージョンを使い分ける必要が生じることがあります。 古いバージョンのRで書かれたソースコードを実行する場合、新しいバージョンとは結果が変わっている可能性があります。 これにはデフォルトの挙動の変化<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>や乱数生成のアルゴリズムの変更<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>などが影響します。</p>
+<p>Rでは、<code>4.1</code>、<code>4.0</code>のようにマイナーバージョンごとに異なるバージョンを共存させることが可能ですが、実際にバージョンを切り替えるのは手間がかかります。 そこで、Rのバージョン管理ツールである<a href="https://github.com/r-lib/rig">rig</a>が役立ちます。 rigを使うことで、複数のRのバージョンを共存、切り替えが容易に行えるようになります。</p>
+<p>リリースされている最新のRをインストールするには以下のコマンドを実行します。</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rig</span> add release</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>また、macOS限定になりますが、メニューバーからRStudioのプロジェクト機能（<a href="./project.html">第3章参照</a>）と連動し、最近起動したrprojファイルを任意のバージョンで起動できるようになります。</p>
+<p><img src="https://i.gyazo.com/5158ca019d4dc6762df3c7606fe5e0d0.png" class="img-fluid"></p>
+
+
 </section>
-<section id="命名規則" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="命名規則"><span class="header-section-number">2.3</span> 命名規則</h2>
-<p>意味のある名前</p>
-
-
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>R 4.4.0からは<code>data.frame()</code>関数で利用される引数として、<code>stringsAsFactors = FALSE</code>がデフォルトになりました。これにより、文字列型のデータがデフォルトでfactors型に変換されなくなりました。 そのため、古いバージョンのRで書かれたコードを新しいバージョンのRで実行すると、データの型が変わる可能性があります。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>R 3.6.0から、乱数生成アルゴリズムが変更されました。<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

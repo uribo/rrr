@@ -369,12 +369,9 @@ git config --global user.email "&lt;あなたのメールアドレス&gt;"</code
 <p>この出力で<code>user.name</code>と<code>user.email</code>が正しく表示されていれば、設定が完了しています。</p>
 <p>上記の処理はRパッケージであるusethisを使ってRからも行えます。</p>
 <div class="cell">
-<details class="code-fold">
-<summary>コードを表示</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usethis)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">use_git_config</span>(<span class="at">user.name =</span> <span class="st">"&lt;あなたの名前&gt;"</span>, </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">user.email =</span> <span class="st">"&lt;あなたのメールアドレス&gt;"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </div>
 </div>
@@ -389,18 +386,18 @@ git config --global user.email "&lt;あなたのメールアドレス&gt;"</code
 </section>
 <section id="アプリケーションを利用したバージョン管理" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="アプリケーションを利用したバージョン管理"><span class="header-section-number">4.4</span> アプリケーションを利用したバージョン管理</h2>
-<p>Gitはコマンドラインツールですが、GUIアプリケーションを使うことで、より簡単にバージョン管理を行うことができます。 Rの統合開発環境であるRStudioやVSCodeでも、Gitと連携した操作が可能です。 分析作業から離れずにバージョン管理を行うことができるため、非常に便利です。 すべてのコマンドを実行可能なわけではありませんが、基本的な操作はGUIを通して行えます。</p>
+<p>Gitはコマンドラインツールですが、GUIアプリケーションを使うことで、より簡単にバージョン管理を行うことができます。 Rの統合開発環境であるRStudioやVS Codeでも、Gitと連携した操作が可能です。 分析作業から離れずにバージョン管理を行うことができるため、非常に便利です。 すべてのコマンドを実行可能なわけではありませんが、基本的な操作はGUIを通して行えます。</p>
 <section id="rstudio" class="level3" data-number="4.4.1">
 <h3 data-number="4.4.1" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">4.4.1</span> RStudio</h3>
-<p>ターミナルあるいはGitパネルを使ってバージョン管理を行います。 ここではGUIで操作可能な方法を紹介します。 なおRStudioのGUIでは、GitとSVNによるバージョン管理をサポートしています。</p>
-<p><code>.git</code>フォルダが存在するプロジェクトを開くと、RStudioはGitパネルを表示します。 この画面がRStudioでのGUIによるバージョン管理処理の中心となります。 もしもGitパネルが見つからない場合、メニューのTools、Global Options…から、Git/SVNにて<code>Enable version control interface for RStudio projects</code>にチェックを入れてください。</p>
+<p>ターミナルあるいはGitタブを使ってバージョン管理を行います。 ここではGUIで操作可能な方法を紹介します。 なおRStudioのGUIでは、GitとSVNによるバージョン管理をサポートしています。</p>
+<p><code>.git</code>フォルダが存在するプロジェクトを開くと、RStudioはGitタブを表示します。 この画面がRStudioでのGUIによるバージョン管理処理の中心となります。 もしもGitタブが見つからない場合、メニューのTools、Global Options…から、Git/SVNにて<code>Enable version control interface for RStudio projects</code>にチェックを入れてください。</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://i.gyazo.com/a26d3419e9c422c7dd533656e24c0bf4.png" class="img-fluid figure-img"></p>
-<figcaption>RStudioにおけるGitパネル</figcaption>
+<figcaption>RStudioにおけるGitタブ</figcaption>
 </figure>
 </div>
-<p>Gitパネルには、ファイルの差分やコミット履歴を確認するボタンが用意されています。 メインとなるのは<code>Staged</code>、<code>Status</code>、<code>Path</code>の3列で構成される箇所です。 それぞれの列には次の意味があります。</p>
+<p>Gitタブには、ファイルの差分やコミット履歴を確認するボタンが用意されています。 メインとなるのは<code>Staged</code>、<code>Status</code>、<code>Path</code>の3列で構成される箇所です。 それぞれの列には次の意味があります。</p>
 <ul>
 <li><code>Staged</code>: ステージングエリアに追加されたファイル</li>
 <li><code>Status</code>: ファイルの状態</li>
@@ -457,29 +454,33 @@ git config --global user.email "&lt;あなたのメールアドレス&gt;"</code
 </section>
 <section id="github" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="github"><span class="header-section-number">4.5</span> GitHub</h2>
-<p>GitHub (https://github.com/) は、Gitリポジトリをホスティングするウェブサービス（リモートリポジトリ）です。 世界中のさまざまなプロジェクトで採用されるリモートリポジトリであり、オープンソースプロジェクトの共有やコラボレーションに広く利用されています。 ウェブサイトの閲覧は誰でもできますが、主要な機能を利用する際にはアカウントの作成が必要です。</p>
-<p>GitHub上のリポジトリには、誰でもアクセス可能なパブリックリポジトリと、特定のユーザーのみがアクセス可能なプライベートリポジトリの2種類があります。 プライベートリポジトリは</p>
-<p>リポジトリのURLは <code>https://github.com/&lt;アカウント名&gt;/&lt;リポジトリ名&gt;</code> となります。</p>
-<p>CRANで配布されるRパッケージのソースコードも多く管理されます。</p>
+<p>ここまでで、Gitを使ったバージョン管理の基本的な操作を学びました。 次に、リモートリポジトリを利用して、複数人での共同作業を行う方法を紹介しましょう。 複数人と書きましたが、個人であってもリモートリポジトリを利用することで、バックアップ目的や異なるデバイスでの作業を行うために利用することができます。</p>
+<p><a href="https://github.com/">GitHub</a> は、Gitリポジトリをホスティングするウェブサービス（リモートリポジトリ）です。 世界中のさまざまなプロジェクトで採用されるリモートリポジトリであり、オープンソースプロジェクトの共有やコラボレーションに広く利用されています。 ウェブサイトの閲覧は誰でもできますが、主要な機能を利用する際にはアカウントの作成が必要です。</p>
 <p>RパッケージのソースコードをGitHubで管理する開発者も多く、CRANで配布されるものだけでなく、CRANポリシーに適合しないなどの理由でCRANでは配布されないパッケージも豊富に存在します。 remotesやpakパッケージを使えば、これらのGitHub上で配布されるRパッケージのインストールも可能です。</p>
-<p>Gitのコミットログが増えてくる</p>
-<p>プロジェクトを一人で進める場合でも、複数台のコンピュータで作業を行う際に</p>
-<p>GitHub上のリモートリポジトリを介して、複数のコンピュータでファイルを共有できます。</p>
-<p>バックアップとして機能します。</p>
+<p>GitHub上のリポジトリには、誰でもアクセス可能なパブリックリポジトリと、特定のユーザーのみがアクセス可能なプライベートリポジトリの2種類があります。 プライベートリポジトリは、リポジトリの所有者と共同作業者（コラボレーター）のみがアクセスできるため、機密情報を扱うプロジェクトにも利用できます。</p>
 <p>GitHubにはここで取り上げる内容以外にも多くの機能があります。GitHub公式が提供する<a href="https://skills.github.com/">GitHub Skills</a>では、実際のGitHubリポジトリを操作してGitHubの使い方を学ぶことができます。</p>
 <section id="ローカルリポジトリの紐付け" class="level3" data-number="4.5.1">
 <h3 data-number="4.5.1" class="anchored" data-anchor-id="ローカルリポジトリの紐付け"><span class="header-section-number">4.5.1</span> ローカルリポジトリの紐付け</h3>
-<p><a href="./project.html">プロジェクトの章</a>で作成したプロジェクト（<code>rrr-demo</code>）をGitHubと紐付けます。</p>
+<p><a href="./project.html">プロジェクトの章</a>で作成したプロジェクト（<code>rrr-demo</code>）をGitHubと紐付けます。 まずはGitHub上で新しいリポジトリを作成します。 ここでリポジトリ名を指定しますが、混乱を避けるためにローカルリポジトリのプロジェクト名と同じ名前にしておくことを薦めます。</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://i.gyazo.com/ce7d7d5c7d4bcd6d4530cc520ecc54bf.jpg" class="img-fluid figure-img"></p>
 <figcaption>GitHubでの新規リポジトリの作成</figcaption>
 </figure>
 </div>
-<p><img src="https://i.gyazo.com/3286bed6e6384c3bd99dc839ff6d54b3.jpg" class="img-fluid"></p>
+<p>作成したリポジトリのURLは <code>https://github.com/&lt;アカウント名&gt;/&lt;リポジトリ名&gt;</code> となります。 ページにアクセスすると、次の図のような画面が表示されます。 この状態ではリポジトリにファイルは存在していませんが、 作成したリモートリポジトリをローカルリポジトリに紐付けるための手順が書かれています。 2つの方法が示されていますが、一つは新しいローカルリポジトリを作成する方法、もう一つは既存のリポジトリをリモートリポジトリとして指定する方法です。 今回は後者の方法に従い、既存のローカルリポジトリをリモートリポジトリとして指定します。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.gyazo.com/3286bed6e6384c3bd99dc839ff6d54b3.jpg" class="img-fluid figure-img"></p>
+<figcaption>作成されたリモートリポジトリ</figcaption>
+</figure>
+</div>
+<p>書かれた内容をコピーし、ローカルリポジトリのディレクトリで実行します。 このコマンドでは、リモートリポジトリを <code>origin</code> という名前で登録しています。 <code>origin</code> はリモートリポジトリのデフォルトの名前として一般的に使われています。</p>
+<p>次に、ブランチ名の変更です。 GitHubでは、デフォルトのブランチ名として <code>main</code> が使用されています。 これに合わせるために、ローカルリポジトリのブランチ名を <code>main</code> に変更します。 そして、ローカルリポジトリで行った作業内容をリモートリポジトリに反映させるためにプッシュします。</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/uribo/rrr-demo.git</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>GitHubとの</p>
 </section>
 <section id="リモートリポジトリのクローン" class="level3" data-number="4.5.2">
 <h3 data-number="4.5.2" class="anchored" data-anchor-id="リモートリポジトリのクローン"><span class="header-section-number">4.5.2</span> リモートリポジトリのクローン</h3>
@@ -528,7 +529,9 @@ README.html</code></pre>
 <p>続いての<code>.Rproj.user</code>から<code>.Ruserdata</code>はRに関連するものです。 特に<code>.Rproj.user</code>はRStudioのプロジェクト設定ファイルを含むフォルダでバージョン管理を行いません。 <code>.Rhistory</code>や<code>.RData</code>はRの履歴やデータを保存するファイルですが、ユーザーやセッションの度に更新されるものであるため、これらもバージョン管理を行いません。</p>
 <p><code>*.pdf</code>、<code>*.log</code>はPDFおよびlog形式のファイル一式を除外する指示です。ファイル名に関わらず、拡張子によって除外される複数のファイルを想定しています。 アスタリスク（<code>*</code>）は任意の文字列を表し、<code>*.pdf</code>は拡張子が<code>.pdf</code>であるファイルをすべて指定します。</p>
 <p>拡張子による指定という点で、その次の行 <code>README.html</code> も同様ですが、<code>*.pdf</code>や<code>*.log</code>と異なるのはプロジェクト内のすべてのHTMLファイルを除外するわけではないという点です。 <code>README.html</code>は特定のファイル名を指定しています。つまり対象外となるのは1つのファイルだけです。</p>
-<p>作成した覚えのないファイルやフォルダがGitバージョン管理の対象となっているときは、注意してそのファイルをバージョン管理に含めるべきかを検討してください。 著者の経験では、身に覚えのないファイルは一時的に生成されたものや成果物であることが多く、バージョン管理の対象外とすることが多いです。</p>
+<p><code>.Rprofile</code>はバージョン管理に含めるか悩むところですが、 Rの設定や挙動を制御する内容が書かれているものであればバージョン管理するべきです。 プロジェクトに参加するすべてのメンバーが同じ条件でRを実行するために必要となる可能性があります。 一方で、<code>.Rprofile</code>に個人の機密情報や認証情報が含まれるのであれば<code>.gitignore</code>に追加しましょう。</p>
+<p>クレデンシャルな情報を扱う必要があるのであれば、<code>.Renviron</code>や<code>.Renviron.site</code>を使って環境変数として設定することを検討してください。 これらの情報は手間がかかるかもしれませんが、セキュリティ上のリスクを軽減するためには必要な対応です。 <a href="./packages.html">第6章</a>では、configパッケージを使った環境変数の管理について紹介します。</p>
+<p>最後に、作成した覚えのないファイルやフォルダがGitバージョン管理の対象となっているときは、注意してそのファイルをバージョン管理に含めるべきかを検討してください。 著者の経験では、身に覚えのないファイルは一時的に生成されたものや成果物であることが多く、バージョン管理の対象外とすることが多いです。</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">

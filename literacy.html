@@ -252,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>再現可能なデータ分析を可能にするために、いくつかの基本的な概念を理解する必要があります。</p>
+<p>再現可能なデータ分析を可能にするために、いくつかの基本的な概念を理解する必要があります。 ここでは再現可能性を求めるデータ分析作業においてR言語を利用することを前提とし、再現性に関する基礎知識を身につけます。</p>
 <section id="ディレクトリとパス" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="ディレクトリとパス"><span class="header-section-number">1.1</span> ディレクトリとパス</h2>
 <p>コンピュータ上のファイルやディレクトリ（フォルダ）は、それぞれ一意の場所を持っています。 この場所を示すために、フォルダやファイルにはパス（path）と呼ばれるものが与えられます。 パスは、ファイルやディレクトリの住所のような存在で、文字列で表現されます。</p>
@@ -263,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://i.gyazo.com/9418c88dd14821bc95e832b1c8ca5019.png" class="img-fluid figure-img"></p>
-<figcaption>作業ディレクトリ</figcaption>
+<figcaption>作業ディレクトリ。GUI Rを開いたときに確認できる。ここでは<code>~/Documents</code>が作業ディレクトリとなっている。</figcaption>
 </figure>
 </div>
 </section>
@@ -273,10 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>コンピュータには、プログラムが動作するために必要な条件、設定が存在します。 この条件や設定のことを「環境」と呼びます。 環境はコンピュータのOS（オペレーティングシステム）、ハードウェア、ソフトウェア、ネットワークなど、さまざまな要素で構成されています。 そのため、コンピュータ間で同じ環境を用意することは容易ではありません。</p>
 <p>環境の違いは、プログラムの動作に影響を与えることがあります。 例えば、あるコンピュータで動作するプログラムが、別のコンピュータで動作しなかったり、出力結果が異なることがあります。 例を見てみましょう。 Rの作業ディレクトリを示す <code>getwd()</code> 関数をmacOSとWindowsで実行した場合、それぞれのOSに応じたディレクトリが表示されます。 以下は著者のR実行環境であるmacOSでの実行結果ですが、Windowsで実行した場合、ディレクトリの先頭は通常 <code>C:/</code> となります。</p>
 <div class="cell">
-<details class="code-fold">
-<summary>コードを表示</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "/home/runner/work/rrr/rrr"</code></pre>
 </div>
@@ -303,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="1.3.2" class="anchored" data-anchor-id="rのバージョン"><span class="header-section-number">1.3.2</span> Rのバージョン</h3>
 <p>Rのバージョンはセマンティックバージョニングと同様に3桁の数字で構成されています。 年度初めの4月下旬に新しいメジャーあるいはマイナーバージョンがリリースされることが多く、 その年度内には3、4回のパッチバージョンアップが行われるのが通例です。</p>
 <p>本書執筆時の最新版は、2024年6月にリリースされたR4.4.1です。 利用しているRのバージョンはR起動時のメッセージや <code>version</code>の実行などで確認できます。</p>
-<p>Rでのバージョンの違いは、R本体の機能だけでなく、インストール可能なパッケージにも影響を与えます。 パッケージによっては、動作条件に特定のRバージョンが必要となることがあります。 また、統合開発環境のRStudioの実行にはR3.6.0以上が必要です。</p>
+<p>Rでのバージョンの違いは、R本体の機能だけでなく、インストール可能なパッケージにも影響を与えます。 パッケージによっては、動作条件に特定のRバージョンが必要となることがあります。 また、<a href="./project.html">第3章</a>以降で導入する統合開発環境のRStudioの実行にはR3.6.0以上が必要です。</p>
 </section>
 <section id="バージョン更新の方針" class="level3" data-number="1.3.3">
 <h3 data-number="1.3.3" class="anchored" data-anchor-id="バージョン更新の方針"><span class="header-section-number">1.3.3</span> バージョン更新の方針</h3>
