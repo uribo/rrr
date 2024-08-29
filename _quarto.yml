@@ -51,6 +51,5 @@ format:
     code-link: false
     highlight-style: github
     toc: true
-    code-fold: true
-    code-summary: "コードを表示"
+    code-fold: false
     df-print: kable
