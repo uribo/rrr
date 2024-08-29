@@ -8,7 +8,7 @@
 
 <meta name="author" content="瓜生真也">
 
-<title>Rによるデータ分析ワークフローの効率化</title>
+<title>Rによる再現可能なデータ分析</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -96,7 +96,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Rによるデータ分析ワークフローの効率化</a> 
+      <a href="./">Rによる再現可能なデータ分析</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -150,6 +150,18 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ワークフロー</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./container.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">コンテナ</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./reference.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">参考文献</span></a>
   </div>
@@ -164,7 +176,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#前書き" id="toc-前書き" class="nav-link active" data-scroll-target="#前書き">前書き</a></li>
+  <li><a href="#前書き" id="toc-前書き" class="nav-link active" data-scroll-target="#前書き">前書き</a>
+  <ul class="collapse">
+  <li><a href="#構成" id="toc-構成" class="nav-link" data-scroll-target="#構成">構成</a></li>
+  <li><a href="#本書の再現" id="toc-本書の再現" class="nav-link" data-scroll-target="#本書の再現">本書の再現</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -173,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Rによるデータ分析ワークフローの効率化</h1>
+<h1 class="title">Rによる再現可能なデータ分析</h1>
 </div>
 
 
@@ -190,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">公開</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024年8月27日</p>
+      <p class="date">2024年8月29日</p>
     </div>
   </div>
   
@@ -204,10 +220,34 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="前書き" class="level1 unnumbered">
 <h1 class="unnumbered">前書き</h1>
-<p>再現可能なデータ分析に取り組む全員が身につけてほしい内容</p>
-<p>技術者、プログラマがいるチームもあるかもしれないが。</p>
+<p>コンピュータを用いた統計解析は、現代の統計学やデータサイエンスにおいて重要な役割を果たしています。 膨大かつ多様性を増しているビッグデータを扱う際には、コンピュータによる効率的なデータ処理と解析が不可欠であり、これにはデータの処理速度やデータの多様性に対応できる技術が求められます。 また、人工知能（AI）分野では、統計モデルを基盤とした機械学習手法が不可欠であり、その多くは大規模なデータセットを基に、コンピュータを利用してパターンを学習しています。</p>
+<p>コンピューターを使ったデータ分析が進む中、データ分析の過程を再現可能にすることが重要視されています。 再現可能性とは、分析者自身を含めた他者が同じデータ・ソースコードを使って同じ結果を得られることを指します。 再現可能性が確保されていることで、データ分析の過程や結果を他者に説明しやすくなり、信頼性の高いデータ分析を行うことができます。</p>
+<p>近年、データ分析を伴う学術研究の中で、第三者や自分自身の研究結果を再現しようとして失敗する「再現性の危機」と呼ばれる問題が報告されています。 どうすればデータ分析に再現性を持たせることができるのか、そのためにはどのような手法を用いるべきなのか、といった問題に対して、研究者やデータ分析者は真剣に取り組む必要があります。</p>
+<p>私たちはデータ分析の手法や背景にある数学、統計学の知識を学び、実現するためのプログラミング技術を磨いてきました。 しかし分析作業の再現可能性については、学ぶ機会が少なかったり、普段意識していないかもしれません。</p>
+<p>「誰が再現性を必要としている？」という問いに対して、あなたはどのように答えますか？</p>
+<p>以前行ったデータ分析の結果が再現できず、時間を割いた経験がある人は、その必要性について否定的な意見を持つことは少ないでしょう。 再現可能性を必要としているのは、あなた自身であり、あなたのチームであり、あなたの成果を利用する他者を含みます。 これら全ての人々を意識するのは困難かもしれませんが、まず身近で作業する人たちのために再現可能性を確保することが重要となります。</p>
+<p>再現可能性にはいくつかの段階があり、どこにゴールを置くかは状況によって異なります。 ゴールはデータとソースコードを残し、あくまでも自分だけが再現できる状況を残すことなのか、さらに一歩進んで実行環境の情報を提供するのかといった具合です。 さらに完全な再現は困難である点も認識しておく必要があります。</p>
+<p>本書の目標は、再現可能なデータ分析に取り組む全員が再現可能なデータ分析に必要な考えや能力を身につけることです。 実際のデータ分析で本書のどの内容が適用されるかは、読者自身が判断することになります。 本書の内容が、あなたのデータ分析の再現可能性に対する考え方や作業を改善する一助となれば幸いです。</p>
+<section id="構成" class="level2">
+<h2 class="anchored" data-anchor-id="構成">構成</h2>
+<p>本書では、データ分析の過程において再現可能性を確保するための手法を学びます。 R言語を題材としますが、多くの考えが他のプログラミング言語でも適用できるはずです。</p>
+<p>再現可能性と関係するコンピューターおよびプログラミングに関する基礎知識を身につけることから着手します（第1章）。 次の第2章では、R言語によるプログラミングの作業において、再現可能性を低下させる要因を理解します。 再現可能なデータ分析の第一歩として、データ分析をプロジェクトとして捉えて組織化することを学びます（第3章）。 統合開発環境を導入することで次の章からの再現可能性を高める手法の実践が容易になります。 第4章では、データ分析の作業を記録し共有するためのバージョン管理システムを導入します。</p>
+<p>第5章からは、データ分析作業においてのさらに具体的な場面での再現可能性の手法に取り組みます。 まず、分析結果をレポートなどにまとめるためのドキュメントの生成を学び（第5章）ます。 続いてRで利用可能な再現可能性を高めるパッケージを紹介し（第6章）、特に第7章でtargetsパッケージを用いたプロジェクトのワークフロー化を学びます。 第8章では、コンテナ技術によるデータ分析環境の構築を目指します。</p>
+</section>
+<section id="本書の再現" class="level2">
+<h2 class="anchored" data-anchor-id="本書の再現">本書の再現</h2>
+<p>本書は以下の環境で執筆されました。GitHubリポジトリ <a href="https://github.com/uribo/rrr" class="uri">https://github.com/uribo/rrr</a> に関係するファイルを公開しています。 リポジトリからファイルをダウンロードし、RStudioで <code>rrr.Rproj</code> を開いたうえで起動するプロジェクトから、本書の再現を試みることができます。</p>
+<ul>
+<li>R version 4.1.1</li>
+<li>RStudio</li>
+<li>Quarto</li>
+<li>renv</li>
+</ul>
+<p>また、サンプルコードをGitHubリポジトリで公開しています。</p>
+<p><a href="https://github.com/uribo/rrr-demo" class="uri">https://github.com/uribo/rrr-demo</a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
