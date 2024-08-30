@@ -54,27 +54,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -244,14 +224,13 @@ div.csl-indent {
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#パイプライン" id="toc-パイプライン" class="nav-link active" data-scroll-target="#パイプライン"><span class="header-section-number">7.1</span> パイプライン</a></li>
-  <li><a href="#targets" id="toc-targets" class="nav-link" data-scroll-target="#targets"><span class="header-section-number">7.2</span> targets</a>
+  <li><a href="#targets" id="toc-targets" class="nav-link active" data-scroll-target="#targets"><span class="header-section-number">7.1</span> targets</a>
   <ul class="collapse">
-  <li><a href="#パイプラインの実行" id="toc-パイプラインの実行" class="nav-link" data-scroll-target="#パイプラインの実行"><span class="header-section-number">7.2.1</span> パイプラインの実行</a></li>
-  <li><a href="#パイプラインの変更" id="toc-パイプラインの変更" class="nav-link" data-scroll-target="#パイプラインの変更"><span class="header-section-number">7.2.2</span> パイプラインの変更</a></li>
-  <li><a href="#パイプラインの可視化" id="toc-パイプラインの可視化" class="nav-link" data-scroll-target="#パイプラインの可視化"><span class="header-section-number">7.2.3</span> パイプラインの可視化</a></li>
+  <li><a href="#パイプラインの実行" id="toc-パイプラインの実行" class="nav-link" data-scroll-target="#パイプラインの実行"><span class="header-section-number">7.1.1</span> パイプラインの実行</a></li>
+  <li><a href="#パイプラインの変更" id="toc-パイプラインの変更" class="nav-link" data-scroll-target="#パイプラインの変更"><span class="header-section-number">7.1.2</span> パイプラインの変更</a></li>
+  <li><a href="#パイプラインの可視化" id="toc-パイプラインの可視化" class="nav-link" data-scroll-target="#パイプラインの可視化"><span class="header-section-number">7.1.3</span> パイプラインの可視化</a></li>
   </ul></li>
-  <li><a href="#targetopia" id="toc-targetopia" class="nav-link" data-scroll-target="#targetopia"><span class="header-section-number">7.3</span> targetopia</a></li>
+  <li><a href="#targetopia" id="toc-targetopia" class="nav-link" data-scroll-target="#targetopia"><span class="header-section-number">7.2</span> targetopia</a></li>
   </ul>
 </nav>
     </div>
@@ -277,26 +256,22 @@ div.csl-indent {
 </header>
 
 
-<p>targetsパッケージ</p>
-<p>Makefile</p>
-<p>再実行する必要があります。</p>
-<p>データ分析は反復的なプロセスです。 作業が完結し、結果を出したと思っていても、新しいデータが与えられたり、モデルが更新されたら、改めて分析結果を求めなくてはいけません。 この過程で特に厄介なのが、再実行に伴う時間や作業手順の破壊です。</p>
-<p>作業手順の破壊とは、結果を導くまでの手順が複雑であるために、再実行時に誤った手順で</p>
-<p>やり直し</p>
-<p>「シーシュポスの岩」</p>
-<p><span class="citation" data-cites="isbn9784297125240">igjit, atusy, と hanaori (<a href="reference.html#ref-isbn9784297125240" role="doc-biblioref">2022</a>)</span></p>
-<section id="パイプライン" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="パイプライン"><span class="header-section-number">7.1</span> パイプライン</h2>
+<p>データ分析の作業を、ギリシア神話のシーシュポスの岩に例えることがあります。 神々を欺いたシーシュポスは、岩を山の頂上まで転がし、山頂に到達すると岩が転がり落ちてしまうという刑罰を受けていました。</p>
+<p>データ分析の作業も同様で、作業が完結し、結果を出したと思っていても、新しいデータが与えられたり、モデルが更新されたら、改めて分析をやり直さなくてはいけません。 たった一つの関数の引数の値が変わっただけでも、再現のためには作業を繰り返すことになります。 この過程で特に厄介なのが、再実行に伴う時間や作業手順の破壊です。</p>
+<p>作業手順の破壊とは、結果を導くまでの手順が複雑であるために、再実行時に誤った手順を再現できないことを言います。 データの読み込みから分析結果の出力まで、シンプルな手順であれば再現は容易ですが、データ分析は煩雑になりやすく、中間生成物が多くなる傾向にあるために手順通りに再現をするのが困難です。</p>
+<p>作業手順をパイプラインとして構築することで、作業手順の破壊を防ぐことができます。 パイプラインとは、複数の工程を組み合わせた作業手順のことです。 また、パイプラインが整備されることで、作業の効率化が期待できます。 本章では、R言語でパイプライン、特にデータ分析のために利用可能なtargetsパッケージを紹介します。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"targets"</span>))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="targets" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="targets"><span class="header-section-number">7.2</span> targets</h2>
+<section id="targets" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="targets"><span class="header-section-number">7.1</span> targets</h2>
+<p>さきほどシーシュポスの岩とデータ分析作業の関係を例に挙げましたが、プログラム開発でも状況は同じです。 特にプログラム開発では、コードの変更に伴う再実行が頻繁に発生します。 この問題を解決するために<a href="https://www.gnu.org/software/make/">Make</a>が利用されてきました。 Makeとは、makefileと呼ばれるファイルにファイル間の依存関係を記述し、ファイルの生成や更新を自動化するためのツールです。</p>
+<p>R言語において、makefileのような機能を提供するパッケージとしてtargetsが挙げられます。 targetsはデータ分析のパイプラインを構築し、再現可能な分析を実現するためのパッケージです。 作業手順を明示的に記述することで、作業手順の破壊を防ぐことができます。 またパイプラインの構築に必要な中間生成物の状態を内部的に保存することで、必要な部分だけを実行、作業時間の短縮を実現します。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(targets)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>パイプラインを構成、定義するファイルが必要になります。 これは原則として<code>_targets.R</code>というファイル名にします。</p>
+<p>targetsパッケージによるパイプラインでは、<code>_targets.R</code>という名前のファイルを用意して、そこにパイプラインの構成、定義を記述します。</p>
+<p>以下の例を見てください。 パイプラインは一つのターゲットによって構成されています。 ターゲットとは、パイプラインの中で生成される生成物のことです。 targetsパッケージでは、<code>tar_target()</code>関数を用いてターゲットを定義します。 <code>tar_target()</code>関数の第一引数はターゲットの名前です。第二引数には、ターゲットを生成するためのコードを記述します。</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="in"># _targets.R</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">library(targets)</span></span>
@@ -315,12 +290,12 @@ div.csl-indent {
 <ol type="1">
 <li>targetsパッケージ自身の読み込み（<code>tar_target()</code>などの関数を利用するため）</li>
 <li>パイプラインの実行に必要なパッケージ、関数の読み込み。<code>tar_option_set()</code>関数のpackages引数で指定するか、<code>source()</code>関数で関数を読み込むか、名前空間を宣言した上で利用する必要があります。</li>
-<li>パイプライン本体。<code>list()</code>関数で囲まれた内容がパイプラインの本体と見なされます。<code>list()</code>関数の要素として、<code>tar_target()</code>関数でターゲットを定義します。<code>tar_target()</code>関数の第一引数はターゲットの名前です。第二引数には、ターゲットを生成するためのコードを記述します。</li>
+<li>パイプライン本体。<code>list()</code>関数で囲まれた内容がパイプラインの本体と見なされます。<code>list()</code>関数の要素として、<code>tar_target()</code>関数でターゲットを定義します。</li>
 </ol>
 <!-- `tar_option_set()`関数では、パッケージの指定だけでなく、デフォルトの保存形式の指定などを行うためにも利用します。 -->
-<p>上記のシンプルな<code>_targets.R</code>には、一つのターゲットが含まれます。 パイプライン構築の手順は、このように一つ一つのターゲットを定義していくことになります。</p>
-<section id="パイプラインの実行" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="パイプラインの実行"><span class="header-section-number">7.2.1</span> パイプラインの実行</h3>
+<p>パイプラインは、このように一つ一つのターゲットを定義していくことで構築されていきます。</p>
+<section id="パイプラインの実行" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="パイプラインの実行"><span class="header-section-number">7.1.1</span> パイプラインの実行</h3>
 <p><code>_targets.R</code>が完成したら、<code>tar_make()</code>関数を実行してパイプラインを実行します。 パイプラインは起動中のセッションとは別のプロセスで実行されるため、一からパイプラインの構築が行われることになります。 再現可能なパイプラインであった場合、targetsはエラーを吐かずに終了します。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_make</span>()</span>
@@ -563,8 +538,8 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="パイプラインの変更" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="パイプラインの変更"><span class="header-section-number">7.2.2</span> パイプラインの変更</h3>
+<section id="パイプラインの変更" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="パイプラインの変更"><span class="header-section-number">7.1.2</span> パイプラインの変更</h3>
 <p>最初のターゲットが正しく生成されたことを確認したので、パイプラインに処理を追加しましょう。 ここでは最初の<code>_targets.R</code>の状態から、2つのターゲットを追加し、以下のターゲットが含まれます。</p>
 <ul>
 <li><code>mtcars_mod</code>: 最初に定義したターゲット。以前の状態と変わりありません。</li>
@@ -607,11 +582,11 @@ div.csl-indent {
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ● completed target plot_mtcats [0.009 seconds]</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ▶ ended pipeline [0.263 seconds]</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>ここで大事なことは、依存関係を含めて変更のないターゲットは、再実行されないという点です。 この例では、<code>mtcars_mod</code>を生成する処理が変更されていない限り、以前の結果が再利用されることを意味します。 出力を確認すると、<code>mtcars_mod</code>の生成に関わるパイプラインがスキップされていることがわかります。</p>
-<p>targetsパッケージには、パイプラインの変更に伴う再実行が必要な処理を自動的に判定する機能があります。 作成、再実行が必要なターゲットのみを対象に処理が行われるため、オブジェクトを作り直す手間が省け、効率的なデータ分析が実現します。</p>
+<p>ここで大事なことは、依存関係を含めて変更のないターゲットは、再実行されないという点と、ターゲットは<code>_targets.R</code>で定義された順番に実行されるという2点です。 この例では、<code>mtcars_mod</code>を生成する処理が変更されていない限り、以前の結果が再利用されることを意味します。 targetsパッケージには、パイプラインの変更に伴う再実行が必要な処理を自動的に判定する機能があります。 作成、再実行が必要なターゲットのみを対象に処理が行われるため、オブジェクトを作り直す手間が省け、効率的なデータ分析が実現します。</p>
+<p>実際に<code>tar_make()</code>関数の出力を確認すると、<code>mtcars_mod</code>の生成に関わるパイプラインがスキップされていることがわかります。 また、<code>mtcars_mod</code>、<code>lm_coef_mtcars</code>、<code>plot_mtcats</code>の順番で実行されることも確認できます。</p>
 </section>
-<section id="パイプラインの可視化" class="level3" data-number="7.2.3">
-<h3 data-number="7.2.3" class="anchored" data-anchor-id="パイプラインの可視化"><span class="header-section-number">7.2.3</span> パイプラインの可視化</h3>
+<section id="パイプラインの可視化" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="パイプラインの可視化"><span class="header-section-number">7.1.3</span> パイプラインの可視化</h3>
 <p>targetsパッケージのパイプライン構築は、<code>_targets.R</code>に記載されたターゲットの変更と依存関係に基づいて行われます。 ここでもう一度、パイプラインに変更を加えてみましょう。 <code>lm_coef_mtcars</code>の生成を自作関数に置き換えるという内容に置き換えます。</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="in"># src/functions.R</span></span>
@@ -709,35 +684,30 @@ div.csl-indent {
 <pre><code>✔ skipped target mtcars_mod
 ✔ skipped target lm_coef_mtcars
 ✔ skipped target plot_mtcats
-✔ skipped pipeline [0.065 seconds]</code></pre>
+✔ skipped pipeline [0.07 seconds]</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_visnetwork</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="visNetwork html-widget html-fill-item" id="htmlwidget-3db5c263ca8e894a45ba" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-3db5c263ca8e894a45ba">{"x":{"nodes":{"name":["lm_coef_mtcars","mtcars_mod","plot_mtcats","fit_model"],"type":["stem","stem","stem","function"],"description":[null,null,null,null],"status":["uptodate","uptodate","uptodate","uptodate"],"seconds":[0.002,0.193,0.114,null],"bytes":[109,950,89412,null],"branches":[null,null,null,null],"label":["lm_coef_mtcars","mtcars_mod","plot_mtcats","fit_model"],"color":["#354823","#354823","#354823","#354823"],"id":["lm_coef_mtcars","mtcars_mod","plot_mtcats","fit_model"],"level":[2,1,3,1],"shape":["dot","dot","dot","triangle"]},"edges":{"from":["lm_coef_mtcars","mtcars_mod","fit_model","mtcars_mod"],"to":["plot_mtcats","plot_mtcats","lm_coef_mtcars","lm_coef_mtcars"],"arrows":["to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"physics":{"stabilization":false},"interaction":{"zoomSpeed":1},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":true,"hoverNearest":false,"degree":{"from":1,"to":1},"algorithm":"hierarchical","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"right","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Up to date","Stem","Function"],"color":["#354823","#899DA4","#899DA4"],"shape":["dot","dot","triangle"]},"nodesToDataframe":true},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);"},"evals":[],"jsHooks":[]}</script>
+<div class="visNetwork html-widget html-fill-item" id="htmlwidget-0c6de1a18f0ad960f676" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-0c6de1a18f0ad960f676">{"x":{"nodes":{"name":["lm_coef_mtcars","mtcars_mod","plot_mtcats","fit_model"],"type":["stem","stem","stem","function"],"description":[null,null,null,null],"status":["uptodate","uptodate","uptodate","uptodate"],"seconds":[0.002,0.213,0.113,null],"bytes":[109,950,89412,null],"branches":[null,null,null,null],"label":["lm_coef_mtcars","mtcars_mod","plot_mtcats","fit_model"],"color":["#354823","#354823","#354823","#354823"],"id":["lm_coef_mtcars","mtcars_mod","plot_mtcats","fit_model"],"level":[2,1,3,1],"shape":["dot","dot","dot","triangle"]},"edges":{"from":["lm_coef_mtcars","mtcars_mod","fit_model","mtcars_mod"],"to":["plot_mtcats","plot_mtcats","lm_coef_mtcars","lm_coef_mtcars"],"arrows":["to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"physics":{"stabilization":false},"interaction":{"zoomSpeed":1},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":true,"hoverNearest":false,"degree":{"from":1,"to":1},"algorithm":"hierarchical","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"right","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Up to date","Stem","Function"],"color":["#354823","#899DA4","#899DA4"],"shape":["dot","dot","triangle"]},"nodesToDataframe":true},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<p><a href="https://books.ropensci.org/targets/" class="uri">https://books.ropensci.org/targets/</a></p>
-<p><a href="https://raps-with-r.dev/targets.html" class="uri">https://raps-with-r.dev/targets.html</a></p>
+<p>targetsパッケージには、他にも多くの機能があります。充実した<a href="https://books.ropensci.org/targets/">ドキュメント</a>から、さまざまな機能を学ぶことが可能です。 さらに<a href="@isbn9784297125240">igjitら (2022)</a>や<a href="https://raps-with-r.dev/targets.html">Bruno (2023)</a>にも、targetsパッケージの使い方について解説されています。</p>
 </section>
 </section>
-<section id="targetopia" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="targetopia"><span class="header-section-number">7.3</span> targetopia</h2>
-<p>targetsを始めとしたパッケージ群</p>
+<section id="targetopia" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="targetopia"><span class="header-section-number">7.2</span> targetopia</h2>
+<p>targetsパッケージには、targetsのパイプラインの枠組みを拡張するパッケージがいくつかあります。 targetsパッケージのフレームワークを利用することで、さまざまな用途・分野に合わせて調整された機能を提供しています。 これらのパッケージ群は<a href="https://wlandau.github.io/targetopia/">targetopia</a>と呼ばれます。</p>
+<p>以下は、targetopiaに含まれるパッケージの例です。</p>
 <ul>
-<li>stantargets</li>
-<li>tarchetypes</li>
-<li><a href="https://github.com/njtierney/geotargets">geotargets</a></li>
+<li>tarchetypes… ターゲットのグループ・パラメータ化やR Markdown、Quartoを使ったドキュメント生成のための機能を提供する</li>
+<li>stantargets… Stanモデルを含む、ベイズデータ分析のためのターゲットを作成する機能を提供する</li>
+<li><a href="https://github.com/njtierney/geotargets">geotargets</a>… 地理空間データの処理に特化し機能を提供する</li>
 </ul>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-isbn9784297125240" class="csl-entry" role="listitem">
-igjit, atusy, と hanaori. 2022. <em>Rが生産性を高める : データ分析ワークフロー効率化の実践</em>. 技術評論社. <a href="https://ndlsearch.ndl.go.jp/books/R100000002-I031915796">https://ndlsearch.ndl.go.jp/books/R100000002-I031915796</a>.
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->

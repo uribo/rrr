@@ -222,12 +222,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#パッケージの管理" id="toc-パッケージの管理" class="nav-link" data-scroll-target="#パッケージの管理"><span class="header-section-number">6.1.2</span> パッケージの管理</a></li>
   <li><a href="#パッケージの追加削除" id="toc-パッケージの追加削除" class="nav-link" data-scroll-target="#パッケージの追加削除"><span class="header-section-number">6.1.3</span> パッケージの追加・削除</a></li>
   <li><a href="#パッケージの復元" id="toc-パッケージの復元" class="nav-link" data-scroll-target="#パッケージの復元"><span class="header-section-number">6.1.4</span> パッケージの復元</a></li>
+  <li><a href="#パッケージの更新" id="toc-パッケージの更新" class="nav-link" data-scroll-target="#パッケージの更新"><span class="header-section-number">6.1.5</span> パッケージの更新</a></li>
   </ul></li>
   <li><a href="#pointblankパッケージ" id="toc-pointblankパッケージ" class="nav-link" data-scroll-target="#pointblankパッケージ"><span class="header-section-number">6.2</span> pointblankパッケージ</a>
   <ul class="collapse">
-  <li><a href="#データ検査の基本" id="toc-データ検査の基本" class="nav-link" data-scroll-target="#データ検査の基本"><span class="header-section-number">6.2.1</span> データ検査の基本</a></li>
-  <li><a href="#エージェントによる検査とレポートの作成" id="toc-エージェントによる検査とレポートの作成" class="nav-link" data-scroll-target="#エージェントによる検査とレポートの作成"><span class="header-section-number">6.2.2</span> エージェントによる検査とレポートの作成</a></li>
+  <li><a href="#データ検証の基本" id="toc-データ検証の基本" class="nav-link" data-scroll-target="#データ検証の基本"><span class="header-section-number">6.2.1</span> データ検証の基本</a></li>
+  <li><a href="#エージェントによる検証とレポートの作成" id="toc-エージェントによる検証とレポートの作成" class="nav-link" data-scroll-target="#エージェントによる検証とレポートの作成"><span class="header-section-number">6.2.2</span> エージェントによる検証とレポートの作成</a></li>
   <li><a href="#データのスキャン" id="toc-データのスキャン" class="nav-link" data-scroll-target="#データのスキャン"><span class="header-section-number">6.2.3</span> データのスキャン</a></li>
+  <li><a href="#その他のデータ検証パッケージ" id="toc-その他のデータ検証パッケージ" class="nav-link" data-scroll-target="#その他のデータ検証パッケージ"><span class="header-section-number">6.2.4</span> その他のデータ検証パッケージ</a></li>
   </ul></li>
   <li><a href="#pinsパッケージ" id="toc-pinsパッケージ" class="nav-link" data-scroll-target="#pinsパッケージ"><span class="header-section-number">6.3</span> pinsパッケージ</a></li>
   <li><a href="#configパッケージ" id="toc-configパッケージ" class="nav-link" data-scroll-target="#configパッケージ"><span class="header-section-number">6.4</span> configパッケージ</a></li>
@@ -366,71 +368,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="6.1.4" class="anchored" data-anchor-id="パッケージの復元"><span class="header-section-number">6.1.4</span> パッケージの復元</h3>
 <p>リモートリポジトリからのクローンや、他の環境からrenvを使ったプロジェクトで作業を始める際は、<code>renv::restore()</code>関数によって<code>renv.lock</code>に記録されたパッケージをインストールします。 これにより、プロジェクトで使われるパッケージが揃い、再現性の向上に役立ちます。 もし他のプロジェクトで同一パッケージの同一バージョンが利用されていた場合、キャッシュが使われるためにインストール時間が短縮されます。</p>
 </section>
+<section id="パッケージの更新" class="level3" data-number="6.1.5">
+<h3 data-number="6.1.5" class="anchored" data-anchor-id="パッケージの更新"><span class="header-section-number">6.1.5</span> パッケージの更新</h3>
+<p>データ分析を進めていくと、パッケージの新しいバージョンがリリースされることがあります。 これらのパッケージの更新は、<code>renv::update()</code>関数を使って行います。 個別のパッケージを指定して、更新を確認することもできますが、引数に何も指定しない場合は、<code>renv.lock</code>に記録された全てのパッケージに対して更新の有無を確認します。</p>
+<p><code>renv.lock</code>に記録されたバージョンと異なるバージョンがCRANやGitHubに登録されている場合、renvは更新を促すメッセージを表示します。 <code>renv::snapshot()</code>関数のときと同様、<code>[0.1.0 -&gt; 0.1.1]</code>のように具体的なバージョンの変更が表示されます。 更新を行うかどうかはユーザーの判断で行います。 また、更新したバージョンの<code>renv.lock</code>への反映は、<code>renv::snapshot()</code>関数を実行することで行われます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># パッケージの更新を確認</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">update</span>()</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; - Checking for updated packages ... Done!</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; - All packages appear to be up-to-date.</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>この例では、すべてのパッケージが最新であり、更新が必要なものはないと表示されています。</p>
+</section>
 </section>
 <section id="pointblankパッケージ" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="pointblankパッケージ"><span class="header-section-number">6.2</span> pointblankパッケージ</h2>
 <p>データ分析を行う上で、データは変化することがあります。 特定のデータについて問題が見つかったために除外されたり、新たなデータが得られたりすることがあるからです。 データが更新されること自体は珍しいことではありませんが、変更内容によっては分析結果に大きく影響を及ぼすことがあり、注意が必要です。</p>
 <p>また、データ分析の過程で、データの品質に問題が生じることもあります。 これには、予想外の値や欠損値の混入、データの形式の不整合などが含まれます。 これらの問題に気がつかないまま分析を進めると、誤った結果を導くことになりかねません。 そのため、データの品質は常に確認しておくべきです。</p>
-<p>次に紹介するパッケージは、データの品質を検証するpointblankパッケージです。 データフレームに対して、事前に用意したさまざまな検査関数を適用することで、データの変化による問題を検知することを可能にします。</p>
+<p>次に紹介するパッケージは、データの品質を検証するpointblankパッケージです。 データフレームに対して、事前に用意したさまざまな検証関数を適用することで、データの変化による問題を検知することを可能にします。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pointblankパッケージの読み込み</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pointblank)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pointblankパッケージの読み込み</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pointblank)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>pointblankパッケージによる検査は、その場での実行と、レポート形式での出力の2つの方法で行われます。 検査対象は、ローカル環境にあるデータフレームが前提となりますが、データベースやSparkなどのリモートデータに対しても検査が可能です。</p>
-<p>多様な検査関数や、出力形式、リモートデータの指定などの詳細は、<a href="https://rstudio.github.io/pointblank/">公式ドキュメント</a>を参照してください。 ここではまず、pointblankによるデータ検査の基本的な手順を紹介します。</p>
-<p>例として、mtcarsデータを対象にデータ検査を行いますが、準備として以下の処理で、行名をcar列として取り扱うようにし、tibble形式に変換しておきます。</p>
+<p>pointblankパッケージによる検証は、その場での実行と、レポート形式での出力の2つの方法で行われます。 検証対象は、ローカル環境にあるデータフレームが前提となりますが、データベースやSparkなどのリモートデータに対しても検証が可能です。</p>
+<p>多様な検証関数や、出力形式、リモートデータの指定などの詳細は、<a href="https://rstudio.github.io/pointblank/">公式ドキュメント</a>を参照してください。 ここではまず、pointblankによるデータ検証の基本的な手順を紹介します。</p>
+<p>例として、mtcarsデータを対象にデータ検証を行いますが、準備として以下の処理で、行名をcar列として取り扱うようにし、tibble形式に変換しておきます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mtcars_mod <span class="ot">&lt;-</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  mtcars <span class="sc">|&gt;</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">"car"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mtcars_mod <span class="ot">&lt;-</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  mtcars <span class="sc">|&gt;</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">"car"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="データ検査の基本" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="データ検査の基本"><span class="header-section-number">6.2.1</span> データ検査の基本</h3>
-<p>pointblankのデータ検査は、データフレームに検査関数を適用する形で実行されます。 検査関数は、データの品質・状態を確認するための関数で、データの行数や列数、特定の列の値の範囲などを検査します。 以下のコードでは、<code>row_count_match()</code>関数を使って、データフレームの行数が指定した値と一致するかどうかを確認しています。 予期された件数と一致する場合、検査は成功となり、データフレームの内容が返却されます。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mtcars_mod <span class="sc">|&gt;</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_count_match</span>(<span class="dv">32</span>L)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>では、検査に失敗するとどうなるか見てみましょう。 次のコードでは、<code>col_vals_between()</code>関数を使って、<code>disp</code>列の値が75から470の範囲に収まるかを検査しています。</p>
+<section id="データ検証の基本" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="データ検証の基本"><span class="header-section-number">6.2.1</span> データ検証の基本</h3>
+<p>pointblankのデータ検証は、データフレームに検証関数を適用する形で実行されます。 検証関数は、データの品質・状態を確認するための関数で、データの行数や列数、特定の列の値の範囲などを検証します。 以下のコードでは、<code>row_count_match()</code>関数を使って、データフレームの行数が指定した値と一致するかどうかを確認しています。 予期された件数と一致する場合、検証は成功となり、データフレームの内容が返却されます。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mtcars_mod <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">col_vals_between</span>(<span class="fu">vars</span>(disp), <span class="dv">75</span>, <span class="dv">470</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_count_match</span>(<span class="dv">32</span>L)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>では、検証に失敗するとどうなるか見てみましょう。 次のコードでは、<code>col_vals_between()</code>関数を使って、<code>disp</code>列の値が75から470の範囲に収まるかを検証しています。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mtcars_mod <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">col_vals_between</span>(<span class="fu">vars</span>(disp), <span class="dv">75</span>, <span class="dv">470</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error: Exceedance of failed test units where values in `disp` should have been between `75` and `470`.
 The `col_vals_between()` validation failed beyond the absolute threshold level (1).
 * failure level (2) &gt;= failure threshold (1)</code></pre>
 </div>
 </div>
-<p>エラーメッセージが出力され、処理が停止しました。 pointblankによる検査は、事前に用意したデータの品質と相違がある場合、エラーを返すことで問題を通知します。 これにより、意図しないデータの変更を防ぎ、分析結果の信頼性を高めることができます。</p>
+<p>エラーメッセージが出力され、処理が停止しました。 pointblankによる検証は、事前に用意したデータの品質と相違がある場合、エラーを返すことで問題を通知します。 これにより、意図しないデータの変更を防ぎ、分析結果の信頼性を高めることができます。</p>
 <p>実際にmtcarsデータのdispの範囲がどうなっているか、確認し、先ほどのコードを修正してみましょう。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(mtcars_mod<span class="sc">$</span>disp)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(mtcars_mod<span class="sc">$</span>disp)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  71.1 472.0</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># range()関数の出力に基づき、範囲を修正する</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>mtcars_mod <span class="sc">|&gt;</span> </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">col_vals_between</span>(<span class="fu">vars</span>(disp), <span class="dv">71</span>, <span class="dv">472</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>今度は問題なく検査が完了しました。</p>
-<p>検査関数は、複数の関数を組合せて使うこともできます。 パイプ演算子を用いてコードを記述すると、検査の手順が明確になり、データの品質を確認しやすくなります。 行数と範囲の検査を一つの処理で実行します。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mtcars_mod <span class="sc">|&gt;</span> </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_count_match</span>(<span class="dv">32</span>L) <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># range()関数の出力に基づき、範囲を修正する</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>mtcars_mod <span class="sc">|&gt;</span> </span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">col_vals_between</span>(<span class="fu">vars</span>(disp), <span class="dv">71</span>, <span class="dv">472</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>検査で不備が見つかるとエラーになることは既に確認しましたが、 複数の検査項目について検査を行う場合には、処理を継続させる必要があります。 そのためのオプションとして、actions引数での検査診断結果の閾値を調整できます。 actions引数には、<code>action_levels()</code>関数あるいは<code>warn_on_fail()</code>関数などのヘルパー関数を与えて、検査結果に対するアクションを指定します。</p>
+<p>今度は問題なく検証が完了しました。</p>
+<p>検証関数は、複数の関数を組合せて使うこともできます。 パイプ演算子を用いてコードを記述すると、検証の手順が明確になり、データの品質を確認しやすくなります。 行数と範囲の検証を一つの処理で実行します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># warn_on_fail()関数でも同様</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>al <span class="ot">&lt;-</span> </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">action_levels</span>(<span class="at">warn_at =</span> <span class="dv">1</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 検査は失敗するが、エラーではなく警告として処理される。</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>mtcars_mod <span class="sc">|&gt;</span> </span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">col_vals_between</span>(<span class="fu">vars</span>(disp), <span class="dv">75</span>, <span class="dv">470</span>, <span class="at">actions =</span> al)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mtcars_mod <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_count_match</span>(<span class="dv">32</span>L) <span class="sc">|&gt;</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">col_vals_between</span>(<span class="fu">vars</span>(disp), <span class="dv">71</span>, <span class="dv">472</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>検証で不備が見つかるとエラーになることは既に確認しましたが、 複数の検証項目について検証を行う場合には、処理を継続させる必要があります。 そのためのオプションとして、actions引数での検証診断結果の閾値を調整できます。 actions引数には、<code>action_levels()</code>関数あるいは<code>warn_on_fail()</code>関数などのヘルパー関数を与えて、検証結果に対するアクションを指定します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># warn_on_fail()関数でも同様</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>al <span class="ot">&lt;-</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">action_levels</span>(<span class="at">warn_at =</span> <span class="dv">1</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 検証は失敗するが、エラーではなく警告として処理される。</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>mtcars_mod <span class="sc">|&gt;</span> </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">col_vals_between</span>(<span class="fu">vars</span>(disp), <span class="dv">75</span>, <span class="dv">470</span>, <span class="at">actions =</span> al)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Exceedance of failed test units where values in `disp` should have been between `75` and `470`.
 The `col_vals_between()` validation failed beyond the absolute threshold level (1).
@@ -438,26 +452,26 @@ The `col_vals_between()` validation failed beyond the absolute threshold level (
 </div>
 </div>
 </section>
-<section id="エージェントによる検査とレポートの作成" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="エージェントによる検査とレポートの作成"><span class="header-section-number">6.2.2</span> エージェントによる検査とレポートの作成</h3>
-<p>次に、エージェントと呼ばれる仕組みを用いて、データ検査を行う方法を紹介します。 エージェントを利用することで、検査結果をレポートとして出力することができます。</p>
-<p>はじめに<code>creat_agent()</code>関数でエージェントを作成し、その後検査関数を適宜追加していきます。</p>
+<section id="エージェントによる検証とレポートの作成" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="エージェントによる検証とレポートの作成"><span class="header-section-number">6.2.2</span> エージェントによる検証とレポートの作成</h3>
+<p>次に、エージェントと呼ばれる仕組みを用いて、データ検証を行う方法を紹介します。 エージェントを利用することで、検証結果をレポートとして出力することができます。</p>
+<p>はじめに<code>creat_agent()</code>関数でエージェントを作成し、その後検証関数を適宜追加していきます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>al <span class="ot">&lt;-</span> <span class="fu">action_levels</span>(<span class="at">warn_at =</span> <span class="fl">0.1</span>, <span class="at">stop_at =</span> <span class="fl">0.2</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>agent <span class="ot">&lt;-</span> </span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">create_agent</span>(mtcars_mod,</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">label =</span> <span class="st">"pointblankによるデータ品質検査"</span>,</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">actions =</span> al) <span class="sc">|&gt;</span> </span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">col_vals_not_null</span>(<span class="fu">vars</span>(mpg)) <span class="sc">|&gt;</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">col_vals_in_set</span>(car, <span class="at">set =</span> <span class="fu">c</span>(<span class="st">"Merc 450SL"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">col_is_numeric</span>(<span class="fu">vars</span>(cyl, vs, am, gear)) <span class="sc">|&gt;</span> </span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">col_is_factor</span>(<span class="fu">vars</span>(carb)) <span class="sc">|&gt;</span> </span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">col_exists</span>(price)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>al <span class="ot">&lt;-</span> <span class="fu">action_levels</span>(<span class="at">warn_at =</span> <span class="fl">0.1</span>, <span class="at">stop_at =</span> <span class="fl">0.2</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>agent <span class="ot">&lt;-</span> </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">create_agent</span>(mtcars_mod,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">label =</span> <span class="st">"pointblankによるデータ品質検証"</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">actions =</span> al) <span class="sc">|&gt;</span> </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">col_vals_not_null</span>(<span class="fu">vars</span>(mpg)) <span class="sc">|&gt;</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">col_vals_in_set</span>(car, <span class="at">set =</span> <span class="fu">c</span>(<span class="st">"Merc 450SL"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">col_is_numeric</span>(<span class="fu">vars</span>(cyl, vs, am, gear)) <span class="sc">|&gt;</span> </span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">col_is_factor</span>(<span class="fu">vars</span>(carb)) <span class="sc">|&gt;</span> </span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">col_exists</span>(price)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>検査項目の追加が完了したら、<code>interrogate()</code>関数を使って検査を実行します。 検査が完了すると、検査結果がレポート<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>として出力されます。</p>
+<p>検証項目の追加が完了したら、<code>interrogate()</code>関数を使って検証を実行します。 検証が完了すると、検証結果がレポート<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>として出力されます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interrogate</span>(agent)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interrogate</span>(agent)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="pb_agent" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -937,7 +951,7 @@ The `col_vals_between()` validation failed beyond the absolute threshold level (
 <th colspan="14" class="gt_heading gt_title gt_font_normal" style="text-align: left; color: #444444; font-size: 28px; font-weight: 500;">Pointblank Validation</th>
 </tr>
 <tr class="odd gt_heading">
-<th colspan="14" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="text-align: left; font-size: 12px;"><span style="text-decoration-style:solid;text-decoration-color:#ADD8E6;text-decoration-line:underline;text-underline-position:under;color:#333333;font-variant-numeric:tabular-nums;padding-left:4px;margin-right:5px;padding-right:2px;">pointblankによるデータ品質検査</span>
+<th colspan="14" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="text-align: left; font-size: 12px;"><span style="text-decoration-style:solid;text-decoration-color:#ADD8E6;text-decoration-line:underline;text-underline-position:under;color:#333333;font-variant-numeric:tabular-nums;padding-left:4px;margin-right:5px;padding-right:2px;">pointblankによるデータ品質検証</span>
 <div style="height:25px;padding-top:10px;">
 <span style="background-color:#F1D35A;color:#222222;padding:0.5em 0.5em;position:inherit;text-transform:uppercase;margin:5px 0px 5px 5px;font-weight:bold;border:solid 1px #F1D35A;padding:2px 15px 2px 15px;font-size:smaller;">tibble</span> <span style="background-color:none;color:#222222;padding:0.5em 0.5em;position:inherit;margin:5px 10px 5px -4px;font-weight:bold;border:solid 1px #F1D35A;padding:2px 15px 2px 15px;font-size:smaller;">mtcars_mod</span><span style="background-color:#E5AB00;color:white;padding:0.5em 0.5em;position:inherit;text-transform:uppercase;margin:5px 0px 5px 5px;font-weight:bold;border:solid 1px #E5AB00;padding:2px 15px 2px 15px;font-size:smaller;">WARN</span> <span style="background-color:none;color:#333333;padding:0.5em 0.5em;position:inherit;margin:5px 0px 5px -4px;font-weight:bold;border:solid 1px #E5AB00;padding:2px 15px 2px 15px;font-size:smaller;">0.10</span> <span style="background-color:#D0182F;color:white;padding:0.5em 0.5em;position:inherit;text-transform:uppercase;margin:5px 0px 5px 1px;font-weight:bold;border:solid 1px #D0182F;padding:2px 15px 2px 15px;font-size:smaller;">STOP</span> <span style="background-color:none;color:#333333;padding:0.5em 0.5em;position:inherit;margin:5px 0px 5px -4px;font-weight:bold;border:solid 1px #D0182F;padding:2px 15px 2px 15px;font-size:smaller;">0.20</span> <span style="background-color:#499FFE;color:white;padding:0.5em 0.5em;position:inherit;text-transform:uppercase;margin:5px 0px 5px 1px;font-weight:bold;border:solid 1px #499FFE;padding:2px 15px 2px 15px;font-size:smaller;">NOTIFY</span> <span style="background-color:none;color:#333333;padding:0.5em 0.5em;position:inherit;margin:5px 0px 5px -4px;font-weight:bold;border:solid 1px #499FFE;padding:2px 15px 2px 15px;font-size:smaller;">—</span>
 </div></th>
@@ -1248,7 +1262,7 @@ col_exists
 </tr>
 </tbody><tfoot class="gt_sourcenotes">
 <tr class="odd">
-<td colspan="14" class="gt_sourcenote"><p><span style="background-color:#FFF;color:#444;padding:0.5em 0.5em;position:inherit;text-transform:uppercase;margin-left:10px;border:solid 1px #999999;font-variant-numeric:tabular-nums;border-radius:0;padding:2px 10px 2px 10px;padding:2px 10px 2px 10px;">2024-08-30 15:58:56 UTC</span> <span style="background-color:#FFF;color:#444;padding:0.5em 0.5em;position:inherit;margin:5px 1px 5px 0;border:solid 1px #999999;font-variant-numeric:tabular-nums;border-radius:0;padding:2px 10px 2px 10px;">&lt; 1 s</span> <span style="background-color:#FFF;color:#444;padding:0.5em 0.5em;position:inherit;text-transform:uppercase;margin:5px 1px 5px -1px;border:solid 1px #999999;font-variant-numeric:tabular-nums;border-radius:0;padding:2px 10px 2px 10px;">2024-08-30 15:58:56 UTC</span></p></td>
+<td colspan="14" class="gt_sourcenote"><p><span style="background-color:#FFF;color:#444;padding:0.5em 0.5em;position:inherit;text-transform:uppercase;margin-left:10px;border:solid 1px #999999;font-variant-numeric:tabular-nums;border-radius:0;padding:2px 10px 2px 10px;padding:2px 10px 2px 10px;">2024-08-30 18:03:31 UTC</span> <span style="background-color:#FFF;color:#444;padding:0.5em 0.5em;position:inherit;margin:5px 1px 5px 0;border:solid 1px #999999;font-variant-numeric:tabular-nums;border-radius:0;padding:2px 10px 2px 10px;">&lt; 1 s</span> <span style="background-color:#FFF;color:#444;padding:0.5em 0.5em;position:inherit;text-transform:uppercase;margin:5px 1px 5px -1px;border:solid 1px #999999;font-variant-numeric:tabular-nums;border-radius:0;padding:2px 10px 2px 10px;">2024-08-30 18:03:31 UTC</span></p></td>
 </tr>
 </tfoot>
 
@@ -1260,7 +1274,7 @@ col_exists
 </section>
 <section id="データのスキャン" class="level3" data-number="6.2.3">
 <h3 data-number="6.2.3" class="anchored" data-anchor-id="データのスキャン"><span class="header-section-number">6.2.3</span> データのスキャン</h3>
-<p>検査関数を用意するには、事前にデータの状態を把握しておかなくてはなりません。 列の多いデータフレームでこれを行おうとすると手間がかかります。 そこで<code>scan_data()</code>関数の利用が有効です。 <code>scan_data()</code>関数は、データを分析し、検査に役立つ以下の項目を抽出し、レポートにまとめます。</p>
+<p>検証関数を用意するには、事前にデータの状態を把握しておかなくてはなりません。 列の多いデータフレームでこれを行おうとすると手間がかかります。 そこで<code>scan_data()</code>関数の利用が有効です。 <code>scan_data()</code>関数は、データを分析し、検証に役立つ以下の項目を抽出し、レポートにまとめます。</p>
 <ul>
 <li>概要 (Overview): データのサイズ、欠損値を含む行数、重複のある行数、列の種類</li>
 <li>変数 (Variables): 変数の要約統計量</li>
@@ -1271,9 +1285,13 @@ col_exists
 </ul>
 <p>レポートに含める項目は、必要に応じて取捨選択や並び替えが可能です。 <code>scan_data()</code>関数のsections引数を使用すると、特定の項目だけを指定できるようになります。 指定される内容は、対象とする各項目の大文字頭文字を組み合わせた文字列です。 既定値として、すべての項目を含める”OVICMS”が与えられていますが、例えば概要と変数のみをレポートにまとめるのであれば”OV”を指定します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データの概要と変数についてレポートを行う</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scan_data</span>(mtcars_mod, <span class="at">sections =</span> <span class="st">"OV"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データの概要と変数についてレポートを行う</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scan_data</span>(mtcars_mod, <span class="at">sections =</span> <span class="st">"OV"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="その他のデータ検証パッケージ" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="その他のデータ検証パッケージ"><span class="header-section-number">6.2.4</span> その他のデータ検証パッケージ</h3>
+<p>pointblankは、データ検証のためのパッケージの一つですが、他にも多くのパッケージが存在します。 validateパッケージは、pointblankと同様にデータフレームに対する検証を可能としますが、シンプルな関数の中での細かな検査項目の指定を行う点が特徴です。 検査結果を示すグラフの描画機能も備えています。 このパッケージの使い方について、<a href="@isbn9784320114630">Mark van der Loo and Edwin de Jonge（地道ら訳）(2022)</a>に詳しく書かれています。</p>
 </section>
 </section>
 <section id="pinsパッケージ" class="level2" data-number="6.3">
