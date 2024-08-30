@@ -2,10 +2,305 @@
 
 targetsパッケージ
 
+Makefile
+
 再実行する必要があります。
+
+データ分析は反復的なプロセスです。
+作業が完結し、結果を出したと思っていても、新しいデータが与えられたり、モデルが更新されたら、改めて分析結果を求めなくてはいけません。
+この過程で特に厄介なのが、再実行に伴う時間や作業手順の破壊です。
+
+作業手順の破壊とは、結果を導くまでの手順が複雑であるために、再実行時に誤った手順で
+
+やり直し
+
+「シーシュポスの岩」
 
 @isbn9784297125240
 
+## パイプライン
+
+```{r}
+#| eval: false
+#| echo: true
+install.packages(c("targets"))
+```
+
+## targets
+
+```{r}
+library(targets)
+```
+
+パイプラインを構成、定義するファイルが必要になります。
+これは原則として`_targets.R`というファイル名にします。
+
+```{{r}}
+# _targets.R
+library(targets)
+source(here::here("src/functions.R"))
+tar_option_set(packages = c("tibble"))
+list(
+  tar_target(
+    mtcars_mod,
+    mtcars |> 
+      rowid_to_column(var = "car") |> 
+      as_tibble()
+  )
+)
+```
+
+`_targets.R`をパイプラインとして正しく機能させるには、いくつかの要件があります。
+
+1. targetsパッケージ自身の読み込み（`tar_target()`などの関数を利用するため）
+2. パイプラインの実行に必要なパッケージ、関数の読み込み。`tar_option_set()`関数のpackages引数で指定するか、`source()`関数で関数を読み込むか、名前空間を宣言した上で利用する必要があります。
+3. パイプライン本体。`list()`関数で囲まれた内容がパイプラインの本体と見なされます。`list()`関数の要素として、`tar_target()`関数でターゲットを定義します。`tar_target()`関数の第一引数はターゲットの名前です。第二引数には、ターゲットを生成するためのコードを記述します。
+
+
+<!-- `tar_option_set()`関数では、パッケージの指定だけでなく、デフォルトの保存形式の指定などを行うためにも利用します。 -->
+
+上記のシンプルな`_targets.R`には、一つのターゲットが含まれます。
+パイプライン構築の手順は、このように一つ一つのターゲットを定義していくことになります。
+
+### パイプラインの実行
+
+`_targets.R`が完成したら、`tar_make()`関数を実行してパイプラインを実行します。
+パイプラインは起動中のセッションとは別のプロセスで実行されるため、一からパイプラインの構築が行われることになります。
+再現可能なパイプラインであった場合、targetsはエラーを吐かずに終了します。
+
+```{r}
+#| eval: false
+#| echo: true
+tar_make()
+#> ▶ dispatched target mtcars_mod
+#> ● completed target mtcars_mod [0.007 seconds]
+#> ▶ ended pipeline [0.048 seconds]
+```
+
+`_targets.R`で定義されたターゲットの生成の様子が表示されています。
+末尾に`ended pipeline`と表示されれば、パイプラインの実行が正常に終了したことを表します。
+
+パイプラインが構築されると、`_targets/`フォルダにその情報が記録されます。
+ここには`objects`フォルダがあり、`tar_target()`関数で定義し、`tar_make()`関数によって再現されたターゲットが保存されています。
+
+作成されたターゲットを利用するには、`tar_load()`関数あるいは`tar_read()`関数を使います。
+例えば、この段階ではパイプライン上の`mtcars_mod`は利用できません。
+`mtcars_mod`は`_targets/objects`に保存されているためです。
+`tar_load()`関数を使って、作業空間にターゲットを読み込んでみましょう。
+
+```{r}
+#| error: true
+# ターゲットは読み込まれていない
+mtcars_mod
+
+# ターゲットの読み込み
+tar_load(mtcars_mod)
+head(mtcars_mod)
+```
+
+一時的にオブジェクトを表示する、あるいはターゲットとは別の名前でオブジェクトを保存するときには`tar_read()`関数を使います。
+`tar_read()`関数で読み込まれたターゲットは、作業空間には保存されません。
+
+```{r}
+tar_read(mtcars_mod) |> 
+  head()
+```
+
+### パイプラインの変更
+
+最初のターゲットが正しく生成されたことを確認したので、パイプラインに処理を追加しましょう。
+ここでは最初の`_targets.R`の状態から、2つのターゲットを追加し、以下のターゲットが含まれます。
+
+- `mtcars_mod`: 最初に定義したターゲット。以前の状態と変わりありません。
+- `lm_coef_mtcars`: データに対して`lm()`関数を適用し、その係数を`coefficients()`関数で取得します。
+- `plot_mtcats`: `ggplot2`パッケージを使って、データをプロットします。その上で`lm_coef_mtcars`を使って回帰直線を引きます。
+
+```{{r}}
+# _targets.R (2)
+library(targets)
+tar_option_set(packages = c("tibble", "ggplot2"))
+list(
+  tar_target(
+    mtcars_mod,
+    mtcars |> 
+      tibble::rowid_to_column(var = "car") |> 
+      tibble::as_tibble()
+  ),
+  tar_target(
+    lm_coef_mtcars,
+    lm(mpg ~ wt, data = mtcars_mod) |> 
+      coefficients()
+  ),
+  tar_target(
+    plot_mtcats,
+    ggplot(data = mtcars_mod) +
+      aes(wt, mpg) +
+      geom_point(color = "red") +
+      geom_abline(intercept = lm_coef_mtcars[1], slope = lm_coef_mtcars[2])
+  )
+)
+```
+
+パイプラインが更新されたら`tar_make()`関数を再度実行します。
+
+```{r}
+#| eval: false
+#| echo: true
+# パイプラインの再実行
+tar_make()
+#> ✔ skipped target mtcars_mod
+#> ▶ dispatched target lm_coef_mtcars
+#> ● completed target lm_coef_mtcars [0.001 seconds]
+#> ▶ dispatched target plot_mtcats
+#> ● completed target plot_mtcats [0.009 seconds]
+#> ▶ ended pipeline [0.263 seconds]
+```
+
+ここで大事なことは、依存関係を含めて変更のないターゲットは、再実行されないという点です。
+この例では、`mtcars_mod`を生成する処理が変更されていない限り、以前の結果が再利用されることを意味します。
+出力を確認すると、`mtcars_mod`の生成に関わるパイプラインがスキップされていることがわかります。
+
+targetsパッケージには、パイプラインの変更に伴う再実行が必要な処理を自動的に判定する機能があります。
+作成、再実行が必要なターゲットのみを対象に処理が行われるため、オブジェクトを作り直す手間が省け、効率的なデータ分析が実現します。
+
+### パイプラインの可視化
+
+targetsパッケージのパイプライン構築は、`_targets.R`に記載されたターゲットの変更と依存関係に基づいて行われます。
+ここでもう一度、パイプラインに変更を加えてみましょう。
+`lm_coef_mtcars`の生成を自作関数に置き換えるという内容に置き換えます。
+
+```{{r}}
+# src/functions.R
+fit_model <- function(formula, data) {
+  lm(formula, data = data) |> 
+    coefficients()
+}
+```
+
+
+```{{r}}
+# _targets.R (3)
+library(targets)
+source(here::here("src/functions.R"))
+tar_option_set(packages = c("tibble", "ggplot2"))
+list(
+  tar_target(
+    mtcars_mod,
+    mtcars |> 
+      tibble::rowid_to_column(var = "car") |> 
+      tibble::as_tibble()
+  ),
+  tar_target(
+    lm_coef_mtcars,
+    fit_model(mpg ~ wt, data = mtcars_mod)
+  ),
+  tar_target(
+    plot_mtcats,
+    ggplot(data = mtcars_mod) +
+      aes(wt, mpg) +
+      geom_point(color = "red") +
+      geom_abline(intercept = lm_coef_mtcars[1], slope = lm_coef_mtcars[2])
+  )
+)
+```
+
+このパイプラインで、影響のあるターゲットは何でしょうか。
+答えは`lm_coef_mtcars`自身とそれを利用する`plot_mtcats`の2つです。
+`tar_make()`関数を実行すると、これらのターゲットが再実行されることになります。
+
+targetsパッケージには、いくつかのパイプラインの可視化機能があります。
+これらの機能を利用して、パイプラインの構造を把握してみましょう。
+
+`tar_mermaid()`や`tar_visnetwork()`関数は、パイプラインの依存関係をグラフ形式で表示します。
+以下は`tar_mermaid()`関数でパイプラインのグラフをmermaid形式で表示したものです。
+`Outdated`と表示されているターゲットは、再実行が必要なターゲットを示しています。
+
+```{r}
+#| eval: false
+#| echo: true
+tar_mermaid()
+```
+
+<!-- ![](https://i.gyazo.com/1b8f6447dc09c9ce48b7b2588eaeaa5e.jpg) -->
+
+```{mermaid}
+graph LR   
+    style Legend fill:#FFFFFF00,stroke:#000000;
+    style Graph fill:#FFFFFF00,stroke:#000000;
+    subgraph Legend
+        direction LR
+        x2db1ec7a48f65a9b(["Outdated"]):::outdated --- xf1522833a4d242c5(["Up to date"]):::uptodate
+        xf1522833a4d242c5(["Up to date"]):::uptodate --- xd03d7c7dd2ddda2b(["Stem"]):::none
+        xd03d7c7dd2ddda2b(["Stem"]):::none --- xeb2d7cac8a1ce544>"Function"]:::none
+    end
+
+    subgraph Graph
+        direction LR
+        x4496d6b18b9b395a(["lm_coef_mtcars"]):::outdated --> x3fe6ea6b43f61067(["plot_mtcats"]):::outdated
+        x5dc2b28b4b042e08(["mtcars_mod"]):::uptodate --> x3fe6ea6b43f61067(["plot_mtcats"]):::outdated
+        x12e88730e39644dc>"fit_model"]:::uptodate --> x4496d6b18b9b395a(["lm_coef_mtcars"]):::outdated
+        x5dc2b28b4b042e08(["mtcars_mod"]):::uptodate --> x4496d6b18b9b395a(["lm_coef_mtcars"]):::outdated
+    end
+    classDef outdated stroke:#000000,color:#000000,fill:#78B7C5;
+    classDef uptodate stroke:#000000,color:#ffffff,fill:#354823;
+    classDef none stroke:#000000,color:#000000,fill:#94a4ac;
+    linkStyle 0 stroke-width:0px;
+    linkStyle 1 stroke-width:0px;
+    linkStyle 2 stroke-width:0px;
+```
+
+`tar_outdated()`関数でもパイプラインの変更による影響を受けるターゲットを確認できます。
+
+```{r}
+#| eval: false
+#| echo: true
+tar_outdated()
+#> [1] "plot_mtcats"    "lm_coef_mtcars"
+```
+
+それでは`tar_make()`を実行します。
+グラフや`tar_outdated()`関数で示されたターゲットが再構築される様子が観察できます。
+
+```{r}
+#| eval: false
+#| echo: true
+tar_make()
+#> ✔ skipped target mtcars_mod
+#> ▶ dispatched target lm_coef_mtcars
+#> ● completed target lm_coef_mtcars [0.002 seconds]
+#> ▶ dispatched target plot_mtcats
+#> ● completed target plot_mtcats [0.091 seconds]
+#> ▶ ended pipeline [0.406 seconds]
+```
+
+ここでパイプラインは完成です。
+`_targets.R`に変更を加えない限り、作成したターゲットは`tar_read()`や`tar_load()`関数でいつでも利用できます。
+グラフの状態も改めて確認しておきましょう。
+
+```{r}
+#| include: false
+# github-pagesデプロイ用。表示の前に実行しておく。
+tar_make()
+```
+
+```{r}
+# 最後のtar_make()。変更がないため、すべてのターゲットがスキップされる
+tar_make()
+```
+
+```{r}
+tar_visnetwork()
+```
+
+
+<https://books.ropensci.org/targets/>
+
+<https://raps-with-r.dev/targets.html>
+
 ## targetopia
 
+targetsを始めとしたパッケージ群
+
+- stantargets
 - tarchetypes
+- [geotargets](https://github.com/njtierney/geotargets)

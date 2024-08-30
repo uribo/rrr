@@ -1,0 +1,6 @@
+name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+.Random.seed|object|bff28089ca155e12|||||||||||||||
+fit_model|function|267a4d010da91f3f|||||||||||||||
+lm_coef_mtcars|stem|dfccadc0307f5033|7a9e0dd60e855565|cc5d803fd14673b4|-1824708192||t19965.3506510623s|813d84234e908062|109|rds|local|vector|||0.002||
+mtcars_mod|stem|b1a7bfb7e7b019f9|0156901d7fe39909|2c530c1562a7fbd1|301753890||t19965.3136335293s|b4cdb46e25c2abb4|950|rds|local|vector|||0.134||
+plot_mtcats|stem|7d2af81190c55054|218e8d0a1518552b|2bf2a95b69940165|1157452211||t19965.3506525228s|66796e974745ba11|89412|rds|local|vector|||0.091||
