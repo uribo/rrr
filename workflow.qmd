@@ -32,6 +32,12 @@ install.packages(c("targets"))
 library(targets)
 ```
 
+```{r}
+#| include: false
+# github-pagesデプロイ用。表示の前に実行しておく。
+tar_make()
+```
+
 パイプラインを構成、定義するファイルが必要になります。
 これは原則として`_targets.R`というファイル名にします。
 
@@ -276,12 +282,6 @@ tar_make()
 ここでパイプラインは完成です。
 `_targets.R`に変更を加えない限り、作成したターゲットは`tar_read()`や`tar_load()`関数でいつでも利用できます。
 グラフの状態も改めて確認しておきましょう。
-
-```{r}
-#| include: false
-# github-pagesデプロイ用。表示の前に実行しておく。
-tar_make()
-```
 
 ```{r}
 # 最後のtar_make()。変更がないため、すべてのターゲットがスキップされる
