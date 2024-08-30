@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -90,6 +124,14 @@ div.csl-indent {
     "search-label": "サーチ"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/vis-9.1.0/vis-network.min.css" rel="stylesheet">
+<script src="site_libs/vis-9.1.0/vis-network.min.js"></script>
+<script src="site_libs/visNetwork-binding-2.1.2/visNetwork.js"></script>
 
 
 </head>
@@ -202,7 +244,14 @@ div.csl-indent {
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#targetopia" id="toc-targetopia" class="nav-link active" data-scroll-target="#targetopia"><span class="header-section-number">7.1</span> targetopia</a></li>
+  <li><a href="#パイプライン" id="toc-パイプライン" class="nav-link active" data-scroll-target="#パイプライン"><span class="header-section-number">7.1</span> パイプライン</a></li>
+  <li><a href="#targets" id="toc-targets" class="nav-link" data-scroll-target="#targets"><span class="header-section-number">7.2</span> targets</a>
+  <ul class="collapse">
+  <li><a href="#パイプラインの実行" id="toc-パイプラインの実行" class="nav-link" data-scroll-target="#パイプラインの実行"><span class="header-section-number">7.2.1</span> パイプラインの実行</a></li>
+  <li><a href="#パイプラインの変更" id="toc-パイプラインの変更" class="nav-link" data-scroll-target="#パイプラインの変更"><span class="header-section-number">7.2.2</span> パイプラインの変更</a></li>
+  <li><a href="#パイプラインの可視化" id="toc-パイプラインの可視化" class="nav-link" data-scroll-target="#パイプラインの可視化"><span class="header-section-number">7.2.3</span> パイプラインの可視化</a></li>
+  </ul></li>
+  <li><a href="#targetopia" id="toc-targetopia" class="nav-link" data-scroll-target="#targetopia"><span class="header-section-number">7.3</span> targetopia</a></li>
   </ul>
 </nav>
     </div>
@@ -229,12 +278,458 @@ div.csl-indent {
 
 
 <p>targetsパッケージ</p>
+<p>Makefile</p>
 <p>再実行する必要があります。</p>
+<p>データ分析は反復的なプロセスです。 作業が完結し、結果を出したと思っていても、新しいデータが与えられたり、モデルが更新されたら、改めて分析結果を求めなくてはいけません。 この過程で特に厄介なのが、再実行に伴う時間や作業手順の破壊です。</p>
+<p>作業手順の破壊とは、結果を導くまでの手順が複雑であるために、再実行時に誤った手順で</p>
+<p>やり直し</p>
+<p>「シーシュポスの岩」</p>
 <p><span class="citation" data-cites="isbn9784297125240">igjit, atusy, と hanaori (<a href="reference.html#ref-isbn9784297125240" role="doc-biblioref">2022</a>)</span></p>
-<section id="targetopia" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="targetopia"><span class="header-section-number">7.1</span> targetopia</h2>
+<section id="パイプライン" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="パイプライン"><span class="header-section-number">7.1</span> パイプライン</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"targets"</span>))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="targets" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="targets"><span class="header-section-number">7.2</span> targets</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(targets)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>パイプラインを構成、定義するファイルが必要になります。 これは原則として<code>_targets.R</code>というファイル名にします。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="in"># _targets.R</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">library(targets)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="in">source(here::here("src/functions.R"))</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="in">tar_option_set(packages = c("tibble"))</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="in">list(</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="in">  tar_target(</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="in">    mtcars_mod,</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="in">    mtcars |&gt; </span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="in">      rowid_to_column(var = "car") |&gt; </span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="in">      as_tibble()</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>_targets.R</code>をパイプラインとして正しく機能させるには、いくつかの要件があります。</p>
+<ol type="1">
+<li>targetsパッケージ自身の読み込み（<code>tar_target()</code>などの関数を利用するため）</li>
+<li>パイプラインの実行に必要なパッケージ、関数の読み込み。<code>tar_option_set()</code>関数のpackages引数で指定するか、<code>source()</code>関数で関数を読み込むか、名前空間を宣言した上で利用する必要があります。</li>
+<li>パイプライン本体。<code>list()</code>関数で囲まれた内容がパイプラインの本体と見なされます。<code>list()</code>関数の要素として、<code>tar_target()</code>関数でターゲットを定義します。<code>tar_target()</code>関数の第一引数はターゲットの名前です。第二引数には、ターゲットを生成するためのコードを記述します。</li>
+</ol>
+<!-- `tar_option_set()`関数では、パッケージの指定だけでなく、デフォルトの保存形式の指定などを行うためにも利用します。 -->
+<p>上記のシンプルな<code>_targets.R</code>には、一つのターゲットが含まれます。 パイプライン構築の手順は、このように一つ一つのターゲットを定義していくことになります。</p>
+<section id="パイプラインの実行" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="パイプラインの実行"><span class="header-section-number">7.2.1</span> パイプラインの実行</h3>
+<p><code>_targets.R</code>が完成したら、<code>tar_make()</code>関数を実行してパイプラインを実行します。 パイプラインは起動中のセッションとは別のプロセスで実行されるため、一からパイプラインの構築が行われることになります。 再現可能なパイプラインであった場合、targetsはエラーを吐かずに終了します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_make</span>()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ▶ dispatched target mtcars_mod</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ● completed target mtcars_mod [0.007 seconds]</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ▶ ended pipeline [0.048 seconds]</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>_targets.R</code>で定義されたターゲットの生成の様子が表示されています。 末尾に<code>ended pipeline</code>と表示されれば、パイプラインの実行が正常に終了したことを表します。</p>
+<p>パイプラインが構築されると、<code>_targets/</code>フォルダにその情報が記録されます。 ここには<code>objects</code>フォルダがあり、<code>tar_target()</code>関数で定義し、<code>tar_make()</code>関数によって再現されたターゲットが保存されています。</p>
+<p>作成されたターゲットを利用するには、<code>tar_load()</code>関数あるいは<code>tar_read()</code>関数を使います。 例えば、この段階ではパイプライン上の<code>mtcars_mod</code>は利用できません。 <code>mtcars_mod</code>は<code>_targets/objects</code>に保存されているためです。 <code>tar_load()</code>関数を使って、作業空間にターゲットを読み込んでみましょう。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ターゲットは読み込まれていない</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mtcars_mod</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in eval(expr, envir, enclos): object 'mtcars_mod' not found</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ターゲットの読み込み</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_load</span>(mtcars_mod)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars_mod)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">car</th>
+<th style="text-align: right;">mpg</th>
+<th style="text-align: right;">cyl</th>
+<th style="text-align: right;">disp</th>
+<th style="text-align: right;">hp</th>
+<th style="text-align: right;">drat</th>
+<th style="text-align: right;">wt</th>
+<th style="text-align: right;">qsec</th>
+<th style="text-align: right;">vs</th>
+<th style="text-align: right;">am</th>
+<th style="text-align: right;">gear</th>
+<th style="text-align: right;">carb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">2.620</td>
+<td style="text-align: right;">16.46</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">2.875</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">22.8</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">108</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">3.85</td>
+<td style="text-align: right;">2.320</td>
+<td style="text-align: right;">18.61</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">21.4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">258</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.08</td>
+<td style="text-align: right;">3.215</td>
+<td style="text-align: right;">19.44</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">18.7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">3.15</td>
+<td style="text-align: right;">3.440</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">18.1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">225</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">2.76</td>
+<td style="text-align: right;">3.460</td>
+<td style="text-align: right;">20.22</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>一時的にオブジェクトを表示する、あるいはターゲットとは別の名前でオブジェクトを保存するときには<code>tar_read()</code>関数を使います。 <code>tar_read()</code>関数で読み込まれたターゲットは、作業空間には保存されません。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_read</span>(mtcars_mod) <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">car</th>
+<th style="text-align: right;">mpg</th>
+<th style="text-align: right;">cyl</th>
+<th style="text-align: right;">disp</th>
+<th style="text-align: right;">hp</th>
+<th style="text-align: right;">drat</th>
+<th style="text-align: right;">wt</th>
+<th style="text-align: right;">qsec</th>
+<th style="text-align: right;">vs</th>
+<th style="text-align: right;">am</th>
+<th style="text-align: right;">gear</th>
+<th style="text-align: right;">carb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">2.620</td>
+<td style="text-align: right;">16.46</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.90</td>
+<td style="text-align: right;">2.875</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">22.8</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">108</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">3.85</td>
+<td style="text-align: right;">2.320</td>
+<td style="text-align: right;">18.61</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">21.4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">258</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">3.08</td>
+<td style="text-align: right;">3.215</td>
+<td style="text-align: right;">19.44</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">18.7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">3.15</td>
+<td style="text-align: right;">3.440</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">18.1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">225</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">2.76</td>
+<td style="text-align: right;">3.460</td>
+<td style="text-align: right;">20.22</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="パイプラインの変更" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="パイプラインの変更"><span class="header-section-number">7.2.2</span> パイプラインの変更</h3>
+<p>最初のターゲットが正しく生成されたことを確認したので、パイプラインに処理を追加しましょう。 ここでは最初の<code>_targets.R</code>の状態から、2つのターゲットを追加し、以下のターゲットが含まれます。</p>
 <ul>
+<li><code>mtcars_mod</code>: 最初に定義したターゲット。以前の状態と変わりありません。</li>
+<li><code>lm_coef_mtcars</code>: データに対して<code>lm()</code>関数を適用し、その係数を<code>coefficients()</code>関数で取得します。</li>
+<li><code>plot_mtcats</code>: <code>ggplot2</code>パッケージを使って、データをプロットします。その上で<code>lm_coef_mtcars</code>を使って回帰直線を引きます。</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="in"># _targets.R (2)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="in">library(targets)</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="in">tar_option_set(packages = c("tibble", "ggplot2"))</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="in">list(</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="in">  tar_target(</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="in">    mtcars_mod,</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="in">    mtcars |&gt; </span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="in">      tibble::rowid_to_column(var = "car") |&gt; </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="in">      tibble::as_tibble()</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="in">  ),</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="in">  tar_target(</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="in">    lm_coef_mtcars,</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="in">    lm(mpg ~ wt, data = mtcars_mod) |&gt; </span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="in">      coefficients()</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="in">  ),</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="in">  tar_target(</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="in">    plot_mtcats,</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="in">    ggplot(data = mtcars_mod) +</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="in">      aes(wt, mpg) +</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="in">      geom_point(color = "red") +</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="in">      geom_abline(intercept = lm_coef_mtcars[1], slope = lm_coef_mtcars[2])</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>パイプラインが更新されたら<code>tar_make()</code>関数を再度実行します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># パイプラインの再実行</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_make</span>()</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✔ skipped target mtcars_mod</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ▶ dispatched target lm_coef_mtcars</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ● completed target lm_coef_mtcars [0.001 seconds]</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ▶ dispatched target plot_mtcats</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ● completed target plot_mtcats [0.009 seconds]</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ▶ ended pipeline [0.263 seconds]</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>ここで大事なことは、依存関係を含めて変更のないターゲットは、再実行されないという点です。 この例では、<code>mtcars_mod</code>を生成する処理が変更されていない限り、以前の結果が再利用されることを意味します。 出力を確認すると、<code>mtcars_mod</code>の生成に関わるパイプラインがスキップされていることがわかります。</p>
+<p>targetsパッケージには、パイプラインの変更に伴う再実行が必要な処理を自動的に判定する機能があります。 作成、再実行が必要なターゲットのみを対象に処理が行われるため、オブジェクトを作り直す手間が省け、効率的なデータ分析が実現します。</p>
+</section>
+<section id="パイプラインの可視化" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="パイプラインの可視化"><span class="header-section-number">7.2.3</span> パイプラインの可視化</h3>
+<p>targetsパッケージのパイプライン構築は、<code>_targets.R</code>に記載されたターゲットの変更と依存関係に基づいて行われます。 ここでもう一度、パイプラインに変更を加えてみましょう。 <code>lm_coef_mtcars</code>の生成を自作関数に置き換えるという内容に置き換えます。</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="in"># src/functions.R</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="in">fit_model &lt;- function(formula, data) {</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="in">  lm(formula, data = data) |&gt; </span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="in">    coefficients()</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="in"># _targets.R (3)</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="in">library(targets)</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="in">source(here::here("src/functions.R"))</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="in">tar_option_set(packages = c("tibble", "ggplot2"))</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="in">list(</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="in">  tar_target(</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="in">    mtcars_mod,</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="in">    mtcars |&gt; </span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="in">      tibble::rowid_to_column(var = "car") |&gt; </span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="in">      tibble::as_tibble()</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="in">  ),</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="in">  tar_target(</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="in">    lm_coef_mtcars,</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="in">    fit_model(mpg ~ wt, data = mtcars_mod)</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="in">  ),</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="in">  tar_target(</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="in">    plot_mtcats,</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="in">    ggplot(data = mtcars_mod) +</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="in">      aes(wt, mpg) +</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="in">      geom_point(color = "red") +</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="in">      geom_abline(intercept = lm_coef_mtcars[1], slope = lm_coef_mtcars[2])</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>このパイプラインで、影響のあるターゲットは何でしょうか。 答えは<code>lm_coef_mtcars</code>自身とそれを利用する<code>plot_mtcats</code>の2つです。 <code>tar_make()</code>関数を実行すると、これらのターゲットが再実行されることになります。</p>
+<p>targetsパッケージには、いくつかのパイプラインの可視化機能があります。 これらの機能を利用して、パイプラインの構造を把握してみましょう。</p>
+<p><code>tar_mermaid()</code>や<code>tar_visnetwork()</code>関数は、パイプラインの依存関係をグラフ形式で表示します。 以下は<code>tar_mermaid()</code>関数でパイプラインのグラフをmermaid形式で表示したものです。 <code>Outdated</code>と表示されているターゲットは、再実行が必要なターゲットを示しています。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_mermaid</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- ![](https://i.gyazo.com/1b8f6447dc09c9ce48b7b2588eaeaa5e.jpg) -->
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR   
+    style Legend fill:#FFFFFF00,stroke:#000000;
+    style Graph fill:#FFFFFF00,stroke:#000000;
+    subgraph Legend
+        direction LR
+        x2db1ec7a48f65a9b(["Outdated"]):::outdated --- xf1522833a4d242c5(["Up to date"]):::uptodate
+        xf1522833a4d242c5(["Up to date"]):::uptodate --- xd03d7c7dd2ddda2b(["Stem"]):::none
+        xd03d7c7dd2ddda2b(["Stem"]):::none --- xeb2d7cac8a1ce544&gt;"Function"]:::none
+    end
+
+    subgraph Graph
+        direction LR
+        x4496d6b18b9b395a(["lm_coef_mtcars"]):::outdated --&gt; x3fe6ea6b43f61067(["plot_mtcats"]):::outdated
+        x5dc2b28b4b042e08(["mtcars_mod"]):::uptodate --&gt; x3fe6ea6b43f61067(["plot_mtcats"]):::outdated
+        x12e88730e39644dc&gt;"fit_model"]:::uptodate --&gt; x4496d6b18b9b395a(["lm_coef_mtcars"]):::outdated
+        x5dc2b28b4b042e08(["mtcars_mod"]):::uptodate --&gt; x4496d6b18b9b395a(["lm_coef_mtcars"]):::outdated
+    end
+    classDef outdated stroke:#000000,color:#000000,fill:#78B7C5;
+    classDef uptodate stroke:#000000,color:#ffffff,fill:#354823;
+    classDef none stroke:#000000,color:#000000,fill:#94a4ac;
+    linkStyle 0 stroke-width:0px;
+    linkStyle 1 stroke-width:0px;
+    linkStyle 2 stroke-width:0px;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><code>tar_outdated()</code>関数でもパイプラインの変更による影響を受けるターゲットを確認できます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_outdated</span>()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "plot_mtcats"    "lm_coef_mtcars"</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>それでは<code>tar_make()</code>を実行します。 グラフや<code>tar_outdated()</code>関数で示されたターゲットが再構築される様子が観察できます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_make</span>()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✔ skipped target mtcars_mod</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ▶ dispatched target lm_coef_mtcars</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ● completed target lm_coef_mtcars [0.002 seconds]</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ▶ dispatched target plot_mtcats</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ● completed target plot_mtcats [0.091 seconds]</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ▶ ended pipeline [0.406 seconds]</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>ここでパイプラインは完成です。 <code>_targets.R</code>に変更を加えない限り、作成したターゲットは<code>tar_read()</code>や<code>tar_load()</code>関数でいつでも利用できます。 グラフの状態も改めて確認しておきましょう。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 最後のtar_make()。変更がないため、すべてのターゲットがスキップされる</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_make</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>✔ skipped target mtcars_mod
+✔ skipped target lm_coef_mtcars
+✔ skipped target plot_mtcats
+✔ skipped pipeline [0.06 seconds]</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_visnetwork</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="visNetwork html-widget html-fill-item" id="htmlwidget-6697a2ffc797051a4f74" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-6697a2ffc797051a4f74">{"x":{"nodes":{"name":["lm_coef_mtcars","mtcars_mod","plot_mtcats","fit_model"],"type":["stem","stem","stem","function"],"description":[null,null,null,null],"status":["uptodate","uptodate","uptodate","uptodate"],"seconds":[0.002,0.174,0.093,null],"bytes":[109,950,89412,null],"branches":[null,null,null,null],"label":["lm_coef_mtcars","mtcars_mod","plot_mtcats","fit_model"],"color":["#354823","#354823","#354823","#354823"],"id":["lm_coef_mtcars","mtcars_mod","plot_mtcats","fit_model"],"level":[2,1,3,1],"shape":["dot","dot","dot","triangle"]},"edges":{"from":["lm_coef_mtcars","mtcars_mod","fit_model","mtcars_mod"],"to":["plot_mtcats","plot_mtcats","lm_coef_mtcars","lm_coef_mtcars"],"arrows":["to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"physics":{"stabilization":false},"interaction":{"zoomSpeed":1},"layout":{"hierarchical":{"enabled":true,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":true,"hoverNearest":false,"degree":{"from":1,"to":1},"algorithm":"hierarchical","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"right","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Up to date","Stem","Function"],"color":["#354823","#899DA4","#899DA4"],"shape":["dot","dot","triangle"]},"nodesToDataframe":true},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p><a href="https://books.ropensci.org/targets/" class="uri">https://books.ropensci.org/targets/</a></p>
+<p><a href="https://raps-with-r.dev/targets.html" class="uri">https://raps-with-r.dev/targets.html</a></p>
+</section>
+</section>
+<section id="targetopia" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="targetopia"><span class="header-section-number">7.3</span> targetopia</h2>
+<p>targetsを始めとしたパッケージ群</p>
+<ul>
+<li>stantargets</li>
 <li>tarchetypes</li>
+<li><a href="https://github.com/njtierney/geotargets">geotargets</a></li>
 </ul>
 
 
