@@ -191,6 +191,39 @@ renv::snapshot()
 
 ## pointblankパッケージ
 
+```{r}
+library(pointblank)
+```
+
+```{r}
+act <- 
+  action_levels(warn_at = 0.01, notify_at = 0.01, stop_at = NULL)
+
+agent <- 
+  create_agent(mtcars, actions = act) |> 
+  col_vals_not_null(vars(mpg)) |> 
+  col_vals_between(vars(disp), 70, 472)
+
+interrogate(agent)
+```
+
+```{r}
+agent <- 
+  create_agent(mtcars, actions = act) |> 
+  col_vals_not_null(vars(mpg)) |> 
+  col_vals_between(vars(disp), 75, 470)
+
+interrogate(agent)
+```
+
+```{r}
+#| error: true
+mtcars |> 
+  row_count_match(32L) |> 
+  col_vals_between(vars(disp), 75, 470)
+```
+
+
 アサート
 
 ## pinsパッケージ
