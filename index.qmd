@@ -49,6 +49,7 @@ R言語を題材としますが、多くの考えが他のプログラミング�
 本書は以下の環境で執筆されました。GitHubリポジトリ <https://github.com/uribo/rrr> に関係するファイルを公開しています。
 リポジトリからファイルをダウンロードし、RStudioで `rrr.Rproj` を開いたうえで起動するプロジェクトから、本書の再現を試みることができます。
 
+- macOS Sonoma 14.6.1 および Ubuntu 22.04.4 LTS (GitHub pagesへのデプロイ)
 - R version 4.1.1
 - RStudio
 - Quarto
