@@ -214,3 +214,76 @@ format:
 ---
 ```
 :::
+
+## gtパッケージによる表出力
+
+ドキュメントで表を利用することは、目的が学術的であろうとビジネス向けであろうと頻繁に行われます。
+Rには、R MarkdownやQuartoで表を出力するパッケージが豊富に存在します。
+これらのパッケージを使うことで、綺麗な表出力が可能になります。
+
+gtパッケージはデータフレーム形式のオブジェクトを表として出力します。
+HTMLやLaTeX、RTFでの出力が可能で、さまざまなドキュメントで利用可能です。
+表に求められるタイトルやキャプションの表示はもちろん、出力時のフォーマットや塗りつぶしの色の指定などが柔軟に行える特徴があります。
+
+データフレームを対象として、`gt()`関数を適用します。
+mtcarsデータを例に、`gt()`関数を適用してみましょう。
+
+```{r}
+library(gt)
+
+gttbl <- 
+  head(mtcars) |> 
+  gt()
+
+gttbl
+```
+
+表の見た目の変更は、作成したgt_tblオブジェクトに対して、処理を追加する形で行います。
+例えば表の見出し、副見出しを指定するには`tab_header()`関数を追加し、
+列の見出しの背景色を指定するには`tab_options()`関数を追加します。
+
+
+```{r}
+gttbl |> 
+  tab_header(
+    title = "mtcars",
+    subtitle = "先頭6行を表示"
+  ) |> 
+   tab_options(
+    column_labels.background.color = "gray"
+  )
+```
+
+gtパッケージはグループ化
+
+```{r}
+library(dplyr)
+
+mtcars |> 
+  select(cyl, disp, hp, drat, wt, qsec) |>
+  group_by(cyl) |>
+  gt() |> 
+   summary_rows(
+    groups = everything(),
+    columns = c(disp, disp, hp, drat, wt, qsec),
+    fns = list(
+      average = "mean",
+      total = "sum",
+      SD = "sd"
+    )
+  ) |> 
+  grand_summary_rows(
+    columns = c(disp, disp, hp, drat, wt, qsec),
+    fns = list(
+      average = "mean",
+      total = "sum",
+      SD = "sd"
+    )
+  ) |> 
+  tab_options(
+    summary_row.background.color = "lightblue",
+    grand_summary_row.background.color = "lightgreen")
+```
+
+
+

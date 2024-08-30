@@ -15,7 +15,8 @@ get_openbd <- function (isbn) {
 isbn <- 
   c("978-4-297-12170-9",
     "978-4-295-01361-7",
-    "978-4-06-535219-9")
+    "978-4-06-535219-9",
+    "978-4-297-12524-0")
 x <- 
   get_openbd(isbn)
 opendb_extract_author <- function(x, yomi = FALSE) {
