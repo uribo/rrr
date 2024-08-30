@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -248,6 +248,7 @@ div.csl-indent {
   <li><a href="#latex" id="toc-latex" class="nav-link" data-scroll-target="#latex"><span class="header-section-number">5.3.1</span> LaTeX</a></li>
   <li><a href="#typst" id="toc-typst" class="nav-link" data-scroll-target="#typst"><span class="header-section-number">5.3.2</span> Typst</a></li>
   </ul></li>
+  <li><a href="#gtパッケージによる表出力" id="toc-gtパッケージによる表出力" class="nav-link" data-scroll-target="#gtパッケージによる表出力"><span class="header-section-number">5.4</span> gtパッケージによる表出力</a></li>
   </ul>
 </nav>
     </div>
@@ -415,6 +416,2012 @@ format:
 ---</code></pre>
 </div>
 </div>
+</section>
+</section>
+<section id="gtパッケージによる表出力" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="gtパッケージによる表出力"><span class="header-section-number">5.4</span> gtパッケージによる表出力</h2>
+<p>ドキュメントで表を利用することは、目的が学術的であろうとビジネス向けであろうと頻繁に行われます。 Rには、R MarkdownやQuartoで表を出力するパッケージが豊富に存在します。 これらのパッケージを使うことで、綺麗な表出力が可能になります。</p>
+<p>gtパッケージはデータフレーム形式のオブジェクトを表として出力します。 HTMLやLaTeX、RTFでの出力が可能で、さまざまなドキュメントで利用可能です。 表に求められるタイトルやキャプションの表示はもちろん、出力時のフォーマットや塗りつぶしの色の指定などが柔軟に行える特徴があります。</p>
+<p>データフレームを対象として、<code>gt()</code>関数を適用します。 mtcarsデータを例に、<code>gt()</code>関数を適用してみましょう。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>gttbl <span class="ot">&lt;-</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(mtcars) <span class="sc">|&gt;</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>gttbl</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="byxujdjprf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#byxujdjprf table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#byxujdjprf thead, #byxujdjprf tbody, #byxujdjprf tfoot, #byxujdjprf tr, #byxujdjprf td, #byxujdjprf th {
+  border-style: none;
+}
+
+#byxujdjprf p {
+  margin: 0;
+  padding: 0;
+}
+
+#byxujdjprf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#byxujdjprf .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#byxujdjprf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#byxujdjprf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#byxujdjprf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#byxujdjprf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#byxujdjprf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#byxujdjprf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#byxujdjprf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#byxujdjprf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#byxujdjprf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#byxujdjprf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#byxujdjprf .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#byxujdjprf .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#byxujdjprf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#byxujdjprf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#byxujdjprf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#byxujdjprf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#byxujdjprf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#byxujdjprf .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#byxujdjprf .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#byxujdjprf .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#byxujdjprf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#byxujdjprf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#byxujdjprf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#byxujdjprf .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#byxujdjprf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#byxujdjprf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#byxujdjprf .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#byxujdjprf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#byxujdjprf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#byxujdjprf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#byxujdjprf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#byxujdjprf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#byxujdjprf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#byxujdjprf .gt_left {
+  text-align: left;
+}
+
+#byxujdjprf .gt_center {
+  text-align: center;
+}
+
+#byxujdjprf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#byxujdjprf .gt_font_normal {
+  font-weight: normal;
+}
+
+#byxujdjprf .gt_font_bold {
+  font-weight: bold;
+}
+
+#byxujdjprf .gt_font_italic {
+  font-style: italic;
+}
+
+#byxujdjprf .gt_super {
+  font-size: 65%;
+}
+
+#byxujdjprf .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#byxujdjprf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#byxujdjprf .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#byxujdjprf .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#byxujdjprf .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#byxujdjprf .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#byxujdjprf .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#byxujdjprf .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#byxujdjprf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="mpg" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">mpg</th>
+<th id="cyl" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">cyl</th>
+<th id="disp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">disp</th>
+<th id="hp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">hp</th>
+<th id="drat" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">drat</th>
+<th id="wt" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">wt</th>
+<th id="qsec" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">qsec</th>
+<th id="vs" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">vs</th>
+<th id="am" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">am</th>
+<th id="gear" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">gear</th>
+<th id="carb" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">carb</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="mpg">21.0</td>
+<td class="gt_row gt_right" headers="cyl">6</td>
+<td class="gt_row gt_right" headers="disp">160</td>
+<td class="gt_row gt_right" headers="hp">110</td>
+<td class="gt_row gt_right" headers="drat">3.90</td>
+<td class="gt_row gt_right" headers="wt">2.620</td>
+<td class="gt_row gt_right" headers="qsec">16.46</td>
+<td class="gt_row gt_right" headers="vs">0</td>
+<td class="gt_row gt_right" headers="am">1</td>
+<td class="gt_row gt_right" headers="gear">4</td>
+<td class="gt_row gt_right" headers="carb">4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="mpg">21.0</td>
+<td class="gt_row gt_right" headers="cyl">6</td>
+<td class="gt_row gt_right" headers="disp">160</td>
+<td class="gt_row gt_right" headers="hp">110</td>
+<td class="gt_row gt_right" headers="drat">3.90</td>
+<td class="gt_row gt_right" headers="wt">2.875</td>
+<td class="gt_row gt_right" headers="qsec">17.02</td>
+<td class="gt_row gt_right" headers="vs">0</td>
+<td class="gt_row gt_right" headers="am">1</td>
+<td class="gt_row gt_right" headers="gear">4</td>
+<td class="gt_row gt_right" headers="carb">4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="mpg">22.8</td>
+<td class="gt_row gt_right" headers="cyl">4</td>
+<td class="gt_row gt_right" headers="disp">108</td>
+<td class="gt_row gt_right" headers="hp">93</td>
+<td class="gt_row gt_right" headers="drat">3.85</td>
+<td class="gt_row gt_right" headers="wt">2.320</td>
+<td class="gt_row gt_right" headers="qsec">18.61</td>
+<td class="gt_row gt_right" headers="vs">1</td>
+<td class="gt_row gt_right" headers="am">1</td>
+<td class="gt_row gt_right" headers="gear">4</td>
+<td class="gt_row gt_right" headers="carb">1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="mpg">21.4</td>
+<td class="gt_row gt_right" headers="cyl">6</td>
+<td class="gt_row gt_right" headers="disp">258</td>
+<td class="gt_row gt_right" headers="hp">110</td>
+<td class="gt_row gt_right" headers="drat">3.08</td>
+<td class="gt_row gt_right" headers="wt">3.215</td>
+<td class="gt_row gt_right" headers="qsec">19.44</td>
+<td class="gt_row gt_right" headers="vs">1</td>
+<td class="gt_row gt_right" headers="am">0</td>
+<td class="gt_row gt_right" headers="gear">3</td>
+<td class="gt_row gt_right" headers="carb">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="mpg">18.7</td>
+<td class="gt_row gt_right" headers="cyl">8</td>
+<td class="gt_row gt_right" headers="disp">360</td>
+<td class="gt_row gt_right" headers="hp">175</td>
+<td class="gt_row gt_right" headers="drat">3.15</td>
+<td class="gt_row gt_right" headers="wt">3.440</td>
+<td class="gt_row gt_right" headers="qsec">17.02</td>
+<td class="gt_row gt_right" headers="vs">0</td>
+<td class="gt_row gt_right" headers="am">0</td>
+<td class="gt_row gt_right" headers="gear">3</td>
+<td class="gt_row gt_right" headers="carb">2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="mpg">18.1</td>
+<td class="gt_row gt_right" headers="cyl">6</td>
+<td class="gt_row gt_right" headers="disp">225</td>
+<td class="gt_row gt_right" headers="hp">105</td>
+<td class="gt_row gt_right" headers="drat">2.76</td>
+<td class="gt_row gt_right" headers="wt">3.460</td>
+<td class="gt_row gt_right" headers="qsec">20.22</td>
+<td class="gt_row gt_right" headers="vs">1</td>
+<td class="gt_row gt_right" headers="am">0</td>
+<td class="gt_row gt_right" headers="gear">3</td>
+<td class="gt_row gt_right" headers="carb">1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>表の見た目の変更は、作成したgt_tblオブジェクトに対して、処理を追加する形で行います。 例えば表の見出し、副見出しを指定するには<code>tab_header()</code>関数を追加し、 列の見出しの背景色を指定するには<code>tab_options()</code>関数を追加します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gttbl <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"mtcars"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"先頭6行を表示"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">tab_options</span>(</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">column_labels.background.color =</span> <span class="st">"gray"</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="tqgpgglobn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tqgpgglobn table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#tqgpgglobn thead, #tqgpgglobn tbody, #tqgpgglobn tfoot, #tqgpgglobn tr, #tqgpgglobn td, #tqgpgglobn th {
+  border-style: none;
+}
+
+#tqgpgglobn p {
+  margin: 0;
+  padding: 0;
+}
+
+#tqgpgglobn .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#tqgpgglobn .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#tqgpgglobn .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#tqgpgglobn .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#tqgpgglobn .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tqgpgglobn .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tqgpgglobn .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tqgpgglobn .gt_col_heading {
+  color: #333333;
+  background-color: #BEBEBE;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#tqgpgglobn .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #BEBEBE;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#tqgpgglobn .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#tqgpgglobn .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#tqgpgglobn .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#tqgpgglobn .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#tqgpgglobn .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#tqgpgglobn .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#tqgpgglobn .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#tqgpgglobn .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#tqgpgglobn .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#tqgpgglobn .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tqgpgglobn .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#tqgpgglobn .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#tqgpgglobn .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#tqgpgglobn .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tqgpgglobn .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#tqgpgglobn .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#tqgpgglobn .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tqgpgglobn .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tqgpgglobn .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#tqgpgglobn .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tqgpgglobn .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#tqgpgglobn .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tqgpgglobn .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tqgpgglobn .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tqgpgglobn .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tqgpgglobn .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tqgpgglobn .gt_left {
+  text-align: left;
+}
+
+#tqgpgglobn .gt_center {
+  text-align: center;
+}
+
+#tqgpgglobn .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#tqgpgglobn .gt_font_normal {
+  font-weight: normal;
+}
+
+#tqgpgglobn .gt_font_bold {
+  font-weight: bold;
+}
+
+#tqgpgglobn .gt_font_italic {
+  font-style: italic;
+}
+
+#tqgpgglobn .gt_super {
+  font-size: 65%;
+}
+
+#tqgpgglobn .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#tqgpgglobn .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#tqgpgglobn .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#tqgpgglobn .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#tqgpgglobn .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#tqgpgglobn .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#tqgpgglobn .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#tqgpgglobn .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#tqgpgglobn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="11" class="gt_heading gt_title gt_font_normal">mtcars</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="11" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">先頭6行を表示</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="mpg" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">mpg</th>
+<th id="cyl" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">cyl</th>
+<th id="disp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">disp</th>
+<th id="hp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">hp</th>
+<th id="drat" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">drat</th>
+<th id="wt" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">wt</th>
+<th id="qsec" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">qsec</th>
+<th id="vs" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">vs</th>
+<th id="am" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">am</th>
+<th id="gear" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">gear</th>
+<th id="carb" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">carb</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="mpg">21.0</td>
+<td class="gt_row gt_right" headers="cyl">6</td>
+<td class="gt_row gt_right" headers="disp">160</td>
+<td class="gt_row gt_right" headers="hp">110</td>
+<td class="gt_row gt_right" headers="drat">3.90</td>
+<td class="gt_row gt_right" headers="wt">2.620</td>
+<td class="gt_row gt_right" headers="qsec">16.46</td>
+<td class="gt_row gt_right" headers="vs">0</td>
+<td class="gt_row gt_right" headers="am">1</td>
+<td class="gt_row gt_right" headers="gear">4</td>
+<td class="gt_row gt_right" headers="carb">4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="mpg">21.0</td>
+<td class="gt_row gt_right" headers="cyl">6</td>
+<td class="gt_row gt_right" headers="disp">160</td>
+<td class="gt_row gt_right" headers="hp">110</td>
+<td class="gt_row gt_right" headers="drat">3.90</td>
+<td class="gt_row gt_right" headers="wt">2.875</td>
+<td class="gt_row gt_right" headers="qsec">17.02</td>
+<td class="gt_row gt_right" headers="vs">0</td>
+<td class="gt_row gt_right" headers="am">1</td>
+<td class="gt_row gt_right" headers="gear">4</td>
+<td class="gt_row gt_right" headers="carb">4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="mpg">22.8</td>
+<td class="gt_row gt_right" headers="cyl">4</td>
+<td class="gt_row gt_right" headers="disp">108</td>
+<td class="gt_row gt_right" headers="hp">93</td>
+<td class="gt_row gt_right" headers="drat">3.85</td>
+<td class="gt_row gt_right" headers="wt">2.320</td>
+<td class="gt_row gt_right" headers="qsec">18.61</td>
+<td class="gt_row gt_right" headers="vs">1</td>
+<td class="gt_row gt_right" headers="am">1</td>
+<td class="gt_row gt_right" headers="gear">4</td>
+<td class="gt_row gt_right" headers="carb">1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="mpg">21.4</td>
+<td class="gt_row gt_right" headers="cyl">6</td>
+<td class="gt_row gt_right" headers="disp">258</td>
+<td class="gt_row gt_right" headers="hp">110</td>
+<td class="gt_row gt_right" headers="drat">3.08</td>
+<td class="gt_row gt_right" headers="wt">3.215</td>
+<td class="gt_row gt_right" headers="qsec">19.44</td>
+<td class="gt_row gt_right" headers="vs">1</td>
+<td class="gt_row gt_right" headers="am">0</td>
+<td class="gt_row gt_right" headers="gear">3</td>
+<td class="gt_row gt_right" headers="carb">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="mpg">18.7</td>
+<td class="gt_row gt_right" headers="cyl">8</td>
+<td class="gt_row gt_right" headers="disp">360</td>
+<td class="gt_row gt_right" headers="hp">175</td>
+<td class="gt_row gt_right" headers="drat">3.15</td>
+<td class="gt_row gt_right" headers="wt">3.440</td>
+<td class="gt_row gt_right" headers="qsec">17.02</td>
+<td class="gt_row gt_right" headers="vs">0</td>
+<td class="gt_row gt_right" headers="am">0</td>
+<td class="gt_row gt_right" headers="gear">3</td>
+<td class="gt_row gt_right" headers="carb">2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="mpg">18.1</td>
+<td class="gt_row gt_right" headers="cyl">6</td>
+<td class="gt_row gt_right" headers="disp">225</td>
+<td class="gt_row gt_right" headers="hp">105</td>
+<td class="gt_row gt_right" headers="drat">2.76</td>
+<td class="gt_row gt_right" headers="wt">3.460</td>
+<td class="gt_row gt_right" headers="qsec">20.22</td>
+<td class="gt_row gt_right" headers="vs">1</td>
+<td class="gt_row gt_right" headers="am">0</td>
+<td class="gt_row gt_right" headers="gear">3</td>
+<td class="gt_row gt_right" headers="carb">1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>gtパッケージはグループ化</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(cyl, disp, hp, drat, wt, qsec) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">summary_rows</span>(</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">groups =</span> <span class="fu">everything</span>(),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(disp, disp, hp, drat, wt, qsec),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fns =</span> <span class="fu">list</span>(</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">average =</span> <span class="st">"mean"</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">total =</span> <span class="st">"sum"</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">SD =</span> <span class="st">"sd"</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grand_summary_rows</span>(</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(disp, disp, hp, drat, wt, qsec),</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">fns =</span> <span class="fu">list</span>(</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">average =</span> <span class="st">"mean"</span>,</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">total =</span> <span class="st">"sum"</span>,</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">SD =</span> <span class="st">"sd"</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">summary_row.background.color =</span> <span class="st">"lightblue"</span>,</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">grand_summary_row.background.color =</span> <span class="st">"lightgreen"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="chwtzdnwqa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#chwtzdnwqa table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#chwtzdnwqa thead, #chwtzdnwqa tbody, #chwtzdnwqa tfoot, #chwtzdnwqa tr, #chwtzdnwqa td, #chwtzdnwqa th {
+  border-style: none;
+}
+
+#chwtzdnwqa p {
+  margin: 0;
+  padding: 0;
+}
+
+#chwtzdnwqa .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#chwtzdnwqa .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#chwtzdnwqa .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#chwtzdnwqa .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#chwtzdnwqa .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#chwtzdnwqa .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#chwtzdnwqa .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#chwtzdnwqa .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#chwtzdnwqa .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#chwtzdnwqa .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#chwtzdnwqa .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#chwtzdnwqa .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#chwtzdnwqa .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#chwtzdnwqa .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#chwtzdnwqa .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#chwtzdnwqa .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#chwtzdnwqa .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#chwtzdnwqa .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#chwtzdnwqa .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#chwtzdnwqa .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#chwtzdnwqa .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#chwtzdnwqa .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#chwtzdnwqa .gt_summary_row {
+  color: #333333;
+  background-color: #ADD8E6;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#chwtzdnwqa .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#chwtzdnwqa .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#chwtzdnwqa .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#chwtzdnwqa .gt_grand_summary_row {
+  color: #333333;
+  background-color: #90EE90;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#chwtzdnwqa .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#chwtzdnwqa .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#chwtzdnwqa .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#chwtzdnwqa .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#chwtzdnwqa .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#chwtzdnwqa .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#chwtzdnwqa .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#chwtzdnwqa .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#chwtzdnwqa .gt_left {
+  text-align: left;
+}
+
+#chwtzdnwqa .gt_center {
+  text-align: center;
+}
+
+#chwtzdnwqa .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#chwtzdnwqa .gt_font_normal {
+  font-weight: normal;
+}
+
+#chwtzdnwqa .gt_font_bold {
+  font-weight: bold;
+}
+
+#chwtzdnwqa .gt_font_italic {
+  font-style: italic;
+}
+
+#chwtzdnwqa .gt_super {
+  font-size: 65%;
+}
+
+#chwtzdnwqa .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#chwtzdnwqa .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#chwtzdnwqa .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#chwtzdnwqa .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#chwtzdnwqa .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#chwtzdnwqa .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#chwtzdnwqa .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#chwtzdnwqa .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#chwtzdnwqa div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th id="disp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">disp</th>
+<th id="hp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">hp</th>
+<th id="drat" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">drat</th>
+<th id="wt" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">wt</th>
+<th id="qsec" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">qsec</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd gt_group_heading_row">
+<td colspan="6" id="6" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">6</td>
+</tr>
+<tr class="even gt_row_group_first">
+<td id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="6 stub_1_1 disp">160.0</td>
+<td class="gt_row gt_right" headers="6 stub_1_1 hp">110</td>
+<td class="gt_row gt_right" headers="6 stub_1_1 drat">3.90</td>
+<td class="gt_row gt_right" headers="6 stub_1_1 wt">2.620</td>
+<td class="gt_row gt_right" headers="6 stub_1_1 qsec">16.46</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="6 stub_1_2 disp">160.0</td>
+<td class="gt_row gt_right" headers="6 stub_1_2 hp">110</td>
+<td class="gt_row gt_right" headers="6 stub_1_2 drat">3.90</td>
+<td class="gt_row gt_right" headers="6 stub_1_2 wt">2.875</td>
+<td class="gt_row gt_right" headers="6 stub_1_2 qsec">17.02</td>
+</tr>
+<tr class="even">
+<td id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="6 stub_1_3 disp">258.0</td>
+<td class="gt_row gt_right" headers="6 stub_1_3 hp">110</td>
+<td class="gt_row gt_right" headers="6 stub_1_3 drat">3.08</td>
+<td class="gt_row gt_right" headers="6 stub_1_3 wt">3.215</td>
+<td class="gt_row gt_right" headers="6 stub_1_3 qsec">19.44</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_4" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="6 stub_1_4 disp">225.0</td>
+<td class="gt_row gt_right" headers="6 stub_1_4 hp">105</td>
+<td class="gt_row gt_right" headers="6 stub_1_4 drat">2.76</td>
+<td class="gt_row gt_right" headers="6 stub_1_4 wt">3.460</td>
+<td class="gt_row gt_right" headers="6 stub_1_4 qsec">20.22</td>
+</tr>
+<tr class="even">
+<td id="stub_1_5" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="6 stub_1_5 disp">167.6</td>
+<td class="gt_row gt_right" headers="6 stub_1_5 hp">123</td>
+<td class="gt_row gt_right" headers="6 stub_1_5 drat">3.92</td>
+<td class="gt_row gt_right" headers="6 stub_1_5 wt">3.440</td>
+<td class="gt_row gt_right" headers="6 stub_1_5 qsec">18.30</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_6" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="6 stub_1_6 disp">167.6</td>
+<td class="gt_row gt_right" headers="6 stub_1_6 hp">123</td>
+<td class="gt_row gt_right" headers="6 stub_1_6 drat">3.92</td>
+<td class="gt_row gt_right" headers="6 stub_1_6 wt">3.440</td>
+<td class="gt_row gt_right" headers="6 stub_1_6 qsec">18.90</td>
+</tr>
+<tr class="even">
+<td id="stub_1_7" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="6 stub_1_7 disp">145.0</td>
+<td class="gt_row gt_right" headers="6 stub_1_7 hp">175</td>
+<td class="gt_row gt_right" headers="6 stub_1_7 drat">3.62</td>
+<td class="gt_row gt_right" headers="6 stub_1_7 wt">2.770</td>
+<td class="gt_row gt_right" headers="6 stub_1_7 qsec">15.50</td>
+</tr>
+<tr class="odd">
+<td id="summary_stub_6_1" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick" data-quarto-table-cell-role="th" scope="row">mean</td>
+<td class="gt_row gt_right gt_summary_row gt_first_summary_row thick" headers="6 summary_stub_6_1 disp">183.31429</td>
+<td class="gt_row gt_right gt_summary_row gt_first_summary_row thick" headers="6 summary_stub_6_1 hp">122.28571</td>
+<td class="gt_row gt_right gt_summary_row gt_first_summary_row thick" headers="6 summary_stub_6_1 drat">3.5857143</td>
+<td class="gt_row gt_right gt_summary_row gt_first_summary_row thick" headers="6 summary_stub_6_1 wt">3.1171429</td>
+<td class="gt_row gt_right gt_summary_row gt_first_summary_row thick" headers="6 summary_stub_6_1 qsec">17.977143</td>
+</tr>
+<tr class="even">
+<td id="summary_stub_6_2" class="gt_row gt_left gt_stub gt_summary_row" data-quarto-table-cell-role="th" scope="row">sum</td>
+<td class="gt_row gt_right gt_summary_row" headers="6 summary_stub_6_2 disp">1283.20000</td>
+<td class="gt_row gt_right gt_summary_row" headers="6 summary_stub_6_2 hp">856.00000</td>
+<td class="gt_row gt_right gt_summary_row" headers="6 summary_stub_6_2 drat">25.1000000</td>
+<td class="gt_row gt_right gt_summary_row" headers="6 summary_stub_6_2 wt">21.8200000</td>
+<td class="gt_row gt_right gt_summary_row" headers="6 summary_stub_6_2 qsec">125.840000</td>
+</tr>
+<tr class="odd">
+<td id="summary_stub_6_3" class="gt_row gt_left gt_stub gt_summary_row gt_last_summary_row" data-quarto-table-cell-role="th" scope="row">sd</td>
+<td class="gt_row gt_right gt_summary_row gt_last_summary_row" headers="6 summary_stub_6_3 disp">41.56246</td>
+<td class="gt_row gt_right gt_summary_row gt_last_summary_row" headers="6 summary_stub_6_3 hp">24.26049</td>
+<td class="gt_row gt_right gt_summary_row gt_last_summary_row" headers="6 summary_stub_6_3 drat">0.4760552</td>
+<td class="gt_row gt_right gt_summary_row gt_last_summary_row" headers="6 summary_stub_6_3 wt">0.3563455</td>
+<td class="gt_row gt_right gt_summary_row gt_last_summary_row" headers="6 summary_stub_6_3 qsec">1.706866</td>
+</tr>
+<tr class="even gt_group_heading_row">
+<td colspan="6" id="4" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">4</td>
+</tr>
+<tr class="odd gt_row_group_first">
+<td id="stub_1_8" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="4 stub_1_8 disp">108.0</td>
+<td class="gt_row gt_right" headers="4 stub_1_8 hp">93</td>
+<td class="gt_row gt_right" headers="4 stub_1_8 drat">3.85</td>
+<td class="gt_row gt_right" headers="4 stub_1_8 wt">2.320</td>
+<td class="gt_row gt_right" headers="4 stub_1_8 qsec">18.61</td>
+</tr>
+<tr class="even">
+<td id="stub_1_9" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="4 stub_1_9 disp">146.7</td>
+<td class="gt_row gt_right" headers="4 stub_1_9 hp">62</td>
+<td class="gt_row gt_right" headers="4 stub_1_9 drat">3.69</td>
+<td class="gt_row gt_right" headers="4 stub_1_9 wt">3.190</td>
+<td class="gt_row gt_right" headers="4 stub_1_9 qsec">20.00</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_10" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="4 stub_1_10 disp">140.8</td>
+<td class="gt_row gt_right" headers="4 stub_1_10 hp">95</td>
+<td class="gt_row gt_right" headers="4 stub_1_10 drat">3.92</td>
+<td class="gt_row gt_right" headers="4 stub_1_10 wt">3.150</td>
+<td class="gt_row gt_right" headers="4 stub_1_10 qsec">22.90</td>
+</tr>
+<tr class="even">
+<td id="stub_1_11" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="4 stub_1_11 disp">78.7</td>
+<td class="gt_row gt_right" headers="4 stub_1_11 hp">66</td>
+<td class="gt_row gt_right" headers="4 stub_1_11 drat">4.08</td>
+<td class="gt_row gt_right" headers="4 stub_1_11 wt">2.200</td>
+<td class="gt_row gt_right" headers="4 stub_1_11 qsec">19.47</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_12" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="4 stub_1_12 disp">75.7</td>
+<td class="gt_row gt_right" headers="4 stub_1_12 hp">52</td>
+<td class="gt_row gt_right" headers="4 stub_1_12 drat">4.93</td>
+<td class="gt_row gt_right" headers="4 stub_1_12 wt">1.615</td>
+<td class="gt_row gt_right" headers="4 stub_1_12 qsec">18.52</td>
+</tr>
+<tr class="even">
+<td id="stub_1_13" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="4 stub_1_13 disp">71.1</td>
+<td class="gt_row gt_right" headers="4 stub_1_13 hp">65</td>
+<td class="gt_row gt_right" headers="4 stub_1_13 drat">4.22</td>
+<td class="gt_row gt_right" headers="4 stub_1_13 wt">1.835</td>
+<td class="gt_row gt_right" headers="4 stub_1_13 qsec">19.90</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_14" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="4 stub_1_14 disp">120.1</td>
+<td class="gt_row gt_right" headers="4 stub_1_14 hp">97</td>
+<td class="gt_row gt_right" headers="4 stub_1_14 drat">3.70</td>
+<td class="gt_row gt_right" headers="4 stub_1_14 wt">2.465</td>
+<td class="gt_row gt_right" headers="4 stub_1_14 qsec">20.01</td>
+</tr>
+<tr class="even">
+<td id="stub_1_15" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="4 stub_1_15 disp">79.0</td>
+<td class="gt_row gt_right" headers="4 stub_1_15 hp">66</td>
+<td class="gt_row gt_right" headers="4 stub_1_15 drat">4.08</td>
+<td class="gt_row gt_right" headers="4 stub_1_15 wt">1.935</td>
+<td class="gt_row gt_right" headers="4 stub_1_15 qsec">18.90</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_16" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="4 stub_1_16 disp">120.3</td>
+<td class="gt_row gt_right" headers="4 stub_1_16 hp">91</td>
+<td class="gt_row gt_right" headers="4 stub_1_16 drat">4.43</td>
+<td class="gt_row gt_right" headers="4 stub_1_16 wt">2.140</td>
+<td class="gt_row gt_right" headers="4 stub_1_16 qsec">16.70</td>
+</tr>
+<tr class="even">
+<td id="stub_1_17" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="4 stub_1_17 disp">95.1</td>
+<td class="gt_row gt_right" headers="4 stub_1_17 hp">113</td>
+<td class="gt_row gt_right" headers="4 stub_1_17 drat">3.77</td>
+<td class="gt_row gt_right" headers="4 stub_1_17 wt">1.513</td>
+<td class="gt_row gt_right" headers="4 stub_1_17 qsec">16.90</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_18" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="4 stub_1_18 disp">121.0</td>
+<td class="gt_row gt_right" headers="4 stub_1_18 hp">109</td>
+<td class="gt_row gt_right" headers="4 stub_1_18 drat">4.11</td>
+<td class="gt_row gt_right" headers="4 stub_1_18 wt">2.780</td>
+<td class="gt_row gt_right" headers="4 stub_1_18 qsec">18.60</td>
+</tr>
+<tr class="even">
+<td id="summary_stub_4_1" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick" data-quarto-table-cell-role="th" scope="row">mean</td>
+<td class="gt_row gt_right gt_summary_row gt_first_summary_row thick" headers="4 summary_stub_4_1 disp">105.13636</td>
+<td class="gt_row gt_right gt_summary_row gt_first_summary_row thick" headers="4 summary_stub_4_1 hp">82.63636</td>
+<td class="gt_row gt_right gt_summary_row gt_first_summary_row thick" headers="4 summary_stub_4_1 drat">4.0709091</td>
+<td class="gt_row gt_right gt_summary_row gt_first_summary_row thick" headers="4 summary_stub_4_1 wt">2.2857273</td>
+<td class="gt_row gt_right gt_summary_row gt_first_summary_row thick" headers="4 summary_stub_4_1 qsec">19.137273</td>
+</tr>
+<tr class="odd">
+<td id="summary_stub_4_2" class="gt_row gt_left gt_stub gt_summary_row" data-quarto-table-cell-role="th" scope="row">sum</td>
+<td class="gt_row gt_right gt_summary_row" headers="4 summary_stub_4_2 disp">1156.50000</td>
+<td class="gt_row gt_right gt_summary_row" headers="4 summary_stub_4_2 hp">909.00000</td>
+<td class="gt_row gt_right gt_summary_row" headers="4 summary_stub_4_2 drat">44.7800000</td>
+<td class="gt_row gt_right gt_summary_row" headers="4 summary_stub_4_2 wt">25.1430000</td>
+<td class="gt_row gt_right gt_summary_row" headers="4 summary_stub_4_2 qsec">210.510000</td>
+</tr>
+<tr class="even">
+<td id="summary_stub_4_3" class="gt_row gt_left gt_stub gt_summary_row gt_last_summary_row" data-quarto-table-cell-role="th" scope="row">sd</td>
+<td class="gt_row gt_right gt_summary_row gt_last_summary_row" headers="4 summary_stub_4_3 disp">26.87159</td>
+<td class="gt_row gt_right gt_summary_row gt_last_summary_row" headers="4 summary_stub_4_3 hp">20.93453</td>
+<td class="gt_row gt_right gt_summary_row gt_last_summary_row" headers="4 summary_stub_4_3 drat">0.3654711</td>
+<td class="gt_row gt_right gt_summary_row gt_last_summary_row" headers="4 summary_stub_4_3 wt">0.5695637</td>
+<td class="gt_row gt_right gt_summary_row gt_last_summary_row" headers="4 summary_stub_4_3 qsec">1.682445</td>
+</tr>
+<tr class="odd gt_group_heading_row">
+<td colspan="6" id="8" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">8</td>
+</tr>
+<tr class="even gt_row_group_first">
+<td id="stub_1_19" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="8 stub_1_19 disp">360.0</td>
+<td class="gt_row gt_right" headers="8 stub_1_19 hp">175</td>
+<td class="gt_row gt_right" headers="8 stub_1_19 drat">3.15</td>
+<td class="gt_row gt_right" headers="8 stub_1_19 wt">3.440</td>
+<td class="gt_row gt_right" headers="8 stub_1_19 qsec">17.02</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_20" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="8 stub_1_20 disp">360.0</td>
+<td class="gt_row gt_right" headers="8 stub_1_20 hp">245</td>
+<td class="gt_row gt_right" headers="8 stub_1_20 drat">3.21</td>
+<td class="gt_row gt_right" headers="8 stub_1_20 wt">3.570</td>
+<td class="gt_row gt_right" headers="8 stub_1_20 qsec">15.84</td>
+</tr>
+<tr class="even">
+<td id="stub_1_21" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="8 stub_1_21 disp">275.8</td>
+<td class="gt_row gt_right" headers="8 stub_1_21 hp">180</td>
+<td class="gt_row gt_right" headers="8 stub_1_21 drat">3.07</td>
+<td class="gt_row gt_right" headers="8 stub_1_21 wt">4.070</td>
+<td class="gt_row gt_right" headers="8 stub_1_21 qsec">17.40</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_22" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="8 stub_1_22 disp">275.8</td>
+<td class="gt_row gt_right" headers="8 stub_1_22 hp">180</td>
+<td class="gt_row gt_right" headers="8 stub_1_22 drat">3.07</td>
+<td class="gt_row gt_right" headers="8 stub_1_22 wt">3.730</td>
+<td class="gt_row gt_right" headers="8 stub_1_22 qsec">17.60</td>
+</tr>
+<tr class="even">
+<td id="stub_1_23" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="8 stub_1_23 disp">275.8</td>
+<td class="gt_row gt_right" headers="8 stub_1_23 hp">180</td>
+<td class="gt_row gt_right" headers="8 stub_1_23 drat">3.07</td>
+<td class="gt_row gt_right" headers="8 stub_1_23 wt">3.780</td>
+<td class="gt_row gt_right" headers="8 stub_1_23 qsec">18.00</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_24" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="8 stub_1_24 disp">472.0</td>
+<td class="gt_row gt_right" headers="8 stub_1_24 hp">205</td>
+<td class="gt_row gt_right" headers="8 stub_1_24 drat">2.93</td>
+<td class="gt_row gt_right" headers="8 stub_1_24 wt">5.250</td>
+<td class="gt_row gt_right" headers="8 stub_1_24 qsec">17.98</td>
+</tr>
+<tr class="even">
+<td id="stub_1_25" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="8 stub_1_25 disp">460.0</td>
+<td class="gt_row gt_right" headers="8 stub_1_25 hp">215</td>
+<td class="gt_row gt_right" headers="8 stub_1_25 drat">3.00</td>
+<td class="gt_row gt_right" headers="8 stub_1_25 wt">5.424</td>
+<td class="gt_row gt_right" headers="8 stub_1_25 qsec">17.82</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_26" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="8 stub_1_26 disp">440.0</td>
+<td class="gt_row gt_right" headers="8 stub_1_26 hp">230</td>
+<td class="gt_row gt_right" headers="8 stub_1_26 drat">3.23</td>
+<td class="gt_row gt_right" headers="8 stub_1_26 wt">5.345</td>
+<td class="gt_row gt_right" headers="8 stub_1_26 qsec">17.42</td>
+</tr>
+<tr class="even">
+<td id="stub_1_27" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="8 stub_1_27 disp">318.0</td>
+<td class="gt_row gt_right" headers="8 stub_1_27 hp">150</td>
+<td class="gt_row gt_right" headers="8 stub_1_27 drat">2.76</td>
+<td class="gt_row gt_right" headers="8 stub_1_27 wt">3.520</td>
+<td class="gt_row gt_right" headers="8 stub_1_27 qsec">16.87</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_28" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="8 stub_1_28 disp">304.0</td>
+<td class="gt_row gt_right" headers="8 stub_1_28 hp">150</td>
+<td class="gt_row gt_right" headers="8 stub_1_28 drat">3.15</td>
+<td class="gt_row gt_right" headers="8 stub_1_28 wt">3.435</td>
+<td class="gt_row gt_right" headers="8 stub_1_28 qsec">17.30</td>
+</tr>
+<tr class="even">
+<td id="stub_1_29" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="8 stub_1_29 disp">350.0</td>
+<td class="gt_row gt_right" headers="8 stub_1_29 hp">245</td>
+<td class="gt_row gt_right" headers="8 stub_1_29 drat">3.73</td>
+<td class="gt_row gt_right" headers="8 stub_1_29 wt">3.840</td>
+<td class="gt_row gt_right" headers="8 stub_1_29 qsec">15.41</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_30" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="8 stub_1_30 disp">400.0</td>
+<td class="gt_row gt_right" headers="8 stub_1_30 hp">175</td>
+<td class="gt_row gt_right" headers="8 stub_1_30 drat">3.08</td>
+<td class="gt_row gt_right" headers="8 stub_1_30 wt">3.845</td>
+<td class="gt_row gt_right" headers="8 stub_1_30 qsec">17.05</td>
+</tr>
+<tr class="even">
+<td id="stub_1_31" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="8 stub_1_31 disp">351.0</td>
+<td class="gt_row gt_right" headers="8 stub_1_31 hp">264</td>
+<td class="gt_row gt_right" headers="8 stub_1_31 drat">4.22</td>
+<td class="gt_row gt_right" headers="8 stub_1_31 wt">3.170</td>
+<td class="gt_row gt_right" headers="8 stub_1_31 qsec">14.50</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_32" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row"></td>
+<td class="gt_row gt_right" headers="8 stub_1_32 disp">301.0</td>
+<td class="gt_row gt_right" headers="8 stub_1_32 hp">335</td>
+<td class="gt_row gt_right" headers="8 stub_1_32 drat">3.54</td>
+<td class="gt_row gt_right" headers="8 stub_1_32 wt">3.570</td>
+<td class="gt_row gt_right" headers="8 stub_1_32 qsec">14.60</td>
+</tr>
+<tr class="even">
+<td id="summary_stub_8_1" class="gt_row gt_left gt_stub gt_summary_row gt_first_summary_row thick" data-quarto-table-cell-role="th" scope="row">mean</td>
+<td class="gt_row gt_right gt_summary_row gt_first_summary_row thick" headers="8 summary_stub_8_1 disp">353.10000</td>
+<td class="gt_row gt_right gt_summary_row gt_first_summary_row thick" headers="8 summary_stub_8_1 hp">209.21429</td>
+<td class="gt_row gt_right gt_summary_row gt_first_summary_row thick" headers="8 summary_stub_8_1 drat">3.2292857</td>
+<td class="gt_row gt_right gt_summary_row gt_first_summary_row thick" headers="8 summary_stub_8_1 wt">3.9992143</td>
+<td class="gt_row gt_right gt_summary_row gt_first_summary_row thick" headers="8 summary_stub_8_1 qsec">16.772143</td>
+</tr>
+<tr class="odd">
+<td id="summary_stub_8_2" class="gt_row gt_left gt_stub gt_summary_row" data-quarto-table-cell-role="th" scope="row">sum</td>
+<td class="gt_row gt_right gt_summary_row" headers="8 summary_stub_8_2 disp">4943.40000</td>
+<td class="gt_row gt_right gt_summary_row" headers="8 summary_stub_8_2 hp">2929.00000</td>
+<td class="gt_row gt_right gt_summary_row" headers="8 summary_stub_8_2 drat">45.2100000</td>
+<td class="gt_row gt_right gt_summary_row" headers="8 summary_stub_8_2 wt">55.9890000</td>
+<td class="gt_row gt_right gt_summary_row" headers="8 summary_stub_8_2 qsec">234.810000</td>
+</tr>
+<tr class="even">
+<td id="summary_stub_8_3" class="gt_row gt_left gt_stub gt_summary_row gt_last_summary_row" data-quarto-table-cell-role="th" scope="row">sd</td>
+<td class="gt_row gt_right gt_summary_row gt_last_summary_row" headers="8 summary_stub_8_3 disp">67.77132</td>
+<td class="gt_row gt_right gt_summary_row gt_last_summary_row" headers="8 summary_stub_8_3 hp">50.97689</td>
+<td class="gt_row gt_right gt_summary_row gt_last_summary_row" headers="8 summary_stub_8_3 drat">0.3723618</td>
+<td class="gt_row gt_right gt_summary_row gt_last_summary_row" headers="8 summary_stub_8_3 wt">0.7594047</td>
+<td class="gt_row gt_right gt_summary_row gt_last_summary_row" headers="8 summary_stub_8_3 qsec">1.196014</td>
+</tr>
+<tr class="odd">
+<td id="grand_summary_stub_1" class="gt_row gt_left gt_stub gt_grand_summary_row gt_first_grand_summary_row" data-quarto-table-cell-role="th" scope="row">mean</td>
+<td class="gt_row gt_right gt_grand_summary_row gt_first_grand_summary_row" headers="grand_summary_stub_1 disp">230.7219</td>
+<td class="gt_row gt_right gt_grand_summary_row gt_first_grand_summary_row" headers="grand_summary_stub_1 hp">146.68750</td>
+<td class="gt_row gt_right gt_grand_summary_row gt_first_grand_summary_row" headers="grand_summary_stub_1 drat">3.5965625</td>
+<td class="gt_row gt_right gt_grand_summary_row gt_first_grand_summary_row" headers="grand_summary_stub_1 wt">3.2172500</td>
+<td class="gt_row gt_right gt_grand_summary_row gt_first_grand_summary_row" headers="grand_summary_stub_1 qsec">17.848750</td>
+</tr>
+<tr class="even">
+<td id="grand_summary_stub_2" class="gt_row gt_left gt_stub gt_grand_summary_row" data-quarto-table-cell-role="th" scope="row">sum</td>
+<td class="gt_row gt_right gt_grand_summary_row" headers="grand_summary_stub_2 disp">7383.1000</td>
+<td class="gt_row gt_right gt_grand_summary_row" headers="grand_summary_stub_2 hp">4694.00000</td>
+<td class="gt_row gt_right gt_grand_summary_row" headers="grand_summary_stub_2 drat">115.0900000</td>
+<td class="gt_row gt_right gt_grand_summary_row" headers="grand_summary_stub_2 wt">102.9520000</td>
+<td class="gt_row gt_right gt_grand_summary_row" headers="grand_summary_stub_2 qsec">571.160000</td>
+</tr>
+<tr class="odd">
+<td id="grand_summary_stub_3" class="gt_row gt_left gt_stub gt_grand_summary_row gt_last_summary_row" data-quarto-table-cell-role="th" scope="row">sd</td>
+<td class="gt_row gt_right gt_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_3 disp">123.9387</td>
+<td class="gt_row gt_right gt_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_3 hp">68.56287</td>
+<td class="gt_row gt_right gt_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_3 drat">0.5346787</td>
+<td class="gt_row gt_right gt_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_3 wt">0.9784574</td>
+<td class="gt_row gt_right gt_grand_summary_row gt_last_summary_row" headers="grand_summary_stub_3 qsec">1.786943</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -422,7 +2429,6 @@ format:
 松村優哉, 湯谷啓明, 紀ノ定保礼, と 前田和寛. 2021. <em>RユーザのためのRStudio〈実践〉入門 : tidyverseによるモダンな分析フローの世界</em>. 技術評論社. <a href="https://gihyo.jp/book/2021/978-4-297-12170-9">https://gihyo.jp/book/2021/978-4-297-12170-9</a>.
 </div>
 </div>
-</section>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>

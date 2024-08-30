@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -238,7 +272,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="構成">構成</h2>
 <p>本書では、データ分析の過程において再現可能性を確保するための手法を学びます。 R言語を題材としますが、多くの考えが他のプログラミング言語でも適用できるはずです。</p>
 <p>再現可能性と関係するコンピューターおよびプログラミングに関する基礎知識を身につけることから着手します（<a href="./literacy.html">第1章</a>）。 次の<a href="./reproducibility.html">第2章</a>では、R言語によるプログラミングの作業において、再現可能性を低下させる要因を理解します。 再現可能なデータ分析の第一歩として、データ分析をプロジェクトとして捉えて組織化することを学びます（<a href="./project.html">第3章</a>）。 統合開発環境を導入することで次の章からの再現可能性を高める手法の実践が容易になります。 <a href="./git.html">第4章</a>では、データ分析の作業を記録し共有するためのバージョン管理システムを導入します。</p>
-<p>第5章からは、データ分析作業においてのさらに具体的な場面での再現可能性の手法に取り組みます。 まず、分析結果をレポートなどにまとめるためのドキュメントの生成を学び（<a href="./document.html">第5章</a>）ます。 続いてRで利用可能な再現可能性を高めるパッケージを紹介し（<a href="./packages.html">第6章</a>）、特に<a href="./workflow.html">第7章</a>でtargetsパッケージを用いたプロジェクトのワークフロー化を学びます。 <a href="./container.html">第8章</a>では、コンテナ技術によるデータ分析環境の構築を目指します。</p>
+<p>第5章からは、データ分析作業においてのさらに具体的な場面での再現可能性の手法に取り組みます。 まず、分析結果をレポートなどにまとめるためのドキュメントの生成を学びます（<a href="./document.html">第5章</a>）。 続いてRで利用可能な再現可能性を高めるパッケージを紹介し（<a href="./packages.html">第6章</a>）、特に<a href="./workflow.html">第7章</a>でtargetsパッケージを用いたプロジェクトのワークフロー化を学びます。 <a href="./container.html">第8章</a>では、コンテナ技術によるデータ分析環境の構築を目指します。</p>
 </section>
 <section id="本書の再現" class="level2">
 <h2 class="anchored" data-anchor-id="本書の再現">本書の再現</h2>
@@ -249,8 +283,45 @@ ul.task-list li input[type="checkbox"] {
 <li>Quarto</li>
 <li>renv</li>
 </ul>
-<p>また、サンプルコードをGitHubリポジトリで公開しています。</p>
+<p>次のコードを実行すると、本書の復元が行われます。 ここで行われるのは、renvによるパッケージの整備とQuartoによるドキュメントの生成です。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>本書の内容を補足するサンプルコードをGitHubリポジトリで公開しています。こちらも合わせてご利用ください。</p>
 <p><a href="https://github.com/uribo/rrr-demo" class="uri">https://github.com/uribo/rrr-demo</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.4.1 (2024-06-14)
+Platform: x86_64-pc-linux-gnu
+Running under: Ubuntu 22.04.4 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices datasets  utils     methods   base     
+
+loaded via a namespace (and not attached):
+ [1] digest_0.6.37     fastmap_1.2.0     xfun_0.47         knitr_1.48       
+ [5] htmltools_0.5.8.1 rmarkdown_2.28    lifecycle_1.0.4   cli_3.6.3        
+ [9] textshaping_0.4.0 renv_1.0.7        systemfonts_1.1.0 compiler_4.4.1   
+[13] tools_4.4.1       ragg_1.3.2        evaluate_0.24.0   yaml_2.3.10      
+[17] rlang_1.1.4       jsonlite_1.8.8    htmlwidgets_1.6.4</code></pre>
+</div>
+</div>
 
 
 </section>
