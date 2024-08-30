@@ -6,14 +6,188 @@ Rでの分析環境の再現性を保障するには、いくつかの要素が�
 hereやreprexなど、いくつかのRパッケージについてはすでに取り上げていますが、
 この章では、再現性の問題となりやすい要因について、さらに詳しく解説し、それらに対処するためのRパッケージを紹介します。
 
+本章で扱うパッケージは以下のコードでインストールされます。
+
+```{r}
+#| eval: false
+#| echo: true
+install.packages(c("renv", "pointblank", "pins", "config"))
+```
+
 ## renvパッケージ
 
 複数環境でRを実行する際は、ある環境では必要なパッケージがインストールされていなかったり、インストール済みであってもバージョンが異なることがあります。
-このような環境間でのパッケージの違いは、対象のパッケージの特定のバージョンをインストールすれば解決することですが、パッケージが多い場合は管理が煩雑になります。
+このような環境間でのパッケージの違いは、対象のパッケージの特定のバージョンをインストールすれば解決することですが、パッケージが多い場合はその作業が苦痛になります。
 
 renvパッケージは、プロジェクトごとに必要なパッケージを管理するためのRパッケージです。
+通常は一つのパッケージに対して利用可能なバージョンは一つだけですが、renvを用いれば、プロジェクトごとに異なるバージョンのパッケージを利用可能になります。
+その仕組みは、renvを使ってインストールされるパッケージは、通常のRのパッケージのインストール先とは異なる場所にインストールされるためです。
+renvを使わないプロジェクトに影響することはありません。
 
-Rパッケージの管理
+インストールされるパッケージは将来利用するプロジェクトでも再利用されます。
+たくさんのパッケージを利用するプロジェクトでは、本来すべてのパッケージを揃えるのに時間がかかりますが、renvではキャッシュ機能によって、再インストール時の時間の短縮化を行います。
+
+### renvプロジェクトの開始
+
+renvでパッケージの管理を行うには、以下のコードを実行し、準備する必要があります。
+
+```{r}
+#| message: false
+library(renv)
+```
+
+```{r}
+#| eval: false
+#| echo: true
+renv::init()
+```
+
+`renv::init()`関数の実行により、プロジェクト中に`.Rprofile`と`renv.lock`の2つのファイルとrenvフォルダが作成されます。
+`.Rprofile`にはrenvによる管理を行うことを示す1行分のコードが記述されいます。
+`renv::init()`を実行する前に、すでに`.Rprofile`が存在する場合、1行追加されるだけで既存の内容は残ります。
+
+バージョン管理システムを使っている場合、`renv.init()`関数で生成されたファイルはいずれもバージョン管理に含めることになります。
+`.Rprofile`に記録されたrenv利用のコードがなければ、自分以外はrenvを利用できませんし、`renv.lock`がなければ、他の人が同じ環境を再現することができないためです。
+
+### パッケージの管理
+
+renvを使ったプロジェクトでは、保存されたRファイルやRmd(`.rmd）、`.qmd`の中で使われるRパッケージを管理対象にします。
+`renv::status()`関数を使うと、プロジェクト中のソースコードを再現するのに必要なパッケージのインストール状況について、下記のような確認が行われます。
+
+```{r}
+#| eval: false
+#| echo: true
+renv::status()
+#> The following package(s) are in an inconsistent state:
+#> 
+#>  package     installed recorded used
+#>  clipr       y         n        y   
+#>  credentials y         n        y   
+#>  gert        y         n        y   
+#>  gh          y         n        y   
+#>  gitcreds    y         n        y   
+#>  ini         y         n        y   
+#>  reprex      y         n        y   
+#>  usethis     y         n        y   
+#>  zip         y         n        y   
+#> 
+#> See ?renv::status() for advice on resolving these issues.
+```
+
+installedはインストール状態を示す列です。
+`y`ならパッケージはインストールされています。
+recordedは`renv.lock`に記録されているかどうかを示します。
+上記の例ではいずれも`n`となっています。
+usedはプロジェクトで利用されているかどうかを示します。
+
+次に行う行動は、`installed`が`n`の未パッケージをインストールし、
+recordedが`n`、usedが`y`のパッケージを`renv.lock`に記録することです。
+これらの作業は`renv::snapshot()`関数を使って行います。
+
+```{r}
+#| eval: false
+#| echo: true
+renv::snapshot()
+#>  The following package(s) will be updated in the lockfile:
+#>  
+#>  # CRAN -----------------------------------------------------------------
+#>  - clipr         [* -> 0.8.0]
+#>  - credentials   [* -> 2.0.1]
+#>  - gert          [* -> 2.1.1]
+#>  - gh            [* -> 1.4.1]
+#>  - gitcreds      [* -> 0.1.2]
+#>  - ini           [* -> 0.3.1]
+#>  - reprex        [* -> 2.1.1]
+#>  - usethis       [* -> 3.0.0]
+#>  - zip           [* -> 2.3.1]
+#>  
+#>  Do you want to proceed? [Y/n]: 
+```
+
+`renv::snapshot()`の出力は、`renv.lock`の記録とCRANやリモートリポジトリのバージョンに基づいて行われます。
+`[* -> 0.8.0]`のように、矢印で示されている先が、新しく記録されるバージョンを示します。
+対して矢印の元になる方は`renv.lock`に記録されたバージョンを示しています。
+`\*`は`renv.lock`に記録がないことを表します。
+すでに`renv.lock`に記録があるパッケージはそのバージョンが表示されます。
+
+記録を行うことに問題はないので、`Y`を入力してEnterキーを押します。
+これにより`renv.lock`の更新が確定されます。
+
+プロジェクトでの作業を進めていくと、利用するパッケージが次第に変化します。
+そのため`renv.lock`を定期的に更新することが重要です。
+手順は今見てきたように、`renv::status()`での状況確認、続いて`renv::snapshot()`関数でのバージョンを参考にしながらの`renv.lock`の更新です。
+
+`renv::snapshot()`関数実行時に、もしスナップショットからの変更がないのであれば、出力は以下のようになります。
+
+```{r}
+#| eval: false
+#| echo: true
+renv::snapshot()
+#> - The lockfile is already up to date.
+```
+
+### パッケージの追加・削除
+
+renvでは、`renv::snapshot()`関数を使って自動的に利用されるパッケージをインストールしますが、ここでは原則として最新版がインストール対象となります。
+しかし、特定のバージョンやGitHubの開発版を利用したい場面もあります。
+このような状況のために、ユーザーが手動でパッケージの追加・削除を行うことも可能です。
+
+パッケージの追加は `install.packages()`関数か `renv::install()`関数を使って行います。
+前者は通常のRと同じインストール方法です。
+どちらの関数を使っても挙動は同じです。
+ただし、`renv::install()`関数では、CRANにあるパッケージだけでなく、そのバージョンを指定することもできます。
+また、GitHubやBioconductor上のパッケージもインストールの対象とすることが可能です。
+
+```{r}
+#| eval: false
+#| echo: true
+# CRAN上のパッケージのインストール
+# @以降にバージョンを指定することで、特定のバージョンをインストールできる
+renv::install("jmastats@0.2.2")
+
+# GitHub上のパッケージをインストール
+# GitHubのユーザー名/リポジトリ名の形式を指定する
+renv::install("uribo/jpmesh")
+```
+
+パッケージの追加を行ったら`renv::snapshot()`関数を実行して、プロジェクトのスナップショットを取りましょう。
+適切にパッケージがインストールされている場合、`renv.lock`が更新されます。
+
+パッケージを削除するには、`renv::remove()`関数にパッケージ名を指定して実行します。
+ただし、プロジェクト中のソースコードのどこかで削除したパッケージ、関数の呼び出しがある場合、`renv::snapshot()`関数を行ったときに再びインストールを促す出力が行われます。
+完全にパッケージをプロジェクトで利用しないというときは、ソースコードからも削除することをお勧めします。
+
+```{r}
+#| eval: false
+#| echo: true
+# jpmeshパッケージを削除する
+renv::remove("jpmesh")
+```
+
+```{r}
+#| eval: false
+#| echo: true
+renv::snapshot()
+#> The following required packages are not installed:
+#> - jpmesh
+#> Packages must first be installed before renv can snapshot them.
+#> Use `renv::dependencies()` to see where this package is used in your project.
+#> 
+#> What do you want to do? 
+#> 
+#> 1: Snapshot, just using the currently installed packages.
+#> 2: Install the packages, then snapshot.
+#> 3: Cancel, and resolve the situation on your own.
+```
+
+ここで1を選択すると、`renv.lock`からの削除も行われます。
+一方、2を選ぶと再度インストールを実行し、`renv.lock`の更新が行われます。
+
+### パッケージの復元
+
+リモートリポジトリからのクローンや、他の環境からrenvを使ったプロジェクトで作業を始める際は、`renv::restore()`関数によって`renv.lock`に記録されたパッケージをインストールします。
+これにより、プロジェクトで使われるパッケージが揃い、再現性の向上に役立ちます。
+もし他のプロジェクトで同一パッケージの同一バージョンが利用されていた場合、キャッシュが使われるためにインストール時間が短縮されます。
 
 ## pointblankパッケージ
 
