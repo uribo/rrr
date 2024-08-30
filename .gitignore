@@ -3,6 +3,7 @@
 .RData
 .Ruserdata
 README.html
+README_files/
 _book/
 /.quarto/
 *.pdf

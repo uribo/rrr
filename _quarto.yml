@@ -8,7 +8,8 @@ book:
   author:
     name: "瓜生真也"
     institute: "徳島大学デザイン型AI教育研究センター"
-  date: "2024-08-29"
+    orcid: "0000-0002-0493-6186"
+  date: "2024-08-31"
   chapters:
     - index.qmd
     - literacy.qmd
