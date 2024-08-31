@@ -125,9 +125,8 @@ RStudioでは、`Ctrl`+`Alt`+`I`（macOSでは`Command`+`Option`+`I`）のショ
 コードブロック全体のコードを実行するには、`Ctrl`+`Shift`+`Enter`（macOSでは`Command`+`Shift`+`Enter`）を使います。
 あるいは、コードブロックの右上にある右向きの三角形ボタンをクリックすることでも実行できます。
 
-<!-- ![RStudioでのqmdファイルのインタラクティブ操作](https://i.gyazo.com/5e9e349b78ccb1ef38e7a057d13d69d6.png) -->
+![RStudioでのqmdファイルのインタラクティブ操作](https://i.gyazo.com/5e9e349b78ccb1ef38e7a057d13d69d6.png)
 
-![RStudioでのqmdファイルのインタラクティブ操作](https://i.gyazo.com/f7f0b1a95814db2e88254428fe370526.gif)
 
 文字装飾、図や数式、参考文献等の挿入結果を表示しながら、ファイルを編集するときにはビジュアルモードの利用が便利です。
 ビジュアルモードは、ソースペイン中にある編集中のqmdファイルのタブで「Visual」を選択すると切り替わります。
