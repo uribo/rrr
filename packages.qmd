@@ -341,8 +341,12 @@ agent <-
 [^1]: [ドキュメントの章](document.qmd)で取り上げたgtテーブルが利用されています。
 
 ```{r}
+#| eval: false
+#| echo: true
 interrogate(agent)
 ```
+
+![](https://i.gyazo.com/82f9c77c3491433aaf8521e073ea2304.png)
 
 ### データのスキャン
 
