@@ -19,7 +19,6 @@ book:
     - document.qmd
     - packages.qmd
     - workflow.qmd
-    - container.qmd
     - reference.qmd
   site-url: https://uribo.github.io/rrr/
   repo-url: https://github.com/uribo/rrr
@@ -51,3 +50,7 @@ format:
         \usepackage{zxjatype}
         \usepackage[ipaex]{zxjafont}
         \setmainfont{IPAexGothic}
+    toc: true
+    number-sections: true
+    colorlinks: true
+    highlight-style: github
