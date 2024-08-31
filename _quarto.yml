@@ -45,12 +45,9 @@ knitr:
     dev: "ragg_png"
 
 format:
-  html:
-    theme: 
-      light: cosmo
-      dark: darkly
-    code-link: false
-    highlight-style: github
-    toc: true
-    code-fold: false
-    df-print: kable
+  pdf:
+    include-in-header:
+      text: |
+        \usepackage{zxjatype}
+        \usepackage[ipaex]{zxjafont}
+        \setmainfont{IPAexGothic}
