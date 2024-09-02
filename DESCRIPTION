@@ -18,3 +18,5 @@ Suggests:
     rversions,
     styler,
     usethis
+URL: https://uribo.github.io/rrr/
+BugReports: https://github.com/uribo/rrr/issues
